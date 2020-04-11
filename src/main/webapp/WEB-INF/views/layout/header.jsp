@@ -69,11 +69,11 @@
             <ul class="nav-shop">
               <li class="nav-item"><button><i class="ti-search"></i></button></li>
               <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <c:if test = "${sessionScope.user.email == null  } ">
+              <c:if test = "${sessionScope.user.email == null  }">
               <li class="nav-item"><a class="button button-header" href="loginCheck.do">Login</a></li>
               </c:if>
               
-              <c:if test = "${sessionScope.user.email != null } ">
+              <c:if test = "${sessionScope.user.email != null }">
               <li class="nav-item"><a class="button button-header" href="logout.do">Logout</a></li>
               </c:if>
             </ul>
