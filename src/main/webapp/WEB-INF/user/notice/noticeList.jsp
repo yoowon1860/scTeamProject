@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.sc.speedcampus.user.notice.dao.NoticeDAO" %>
+<%@page import="com.sc.speedcampus.user.notice.vo.NoticeVO" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Home</title>
-  
+  <title>speedCampus</title>
   	<link rel="icon" href="${pageContext.request.contextPath }/resources/img/Fevicon.png" type="image/png">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/fontawesome/css/all.min.css">
@@ -19,7 +22,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/nice-select/nice-select.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/nouislider/nouislider.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
-	
   <style>
       #container {
       width: 100%;
@@ -29,7 +31,6 @@
       padding-bottom: 20%;
       padding-top: 5%;
     }
-     
     #list {
       text-align: center;
     }
@@ -81,11 +82,19 @@
       100% {color:red; font-weight: bold;} */
     }
   </style>
+  
+  <script>
+  	// 리스트 몇줄로 출력할건지
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="noticeList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+</script>
 
 </head>
 <body>
-<div id="container">
 
+<div id="container">
 		<h3>Notice</h3>
 		<hr style="border: solid 1.5px #384aeb;">
   			<!-- Start Filter Bar --> 
@@ -98,11 +107,16 @@
                </select> 
              </div> 
              <div class="sorting mr-auto"> 
-               <select> 
-                 <option value="1">Show 12</option> 
-                 <option value="1">Show 12</option> 
-                 <option value="1">Show 12</option> 
-               </select> 
+               <select id="cntPerPage" name="sel" onchange="selChange()">
+			<option value="5"
+				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
+			<option value="10"
+				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄 보기</option>
+			<option value="15"
+				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄 보기</option>
+			<option value="20"
+				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
+			</select>
              </div> 
              <div> 
                <div class="input-group filter-bar-search"> 
@@ -128,58 +142,86 @@
     </div>
    
     <div id="list">
-      <b>게시판 (전체 글: ${totalCount})</b>
+      <b>게시판 (전체 글: ${paging.total})</b>
     </div>
-     
+		<!--<div style="float: right; padding-bottom: 20px;">
+			<a href="studyWrite.do" class="button button-postComment button--active"
+				style="padding: 5px 5px 5px 5px;"> <img
+				src="${pageContext.request.contextPath }/resources/img/write.png"
+				width="20px" height="20px"> &nbsp;새글쓰기
+			</a>
+		</div>-->
+		<div>
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+				
+					<c:forEach var="notice" items="${noticeList}" varStatus="status">
+						<tr>
+							<td>${notice.num }</td>
+							<td id="title"><a href="noticeRead.do?num=${notice.num }">${notice.title}</a></td>
+							<td>운영자</td>
+							<td>${notice.regDate}</td>
+							<td>${notice.viewcnt}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 
-     
-    <div>
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th >번호</th>
-            <th >제목</th>
-            <th >작성자</th>
-            <th >작성일</th>
-            <th >조회</th>
-          </tr>
-        </thead>
-        <tbody>
-        	<tr>
-	            <td >1</td>
-	            <td id="title">안녕하세요 스피드캠퍼스입니다</td>
-	            <td >admin</td>
-	            <td >2020-03-21</td>
-	            <td >3</td>
-           	</tr>
-           	
-          <c:forEach var="article" items="${articles}" varStatus="status">
-            <tr>
-              <td>${article.articleNumber}</td>
-              <td id="title">
-                <c:if test="${article.depth > 0}">
-                  &nbsp;&nbsp;
-                </c:if>
-                <a href="/bbs/content.bbs?articleNumber=${article.articleNumber}&pageNum=${pageNum}">${article.title}</a>
-                <c:if test="${article.hit >= 20}">
-                  <span class="hit">hit!</span>
-                </c:if>
-              </td>
-              <td>${article.id}</td>
-              <td>${article.writeDate}</td>
-              <td>${article.hit}</td>
-            <tr>
-          </c:forEach>
-        </tbody>
-      </table>
-       
-      <!-- Paging 처리 -->
-      <div id="paging">
-        ${pageCode}
-      </div>
+			<!-- Paging 처리 -->
+			<nav class="blog-pagination justify-content-center d-flex">
+				<ul class="pagination">
+					<li class="page-item">
+					<c:if test="${paging.startPage != 1 }">
+						<a href="noticeList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}" class="page-link" aria-label="Previous"> 
+							<span aria-hidden="true"> 
+								<span class="lnr lnr-chevron-left"></span>
+							</span>
+						</a>
+						</c:if>
+					</li>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<li class="page-item active"><b class="page-link">${p }</b></li>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+									<li class="page-item"><a href="noticeList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}" class="page-link">${p }</a></li>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+							<c:if test="${paging.endPage != paging.lastPage}">
+						<a href="noticeList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" class="page-link" aria-label="Next"> 
+							<span aria-hidden="true">
+								<span class="lnr lnr-chevron-right"></span>
+							</span>
+						</a>
+					</c:if>
+				</ul>
+			</nav>
+			
+			
+
+
     </div>
   </div>
 
+  <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/skrollr.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/nice-select/jquery.nice-select.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/jquery.ajaxchimp.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/mail-script.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/main.js"></script>
 </body>
 </html>
 

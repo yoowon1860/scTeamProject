@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="NoticeDAO">
+	
+	<select id="getNoticeList" resultType="mynotice">		
+		SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM notice
+						ORDER BY num DESC 
+						) A
+				)
+		WHERE RN BETWEEN #{start, jdbcType=INTEGER} AND #{end, jdbcType=INTEGER}
+	</select>
+	
+	<select id="getNotice" parameterType="int" resultType="mynotice">
+		SELECT * FROM notice WHERE num = #{num}
+	</select>
+	
+	<update id="hitUpdate" parameterType="java.lang.Integer">
+		UPDATE notice SET viewcnt = viewcnt + 1 WHERE num = #{num}
+	</update>
+	
+	<select id="countNotice" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM notice
+	</select>
+</mapper>
+

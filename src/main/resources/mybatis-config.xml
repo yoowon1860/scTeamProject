@@ -5,13 +5,20 @@
 <configuration>
 	<properties resource="db.properties" />
 	<typeAliases>
-		
-		<typeAlias type="com.sc.speedcampus.user.member.vo.UserVO" alias="myuser"/>
-		<typeAlias type="com.sc.speedcampus.user.mycourse.vo.MyCourseVO" alias="mycourse"/>
-		<typeAlias type="com.sc.speedcampus.admin.member.vo.AdminVO" alias="myadmin"/>
-		<typeAlias type="com.sc.speedcampus.admin.course.vo.CourseVO" alias="admincourse"/>
+
+		<typeAlias type="com.sc.speedcampus.user.member.vo.UserVO"
+			alias="myuser" />
+		<typeAlias
+			type="com.sc.speedcampus.user.mycourse.vo.MyCourseVO"
+			alias="mycourse" />
+		<typeAlias type="com.sc.speedcampus.admin.member.vo.AdminVO"
+			alias="myadmin" />
+		<typeAlias
+			type="com.sc.speedcampus.admin.course.vo.CourseVO"
+			alias="admincourse" />
+					<typeAlias type="com.sc.speedcampus.user.notice.vo.NoticeVO" alias="mynotice"/>
 	</typeAliases>
-	
+
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -24,9 +31,10 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource = "mappings/course-mapping.xml"/>
-		<mapper resource = "mappings/admin-mapping.xml"/>
-		<mapper resource = "mappings/myCourse-mapping.xml"/>
-		<mapper resource = "mappings/member-mapping.xml"/>
+		<mapper resource="mappings/course-mapping.xml" />
+		<mapper resource="mappings/admin-mapping.xml" />
+		<mapper resource="mappings/myCourse-mapping.xml" />
+		<mapper resource="mappings/member-mapping.xml" />
+		<mapper resource="mappings/notice-mapping.xml" />
 	</mappers>
 </configuration>
