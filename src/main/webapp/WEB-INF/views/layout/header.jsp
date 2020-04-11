@@ -48,7 +48,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Board</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">공지사항</a></li>
+                  <li class="nav-item"><a class="nav-link" href="noticeList.do">공지사항</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-blog.html">Q&A</a></li>
                 </ul>
 			 </li>
