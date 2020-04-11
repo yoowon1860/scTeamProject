@@ -17,6 +17,8 @@
 			type="com.sc.speedcampus.admin.course.vo.CourseVO"
 			alias="admincourse" />
 					<typeAlias type="com.sc.speedcampus.user.notice.vo.NoticeVO" alias="mynotice"/>
+		<typeAlias type="com.sc.speedcampus.user.study.vo.StudyVO" alias="mystudy"/>		
+		<typeAlias type="com.sc.speedcampus.user.scomment.vo.ScommentVO" alias="scomment"/>					
 	</typeAliases>
 
 	<environments default="development">
@@ -36,5 +38,7 @@
 		<mapper resource="mappings/myCourse-mapping.xml" />
 		<mapper resource="mappings/member-mapping.xml" />
 		<mapper resource="mappings/notice-mapping.xml" />
+		<mapper resource = "mappings/study-mapping.xml"/>	
+		<mapper resource = "mappings/scomment-mapping.xml"/>			
 	</mappers>
 </configuration>

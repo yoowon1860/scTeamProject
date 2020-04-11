@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="StudyDAO">
+
+	<insert id="insertStudy" parameterType="mystudy">
+		INSERT INTO study (num, title, writer, content)
+		VALUES ((SELECT NVL(max(num), 0)+1 FROM study), #{title}, #{writer}, #{content})
+	</insert>
+	
+	<update id="updateStudy" parameterType="mystudy" >
+		UPDATE study SET title=#{title}, content=#{content}, pass=#{pass}
+		WHERE num=#{num}
+	</update>
+	
+	<delete id="deleteStudy" parameterType="mystudy">
+		DELETE FROM study WHERE num=#{num}
+	</delete>
+	
+	<select id="getStudyList" resultType="mystudy">		
+		SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM study 
+						ORDER BY num DESC 
+						) A
+				)
+		WHERE RN BETWEEN #{start, jdbcType=INTEGER} AND #{end, jdbcType=INTEGER}
+	</select>
+	
+	<select id="getStudy" parameterType="int" resultType="mystudy">
+		SELECT * FROM study WHERE num = #{num}
+	</select>
+	
+	<update id="hitUpdate" parameterType="java.lang.Integer">
+		UPDATE study SET cnt = cnt + 1 WHERE num = #{num}
+	</update>
+	
+	<select id="countStudy" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM study
+	</select>
+</mapper>
+

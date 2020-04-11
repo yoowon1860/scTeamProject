@@ -2,18 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
 
-<c:if test="${sessionScope.user == null }">
-	<script type="text/javascript">
-		alert("로그인이 필요한 서비스입니다")
-		location.href = "${path}/speedcampus/login.do";
-	</script>
-</c:if>
+
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -79,7 +74,7 @@ to {
 </head>
 <body>
 	<div id="container">
-		
+
 		<h3>STUDY</h3>
 		<hr style="border: solid 1.5px #384aeb;">
 		<div class="returning_customer">
@@ -88,33 +83,32 @@ to {
 				<div class="billing_details">
 					<div class="row">
 						<div class="col-lg-8">
-							<h3>스터디 모집하기</h3>
-							<form class="row contact_form" action="studyWriteAction.do"
+							<h3>스터디 수정</h3>
+							<form class="row contact_form" action="studyUpdateAction.do"
 								method="post" novalidate="novalidate">
-								<input type="hidden" name="writer" value="${sessionScope.user.email }">
-
+								<input type="hidden" name="num" value=${study.num }>
 								<div class="col-md-12 form-group">
 									<label>제목</label> <input type="text" class="form-control" id=""
-										name="title">
+										name="title" value="${study.title }">
 								</div>
 								<div class="col-md-12 form-group">
 									<label>내용</label><br />
-									<textarea rows="10" cols="75" name="content"></textarea>
+									<textarea rows="10" cols="75" name="content" >${study.content }</textarea>
 									<br/>
 
 
 								</div>
 								<div class="col-md-12 form-group">
-									
+								
 
 									<div style="text-align: right;">
-										<a href="studyList.do"
+										<a href="studyRead.do?num=${study.num }"
 											class="button button-postComment button--active"
 											style="padding: 5px">취소
 										</a>
 										<button 
 											class="button button-postComment button--active"
-											style="padding: 5px" type="submit"a>등록
+											style="padding: 5px" type="submit">수정
 										</button>
 									</div>
 								</div>
