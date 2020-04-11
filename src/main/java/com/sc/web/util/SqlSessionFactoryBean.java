@@ -1,4 +1,4 @@
-package com.sc.speedcampus.util;
+package com.sc.web.util;
 
 import java.io.Reader;
 

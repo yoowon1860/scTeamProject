@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sc.speedcampus.user.member.vo.UserVO;
-import com.sc.speedcampus.util.SqlSessionFactoryBean;
+import com.sc.web.util.SqlSessionFactoryBean;
 
 @Repository
 public class UserDAO {
