@@ -43,7 +43,7 @@
                   <li class="nav-item"><a class="nav-link" href="cart.html">알고리즘</a></li>
                 </ul>
 			  </li>
-			  <li class="nav-item"><a class="nav-link" href="contact.html">Study</a></li>
+			  <li class="nav-item"><a class="nav-link" href="studyList.do">Study</a></li>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Board</a>
@@ -51,7 +51,7 @@
                   <li class="nav-item"><a class="nav-link" href="blog.html">공지사항</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-blog.html">Q&A</a></li>
                 </ul>
-			 </li>
+			 </li>z
 			
 			 <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
