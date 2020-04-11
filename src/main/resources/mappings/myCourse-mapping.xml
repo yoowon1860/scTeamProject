@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MyCourseDAO">
+	
+	<!-- 나의 모든 강의 불러오기 -->
+	<select id="getMyCourseList" resultType="mycourse">
+		SELECT * FROM list WHERE mail=#{mail}
+	</select>
+	
+	<!-- 나의 수강 중 강의 불러오기 -->
+	<select id="getMyIngList" resultType="mycourse">
+		SELECT * 
+		FROM list 
+		WHERE mail=#{mail}
+		AND
+		end <![CDATA[<]]> #{sysdate}
+	</select>
+	
+	<!-- 나의 수강 완료 강의 불러오기 -->
+	<select id="getMyEndList" resultType="mycourse">
+		SELECT * 
+		FROM list 
+		WHERE mail=#{mail}
+		AND
+		end <![CDATA[>]]> #{sysdate}
+	</select>
+
+	
+</mapper>

@@ -1,0 +1,71 @@
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+    
+<tiles-definitions>
+ 
+    
+    <!-- default -->    
+    <definition name="default_layout" template="/WEB-INF/views/layout/default_template.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+    </definition>
+ 
+    <!-- notice -->
+    <definition name="default_notice" template="/WEB-INF/views/layout/default_template.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+    </definition>
+       
+    <!-- courses -->
+    <definition name="sidebar_courses" template="/WEB-INF/views/layout/sidebar_template.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/views/layout/sidebar_courses.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+    </definition>
+    
+    <!-- my -->
+    <definition name="sidebar_my" template="/WEB-INF/views/layout/sidebar_template.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/views/layout/sidebar_my.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+    </definition>
+    
+    <!-- admin -->
+    <definition name="admin/*/*" template="/WEB-INF/views/layout/empty_template.jsp">
+        <put-attribute name="content" value="/WEB-INF/admin/{1}/{2}.jsp"/>  
+    </definition>
+    
+    <!-- (1) default -->    
+    <definition name="*" extends="default_layout">
+      <put-attribute name="content" value="/WEB-INF/user/{1}.jsp" />
+    </definition>
+ 
+    <!-- (2) notice -->
+   <definition name="notice/*" extends="default_notice">      
+      <put-attribute name="content" value="/WEB-INF/user/notice/{1}.jsp" />
+    </definition>
+    
+    <!-- (3) courses -->
+   <definition name="courses/*" extends="sidebar_courses">      
+      <put-attribute name="content" value="/WEB-INF/user/courses/{1}.jsp" />
+    </definition>
+
+    <!-- (4) my -->
+   <definition name="my/*" extends="sidebar_my">      
+      <put-attribute name="content" value="/WEB-INF/user/my/{1}.jsp" />
+    </definition>     
+    
+    <!-- (5) member -->    
+    <definition name="member/*" extends="default_layout">
+      <put-attribute name="content" value="/WEB-INF/user/member/{1}.jsp" />
+    </definition>   
+    
+    <!-- (6) study -->    
+    <definition name="study/*" extends="default_layout">
+      <put-attribute name="content" value="/WEB-INF/user/study/{1}.jsp" />
+    </definition>   
+    
+
+    
+</tiles-definitions>

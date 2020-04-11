@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CourseDAO">
+	
+	<!-- 강의 등록 -->
+	<insert id="register" parameterType="admincourse" >
+		INSERT INTO vd
+		VALUES((select nvl(max(num), 0)+1 from vd), #{name}, #{price}, #{img}, #{youtube}, #{detail})
+	</insert>
+	
+	<!-- 강의 삭제 -->
+	<delete id="delete" parameterType="admincourse">
+		DELETE FROM vd
+		WHERE num=#{num}
+	</delete>
+	
+	<!-- 강의 상세 검색 -->
+	<select id="getCourse" parameterType="admincourse" resultType="admincourse">
+		SELECT * 
+		FROM vd
+		WHERE num=#{num}
+	</select>
+	
+	<!-- 강의 목록 -->
+	<select id="getCourseList" parameterType="admincourse" resultType="admincourse">
+		SELECT *
+		FROM vd
+	</select>
+	
+</mapper>
