@@ -51,7 +51,7 @@
                   <li class="nav-item"><a class="nav-link" href="blog.html">공지사항</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-blog.html">Q&A</a></li>
                 </ul>
-			 </li>z
+			 </li>
 			
 			 <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -70,7 +70,7 @@
               <li class="nav-item"><button><i class="ti-search"></i></button></li>
               <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
               <c:if test = "${sessionScope.user.email == null  }">
-              <li class="nav-item"><a class="button button-header" href="loginCheck.do">Login</a></li>
+              <li class="nav-item"><a class="button button-header" href="login.do">Login</a></li>
               </c:if>
               
               <c:if test = "${sessionScope.user.email != null }">
