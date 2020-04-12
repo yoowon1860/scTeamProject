@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class CourseVO {
 	private int num;
 	private String name;
-	private int price;
+	private String price;
 	private String img;
 	private String youtube;
 	private String detail;
@@ -37,10 +37,10 @@ public class CourseVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public String getImg() {
