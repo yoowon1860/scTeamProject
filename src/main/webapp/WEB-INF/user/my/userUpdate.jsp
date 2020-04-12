@@ -33,13 +33,6 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css">
-	
-	<c:if test="${sessionScope.user == null }">
-	<script type="text/javascript">
-		alert("로그인이 필요한 서비스입니다")
-		location.href = "${path}/speedcampus/login.do";
-	</script>
-</c:if>
 </head>
 <body>
 	<!--================ Start Header Menu Area =================-->
