@@ -101,14 +101,12 @@ div>#paging {
 							<div class="col-lg-12">
 
 								<div class="row">
-
 									<div class="col-lg-12 mt-4">
 										<div>
 											<div style="float: left;">
 												<h4>#&nbsp;${study.num }&nbsp;&nbsp;${study.title }</h4>
 											</div>
 											<div style="text-align: right;">
-
 												<c:if test="${sessionScope.user.email ==  study.writer}">
 													<a href="studyUpdate.do?num=${study.num }" class="button button-postComment button--active" style="padding: 5px" title="글 수정">
 														<img src="${pageContext.request.contextPath }/resources/img/update.png" width="20px" height="20px">
@@ -123,11 +121,8 @@ div>#paging {
 												<a href="studyList.do" class="button button-postComment button--active" style="padding: 5px" title="글 목록">
 													<img src="${pageContext.request.contextPath }/resources/img/list.png" width="20px" height="20px">
 												</a>
-												
 											</div>
 											<div style="text-align: right;"></div>
-
-
 										</div>
 									</div>
 								</div>
@@ -139,18 +134,14 @@ div>#paging {
 							<div class="row">
 								<div
 									class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-
-
-
 								</div>
 								<div
 									class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-
-
 								</div>
 							</div>
 						</div>
 						
+						<!-- 댓글 -->
 						<div class="comments-area">
 							<h4>05 Comments</h4>
 							<div class="comment-list">
@@ -159,6 +150,10 @@ div>#paging {
 										<div >
 											<c:forEach items="${comment}" var="comment">
 												<h5 class="comment">${comment.userId}</h5>
+												<c:if test="${sessionScope.user.email ==  comment.userId}">
+												<a href="updateScomment.docnum=${comment.cnum}&snum=${comment.snum}">수정</a>
+												<a href="deleteScomment.do?cnum=${comment.cnum}&snum=${comment.snum}">삭제</a>
+												</c:if>
 												<p class="date">${comment.regDate}</p>
 												<p class="comment">${comment.cContent}</p>
 												<br><hr><br>

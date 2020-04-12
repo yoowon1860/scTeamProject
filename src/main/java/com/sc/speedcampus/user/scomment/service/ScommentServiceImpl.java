@@ -15,13 +15,25 @@ public class ScommentServiceImpl implements ScommentService{
 	ScommentDAO scommentDAO;
 	
 	@Override
-	public void insertComment(ScommentVO vo) {
+	public void insertScomment(ScommentVO vo) {
 		scommentDAO.insertScomment(vo);
 	}
 
 	@Override
 	public List<ScommentVO> getScommentList(int snum) {
 		return scommentDAO.getScommentList(snum);
+	}
+
+	@Override
+	public void updateScomment(ScommentVO vo) {
+		scommentDAO.updateScomment(vo);
+		
+	}
+
+	@Override
+	public void deleteScomment(ScommentVO vo) {
+		scommentDAO.deleteScomment(vo);
+		
 	}
 
 }

@@ -26,4 +26,12 @@ public class ScommentDAO {
 	public List<ScommentVO> getScommentList(int snum){
 		return sqlSession.selectList("ScommentVO.getScommentList", snum);		
 	}
+	
+	public void updateScomment(ScommentVO vo) {
+		sqlSession.update("ScommentVO.updateScomment",vo);
+	}
+	
+	public void deleteScomment(ScommentVO vo) {
+		sqlSession.delete("ScommentVO.deleteScomment",vo);
+	}
 }
