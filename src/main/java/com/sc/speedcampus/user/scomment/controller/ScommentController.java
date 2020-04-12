@@ -20,12 +20,27 @@ public class ScommentController {
 	private ScommentService scommentService;
 	
 	@RequestMapping("insertScomment.do")
-	public String insertComment(ScommentVO vo, HttpSession session) {
+	public String insertScomment(ScommentVO vo, HttpSession session) {
 		
 		UserVO user = (UserVO)session.getAttribute("user");
 		vo.setUserId(user.getEmail());
 		
-		scommentService.insertComment(vo);
+		scommentService.insertScomment(vo);
+		
+		return "redirect:studyRead.do?num=" + vo.getSnum();
+	}
+	
+	@RequestMapping("updateScomment.do")
+	public String updateScomment(ScommentVO vo) {
+		scommentService.updateScomment(vo);
+		
+		return "redirect:studyRead.do?num=" + vo.getSnum();
+	}
+	
+	@RequestMapping("deleteScomment.do")
+	public String deleteScomment(ScommentVO vo) {
+		System.out.println(vo);
+		scommentService.deleteScomment(vo);
 		
 		return "redirect:studyRead.do?num=" + vo.getSnum();
 	}

@@ -6,6 +6,8 @@ import com.sc.speedcampus.user.scomment.vo.ScommentVO;
 
 public interface ScommentService {
 
-	public void insertComment(ScommentVO vo);
+	public void insertScomment(ScommentVO vo);
+	public void updateScomment(ScommentVO vo);
+	public void deleteScomment(ScommentVO vo);
 	public List<ScommentVO> getScommentList(int snum);
 }

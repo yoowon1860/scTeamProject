@@ -95,9 +95,7 @@ public class StudyController {
 		System.out.println("스터디 수정");
 		studyService.updateStudy(vo);
 		
-		int num = vo.getNum();
-		String number = Integer.toString(num); 
-		return "redirect:studyRead.do?num="+number;
+		return "redirect:studyRead.do?num="+vo.getNum();
 	}
 	
 	// 스터디 삭제하기
