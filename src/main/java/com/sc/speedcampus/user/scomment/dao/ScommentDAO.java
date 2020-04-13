@@ -34,4 +34,8 @@ public class ScommentDAO {
 	public void deleteScomment(ScommentVO vo) {
 		sqlSession.delete("ScommentVO.deleteScomment",vo);
 	}
+	
+	public String idCheck(int cnum) {
+		return sqlSession.selectOne("ScommentVO.sCommentUserIdCheck",cnum);
+	}
 }

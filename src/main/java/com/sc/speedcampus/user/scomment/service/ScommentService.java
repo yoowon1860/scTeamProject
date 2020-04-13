@@ -10,4 +10,5 @@ public interface ScommentService {
 	public void updateScomment(ScommentVO vo);
 	public void deleteScomment(ScommentVO vo);
 	public List<ScommentVO> getScommentList(int snum);
+	public String idCheck(int cnum);
 }

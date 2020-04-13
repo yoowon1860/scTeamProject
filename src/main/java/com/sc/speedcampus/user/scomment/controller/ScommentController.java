@@ -50,14 +50,25 @@ public class ScommentController {
 		return "redirect:studyRead.do?num=" + vo.getSnum();
 	}
 	
+	// 상품 소감(댓글) 삭제
+	@ResponseBody
 	@RequestMapping("deleteScomment.do")
-	public String deleteScomment(ScommentVO vo) {
-		System.out.println(vo);
-		scommentService.deleteScomment(vo);
-		
-		return "redirect:studyRead.do?num=" + vo.getSnum();
+	public int getReplyList(ScommentVO vo, HttpSession session) throws Exception {
+
+	 int result = 0;
+	 UserVO user = (UserVO)session.getAttribute("user");
+	 String userId = scommentService.idCheck(vo.getCnum());
+	   
+	 if(user.getEmail().equals(userId)) {
+	  
+	  vo.setUserId(user.getEmail());
+	  scommentService.deleteScomment(vo);
+	  result = 1;
+	 }
+	 
+	 System.out.println("리절트" +result);
+	 return result; 
 	}
-	
 	// 댓글 목록 불러오기
 	@ResponseBody
 	@RequestMapping(value="sCommentList.do", method=RequestMethod.GET)

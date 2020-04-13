@@ -27,13 +27,16 @@ public class ScommentServiceImpl implements ScommentService{
 	@Override
 	public void updateScomment(ScommentVO vo) {
 		scommentDAO.updateScomment(vo);
-		
 	}
 
 	@Override
 	public void deleteScomment(ScommentVO vo) {
 		scommentDAO.deleteScomment(vo);
-		
+	}
+
+	@Override
+	public String idCheck(int cnum) {
+		return scommentDAO.idCheck(cnum);
 	}
 
 }

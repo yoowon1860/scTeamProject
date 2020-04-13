@@ -24,8 +24,16 @@
 	
 	<!-- 댓글 삭제 -->
 	<delete id="deleteScomment" parameterType="scomment">
-		DELETE FROM scomment WHERE cnum=#{cnum}
+		DELETE FROM scomment 
+		WHERE cnum=#{cnum} and userId=#{userId}
 	</delete>
+	
+	<!-- 아이디 체크 -->
+	<select id="sCommentUserIdCheck" resultType="String">
+		SELECT userId
+		FROM scomment
+		WHERE cnum=#{cnum}
+	</select>
 	
  	
 </mapper>

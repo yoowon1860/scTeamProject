@@ -24,6 +24,8 @@
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
+	
+	// 댓글 목록 불러오는 함수
 	function sCommentList(){
 		var snum = ${study.num};
 		console.log(snum);
@@ -35,10 +37,10 @@
 				regDate = regDate.toLocaleDateString("ko-US");
 				str += "<h5 class='comment'>" + this.userId + "</h5>"
 				+ "<p class='date'>" + regDate + "</p>"
-				+ "<p class='comment'>" + this.cContent + "</p><br>"
+				+ "<p class='replyContent'>" + this.cContent + "</p><br>"
 				+ "<div class='replyFooter'>"
-				+ "<button type='button' data-repNum='" + this.cnum + "'>수정</button>"
-				+ "<button type='button' data-repNum='" + this.cnum + "'>삭제</button><br><hr><br>"
+				+ "<button type='button' class='modify' data-cnum='" + this.cnum + "'>수정</button>"
+				+ "<button type='button' class='delete' data-cnum='" + this.cnum + "'>삭제</button><br><hr><br>"
 				+ "</div>"
 			});
 			$("div.sComment").html(str);
@@ -48,6 +50,15 @@
 </script>
 
 <style>
+
+
+ div.replyModal { position:relative; z-index:1; display:none;}
+ div.modalBackground { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.8); z-index:-1; }
+ div.modalContent { position:fixed; top:20%; left:calc(50% - 250px); width:450px; height:250px; padding:20px 20px; background:#fff; border:2px solid #666; }
+ div.modalContent textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:400px; height:150px; }
+ div.modalContent button { text-align:center; font-size:16px; padding:5px 10px;  background:#fff; border:1px solid #ccc; }
+ div.modalContent button.modal_cancel { margin-left:1px; }
+
 #container {
 	width: 100%;
 	margin: 0 auto; /* 가로로 중앙에 배치 */
@@ -173,7 +184,58 @@ div>#paging {
 							<div class="sComment"></div>
 							<script>sCommentList();</script>
 						</div>
+						<!-- 댓글 목록 끝 -->
 						
+						<!-- 댓글 수정 -->
+						<script type="text/javascript">
+						$(document).on("click", ".modify", function(){
+							 $(".replyModal").fadeIn(200);
+							 
+							 $(document).on("click", ".modify", function(){
+								 //$(".replyModal").attr("style", "display:block;");
+								 $(".replyModal").fadeIn(200);
+								 
+								 var cnum = $(this).attr("data-cnum");
+								 var cContent = $(this).parent().parent().children(".replyContent").text();
+								 
+								 $(".modal_cContent").val(cContent);
+								 $(".modal_modify_btn").attr("data-cnum", cnum);
+								 
+								});
+							 
+							});
+						</script>
+						<!-- 댓글 수정 끝 -->
+						
+						<!-- 댓글 삭제 -->
+						<script>
+							$(document).on("click", ".delete", function() {
+								var deleteConfirm = confirm("정말 삭제하시겠습니까?");
+								if (deleteConfirm) {
+									var data = {
+										cnum : $(this).attr("data-cnum")
+									};
+									$.ajax({
+										url : "/speedcampus/deleteScomment.do",
+										type : "post",
+										data : data,
+										success : function(result) {
+											if (result == 1) {
+												alert("삭제되었습니다.");
+												sCommentList();
+											} else {
+												alert("작성자 본인만 가능합니다.");
+											}
+										},
+										error : function() {
+											alert("로그인하셔야합니다.")
+										}
+									});
+								}
+							});
+						</script>
+						<!-- 댓글 삭제 끝-->
+
 						<!-- 댓글 남기기 -->
 						<div class="comment-form">
 							<h4>Leave a Reply</h4>
@@ -196,8 +258,8 @@ div>#paging {
 								</form>
 							</c:if>
 						</div>
+
 						<script>
-						
 						// 댓글 작성
 						 $("#insertScomment").click(function(){
 						  
@@ -222,6 +284,8 @@ div>#paging {
 						 });
 						</script>
 					</div>
+					<!-- 댓글 남기기  끝-->
+					
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
 							<aside class="single_sidebar_widget search_widget">
@@ -338,21 +402,45 @@ div>#paging {
 
 	<!--================Blog Area =================-->
 
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/vendors/jquery/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/vendors/skrollr.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/vendors/nice-select/jquery.nice-select.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/vendors/jquery.ajaxchimp.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/vendors/mail-script.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/js/main.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/skrollr.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/nice-select/jquery.nice-select.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/jquery.ajaxchimp.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/mail-script.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/main.js"></script>
+
+		<!-- 댓글 수정 -->
+		<div class="replyModal">
+
+			<div class="modalContent">
+
+				<div>
+					<textarea class="modal_cContent" name="modal_cContent"></textarea>
+				</div>
+
+				<div>
+					<button type="button" class="modal_modify_btn">수정</button>
+					<button type="button" class="modal_cancel">취소</button>
+				</div>
+
+			</div>
+
+			<div class="modalBackground"></div>
+
+		</div>
+
+
+		<!-- 댓글 수정 끝 -->
+
+		<script>
+			$(".modal_cancel").click(function() {
+				$(".replyModal").fadeOut(200);
+			});
+		</script>
+		
+		
+		
 </body>
 </html>
