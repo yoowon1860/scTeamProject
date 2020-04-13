@@ -1,13 +1,15 @@
 package com.sc.speedcampus.user.scomment.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sc.speedcampus.user.member.vo.UserVO;
 import com.sc.speedcampus.user.scomment.service.ScommentService;
@@ -19,6 +21,7 @@ public class ScommentController {
 	@Autowired
 	private ScommentService scommentService;
 	
+	/*
 	@RequestMapping("insertScomment.do")
 	public String insertScomment(ScommentVO vo, HttpSession session) {
 		
@@ -28,6 +31,16 @@ public class ScommentController {
 		scommentService.insertScomment(vo);
 		
 		return "redirect:studyRead.do?num=" + vo.getSnum();
+	}*/
+	
+	@ResponseBody
+	@RequestMapping("insertScomment.do")
+	public void insertScomment(ScommentVO vo, HttpSession session){
+		
+		UserVO user = (UserVO)session.getAttribute("user");
+		vo.setUserId(user.getEmail());
+		
+		scommentService.insertScomment(vo);
 	}
 	
 	@RequestMapping("updateScomment.do")
@@ -45,8 +58,15 @@ public class ScommentController {
 		return "redirect:studyRead.do?num=" + vo.getSnum();
 	}
 	
-
-	
+	// 댓글 목록 불러오기
+	@ResponseBody
+	@RequestMapping(value="sCommentList.do", method=RequestMethod.GET)
+	public List<ScommentVO> getScommentList(@RequestParam("snum") int snum){
+		System.out.println(snum);
+		System.out.println(scommentService.getScommentList(snum));
+		return scommentService.getScommentList(snum);
+		
+	}
 	
 	
 	
