@@ -22,6 +22,31 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/owl-carousel/owl.carousel.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	function sCommentList(){
+		var snum = ${study.num};
+		console.log(snum);
+		$.getJSON("/speedcampus/sCommentList.do" + "?snum=" + snum, function(data) {
+			var str = "";
+			$(data).each(function() {
+				console.log(data);
+				var regDate = new Date(this.regDate);
+				regDate = regDate.toLocaleDateString("ko-US");
+				str += "<h5 class='comment'>" + this.userId + "</h5>"
+				+ "<p class='date'>" + regDate + "</p>"
+				+ "<p class='comment'>" + this.cContent + "</p><br>"
+				+ "<div class='replyFooter'>"
+				+ "<button type='button' data-repNum='" + this.cnum + "'>수정</button>"
+				+ "<button type='button' data-repNum='" + this.cnum + "'>삭제</button><br><hr><br>"
+				+ "</div>"
+			});
+			$("div.sComment").html(str);
+		});
+								
+	}
+</script>
+
 <style>
 #container {
 	width: 100%;
@@ -141,51 +166,61 @@ div>#paging {
 							</div>
 						</div>
 						
-						<!-- 댓글 -->
-						<div class="comments-area">
+						<!-- 댓글 목록 -->
+						 <div class="comments-area">
 							<h4>05 Comments</h4>
-							<div class="comment-list">
-								<div class="single-comment justify-content-between d-flex">
-									<div >
-										<div >
-											<c:forEach items="${comment}" var="comment">
-												<h5 class="comment">${comment.userId}</h5>
-												<c:if test="${sessionScope.user.email ==  comment.userId}">
-												<a href="updateScomment.docnum=${comment.cnum}&snum=${comment.snum}">수정</a>
-												<a href="deleteScomment.do?cnum=${comment.cnum}&snum=${comment.snum}">삭제</a>
-												</c:if>
-												<p class="date">${comment.regDate}</p>
-												<p class="comment">${comment.cContent}</p>
-												<br><hr><br>
-											</c:forEach>
-										</div>
-									</div>
-								</div>
-							</div>
+
+							<div class="sComment"></div>
+							<script>sCommentList();</script>
 						</div>
-
-
+						
+						<!-- 댓글 남기기 -->
 						<div class="comment-form">
 							<h4>Leave a Reply</h4>
 							<c:if test="${sessionScope.user == null }">
-							<p>
-								댓글을 남기시려면 <a href="login.do">로그인</a>해주세요
-							</p>
-						</c:if>
+								<p>
+									댓글을 남기시려면 <a href="login.do">로그인</a>해주세요
+								</p>
+							</c:if>
 							<c:if test="${sessionScope.user != null}">
-							<form role="form" method="post" action="insertScomment.do">
-								<input type="hidden" name="snum" value="${study.num }">
+								<form role="form" method="post" autocomplete="off">
+									<input type="hidden" name="snum" id="snum" value="${study.num }">
 
-								<div class="form-group">
-									<textarea class="form-control mb-10" rows="5" name="cContent" id="cContent"
-										placeholder="Messege" onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Messege'" required=""></textarea>
-								</div>
-								<button type="submit" id="reply_btn" class="button button-postComment button--active">Post
-									Comment</button>
-							</form>
+									<div class="form-group">
+										<textarea class="form-control mb-10" rows="5" name="cContent"
+											id="cContent" placeholder="Messege"
+											onfocus="this.placeholder = ''"
+											onblur="this.placeholder = 'Messege'" required=""></textarea>
+									</div>
+									<button type="button" id="insertScomment" class="button button-postComment button--active">Post Comment</button>
+								</form>
 							</c:if>
 						</div>
+						<script>
+						
+						// 댓글 작성
+						 $("#insertScomment").click(function(){
+						  
+						  var formObj = $(".replyForm form[role='form']");
+						  var snum = $("#snum").val();
+						  var cContent = $("#cContent").val()
+						  
+						  var data = {
+						    snum : snum,
+						    cContent : cContent
+						    };
+						  
+						  $.ajax({
+						   url : "/speedcampus/insertScomment.do",
+						   type : "post",
+						   data : data,
+						   success : function(){
+						    sCommentList();
+						    $("#cContent").val("");
+						   }
+						  });
+						 });
+						</script>
 					</div>
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
