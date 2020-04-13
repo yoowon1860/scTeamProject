@@ -31,5 +31,18 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDAO.countNotice();
 	}
 	
+	@Override
+	public void insertNotice(NoticeVO vo) {
+		noticeDAO.insertNotice(vo);
+	}
 	
+	@Override
+	public void updateNotice(NoticeVO vo) {
+		noticeDAO.updateNotice(vo);
+	}
+	
+	@Override
+	public void deleteNotice(NoticeVO vo) {
+		noticeDAO.deleteNotice(vo);
+	}
 }

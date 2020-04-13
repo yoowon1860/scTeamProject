@@ -131,7 +131,7 @@
                </div> 
              </div> 
            </div> 
-<!--           End Filter Bar -->
+<!-- End Filter Bar -->
 
   
     <div align="right">

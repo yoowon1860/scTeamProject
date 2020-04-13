@@ -9,7 +9,6 @@ public class NoticeVO {
 	private String content;
 	private Date regDate;
 	private int viewcnt;
-	private String pass;
 	
 	public int getNum() {
 		return num;
@@ -47,18 +46,13 @@ public class NoticeVO {
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+
 	
 	
 	@Override
 	public String toString() {
 		return "NoticeVO [num=" + num + ", title=" + title + ", writer=" + writer + ", content=" + content
-				+ ", regDate=" + regDate + ", viewcnt=" + viewcnt + ", pass=" + pass + "]";
+				+ ", regDate=" + regDate + ", viewcnt=" + viewcnt + "]";
 	}
 	
 

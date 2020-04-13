@@ -28,5 +28,22 @@
 	<select id="countNotice" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM notice
 	</select>
+	
+	<!-- IT's needed in administrator notice page -->
+	
+	<delete id="deleteNotice" parameterType="mynotice">
+		DELETE FROM notice WHERE num=#{num}	
+	</delete>
+	
+	<update id="updateNotice" parameterType = "mynotice">
+		UPDATE notice SET title=#{title}, content=#{content} 
+		WHERE num=#{num}
+	</update>
+
+	<insert id="insertNotice" parameterType="mynotice">
+		INSERT INTO notice (num, title, content)
+		VALUES ((SELECT NVL(max(num), 0)+1 FROM notice),  #{title}, #{content})
+	</insert>
+
 </mapper>
 
