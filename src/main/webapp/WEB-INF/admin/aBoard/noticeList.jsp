@@ -1,11 +1,20 @@
-<!-- Project-Edits.html -->
+<!-- Projects.html -->
+<!-- ***********ADMIN NOTICE LIST PAGE************ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 <!DOCTYPE html>
 <html>
 <head>
+ <script>
+  	// 리스트 몇줄로 출력할건지
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="noticeList.mdo?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+
+</script>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -716,12 +725,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Project Edit</h1>
+            <h1>Notice</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Project Edit</li>
+              <li class="breadcrumb-item active">Notice</li>
             </ol>
           </div>
         </div>
@@ -730,47 +739,114 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">공지사항 수정</h3>
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Notice</h3>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputName">제목</label>
-                <input type="text" id="inputName" class="form-control" value="AdminLTE">
-              </div>
-              <div class="form-group">
-                <label for="inputDescription">내용</label>
-                <textarea id="inputDescription" class="form-control" rows="4">샬라샬라</textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="inputClientCompany">등록일 수정할수있게해야하나ㅠ</label>
-                <input type="text" id="inputClientCompany" class="form-control" value="Deveint Inc">
-              </div>
-              <div class="form-group">
-                <label for="inputProjectLeader">Project Leader</label>
-                <input type="text" id="inputProjectLeader" class="form-control" value="Tony Chicken">
-              </div>
-            </div>
-            <!-- /.card-body -->
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
           </div>
-          <!-- /.card -->
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <a href="#" class="btn btn-secondary">Cancel</a>
-          <input type="submit" value="Save Changes" class="btn btn-success float-right">
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+              <thead>
+                  <tr>
+                      <th style="width: 1%">
+                          	No
+                      </th>
+                      <th style="width: 20%">
+                          	제목
+                      </th>
+                      <th style="width: 30%">
+                          	작성자
+                      </th>
+                      <th>
+                          	작성일
+                      </th>
+                      <th style="width: 8%" class="text-center">
+                          		조회수
+                      </th>
+                      <th style="width: 20%">
+                      			버튼들
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+					<c:forEach var="notice" items="${noticeList}" varStatus="status">
+						<tr>
+							<td>${notice.num }</td>
+							<td id="title"><a href="noticeRead.mdo?num=${notice.num }">${notice.title}</a></td>
+							<td>운영자
+							</td>
+							<td>${notice.regDate}</td>
+							<td>${notice.viewcnt}</td>
+							<td>
+                          <a class="btn btn-primary btn-sm" href="noticeUpdate.mdo?num=${notice.num }">
+                              <i class="fas fa-folder">
+                              </i>
+                              		수정
+                          </a>
+                          <a class="btn btn-danger btn-sm" href="noticeDelete.mdo?num=${notice.num }">
+                              <i class="fas fa-trash">
+                              </i>
+                              	삭제
+                          </a>
+                      </td>
+						</tr>
+					</c:forEach>
+              </tbody>
+          </table>
+          
+          
+			<!-- Paging 처리 -->
+			<nav class="blog-pagination justify-content-center d-flex">
+				<ul class="pagination">
+					<li class="page-item">
+					<c:if test="${paging.startPage != 1 }">
+						<a href="noticeList.mdo?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}" class="page-link" aria-label="Previous"> 
+							<span aria-hidden="true"> 
+								<span class="lnr lnr-chevron-left"></span>
+							</span>
+						</a>
+						</c:if>
+					</li>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<li class="page-item active"><b class="page-link">${p }</b></li>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+									<li class="page-item"><a href="noticeList.mdo?nowPage=${p }&cntPerPage=${paging.cntPerPage}" class="page-link">${p }</a></li>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+							<c:if test="${paging.endPage != paging.lastPage}">
+						<a href="noticeList.mdo?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" class="page-link" aria-label="Next"> 
+							<span aria-hidden="true">
+								<span class="lnr lnr-chevron-right"></span>
+							</span>
+						</a>
+					</c:if>
+				</ul>
+			</nav>
+			
+          
         </div>
+        <!-- /.card-body -->
       </div>
+      <!-- /.card -->
+      
+			 <a class="btn btn-info btn-sm" href="noticeWrite.mdo">
+                  <i class="fas fa-pencil-alt">
+                     </i>
+	                              글 등록
+	         </a>
+	       
+		<!-- button -->
     </section>
     <!-- /.content -->
   </div>
@@ -782,7 +858,7 @@
     </div>
     <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
     reserved.
-  </footer>
+  </footer>	
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

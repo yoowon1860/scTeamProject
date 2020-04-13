@@ -38,4 +38,20 @@ public class NoticeDAO {
 	public int countNotice() {
 		return sqlSession.selectOne("NoticeDAO.countNotice");
 	}
+	
+	/////////////////여기서부터 Admin page에서 필요한것
+	//공지사항 삭제
+	public void deleteNotice(NoticeVO vo) {
+		sqlSession.delete("NoticeDAO.deleteNotice", vo);
+	}
+	
+	//공지사항 추가
+	public void insertNotice(NoticeVO vo) {
+		sqlSession.insert("NoticeDAO.insertNotice", vo);
+	}
+	
+	//공지사항 수정
+	public void updateNotice(NoticeVO vo) {
+		sqlSession.update("NoticeDAO.updateNotice", vo);
+	}
 }
