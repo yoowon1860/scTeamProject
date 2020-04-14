@@ -33,8 +33,12 @@
 			var str = "";
 			$(data).each(function() {
 				console.log(data);
+				
+				// 날짜데이터 보기쉽게 변환
 				var regDate = new Date(this.regDate);
 				regDate = regDate.toLocaleDateString("ko-US");
+				
+				// HTML 코드조립
 				str += "<h5 class='comment'>" + this.userId + "</h5>"
 				+ "<p class='date'>" + regDate + "</p>"
 				+ "<p class='replyContent'>" + this.cContent + "</p><br>"
@@ -190,20 +194,14 @@ div>#paging {
 						<script type="text/javascript">
 						$(document).on("click", ".modify", function(){
 							 $(".replyModal").fadeIn(200);
-							 
-							 $(document).on("click", ".modify", function(){
-								 //$(".replyModal").attr("style", "display:block;");
-								 $(".replyModal").fadeIn(200);
-								 
-								 var cnum = $(this).attr("data-cnum");
-								 var cContent = $(this).parent().parent().children(".replyContent").text();
-								 
-								 $(".modal_cContent").val(cContent);
-								 $(".modal_modify_btn").attr("data-cnum", cnum);
-								 
-								});
-							 
-							});
+							 var cnum = $(this).attr("data-cnum");
+							 console.log(cnum);
+
+						     var cContent = $(this).parent().parent().children(".replyContent").text();
+						     $(".modal_cContent").val(cContent);
+						     $(".modal_modify_btn").attr("data-cnum", cnum);
+							
+						});
 						</script>
 						<!-- 댓글 수정 끝 -->
 						
@@ -288,54 +286,24 @@ div>#paging {
 					
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
-							<aside class="single_sidebar_widget search_widget">
 					
-							</aside>
-							<aside class="single_sidebar_widget author_widget">
-
-
-
-							</aside>
+							<!-- 인기 게시물 -->
 							<aside class="single_sidebar_widget popular_post_widget">
 								<h3 class="widget_title">Popular Posts</h3>
-								<div class="media post_item">
-									<img src="img/blog/popular-post/post1.jpg" alt="post">
-									<div class="media-body">
-										<a href="blog-details.html">
-											<h3>Space The Final Frontier</h3>
-										</a>
-										<p>02 Hours ago</p>
+								<c:forEach var="popularStudy" items="${popularStudy}" varStatus="status">		
+									<div class="media post_item">
+										<div class="media-body">
+											<a href="/speedcampus/studyRead.do?num=${popularStudy.num }">
+												<h3>${popularStudy.title }</h3>
+											</a>
+											<p>${popularStudy.regDate }</p>
+										</div>
 									</div>
-								</div>
-								<div class="media post_item">
-									<img src="img/blog/popular-post/post2.jpg" alt="post">
-									<div class="media-body">
-										<a href="blog-details.html">
-											<h3>The Amazing Hubble</h3>
-										</a>
-										<p>02 Hours ago</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="img/blog/popular-post/post3.jpg" alt="post">
-									<div class="media-body">
-										<a href="blog-details.html">
-											<h3>Astronomy Or Astrology</h3>
-										</a>
-										<p>03 Hours ago</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="img/blog/popular-post/post4.jpg" alt="post">
-									<div class="media-body">
-										<a href="blog-details.html">
-											<h3>Asteroids telescope</h3>
-										</a>
-										<p>01 Hours ago</p>
-									</div>
-								</div>
+								</c:forEach>
 								<div class="br"></div>
 							</aside>
+							<!-- 인기 게시물 끝 -->
+							
 							<aside class="single_sidebar_widget ads_widget">
 								<a href="#"> <img class="img-fluid" src="img/blog/add.jpg"
 									alt="">

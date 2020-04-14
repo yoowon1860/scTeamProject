@@ -13,5 +13,7 @@ public interface StudyService {
 	StudyVO getStudy(int num);
 	List<StudyVO> getStudyList(PagingVO vo);
 	int countStudy();
+	List<StudyVO> popularStudy();
+	
 
 }

@@ -60,9 +60,8 @@ public class StudyController {
 		System.out.println(mapping);
 		if(mapping.equals("/studyRead.do")) {
 			
-			// 댓글 리스트 불러오기
-			List<ScommentVO> comment = scommentService.getScommentList(num);
-			model.addAttribute("comment", comment);
+			// 인기 게시물 가져오기
+			model.addAttribute("popularStudy", studyService.popularStudy());
 			
 			return "study/studyRead";
 		}
@@ -103,8 +102,6 @@ public class StudyController {
 		return "redirect:studyList.do";
 		
 	}
-	
-
-	
+		
 
 }
