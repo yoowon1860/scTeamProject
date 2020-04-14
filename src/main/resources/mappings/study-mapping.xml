@@ -4,20 +4,24 @@
   
 <mapper namespace="StudyDAO">
 
+	<!-- 스터디 등록 -->
 	<insert id="insertStudy" parameterType="mystudy">
 		INSERT INTO study (num, title, writer, content)
 		VALUES ((SELECT NVL(max(num), 0)+1 FROM study), #{title}, #{writer}, #{content})
 	</insert>
 	
+	<!-- 스터디 수정 -->
 	<update id="updateStudy" parameterType="mystudy" >
 		UPDATE study SET title=#{title}, content=#{content}
 		WHERE num=#{num}
 	</update>
 	
+	<!-- 스터디 삭제 -->
 	<delete id="deleteStudy" parameterType="mystudy">
 		DELETE FROM study WHERE num=#{num}
 	</delete>
 	
+	<!-- 스터디 리스트 가져오기 -->
 	<select id="getStudyList" resultType="mystudy">		
 		SELECT * 
 		FROM (
@@ -31,18 +35,22 @@
 		WHERE RN BETWEEN #{start, jdbcType=INTEGER} AND #{end, jdbcType=INTEGER}
 	</select>
 	
+	<!-- 스터디 하나 가져오기 -->
 	<select id="getStudy" parameterType="int" resultType="mystudy">
 		SELECT * FROM study WHERE num = #{num}
 	</select>
 	
+	<!-- 조회수 1씩 늘리기 -->
 	<update id="hitUpdate" parameterType="java.lang.Integer">
 		UPDATE study SET cnt = cnt + 1 WHERE num = #{num}
 	</update>
 	
+	<!-- 총 게시물 수 세기 -->
 	<select id="countStudy" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM study
 	</select>
 	
+	<!-- 최근 일주일중 조회수 베스트4 가져오기 -->
 	<select id="popularStudy" resultType="mystudy">
 		SELECT title,cnt,regdate,num
 		FROM 

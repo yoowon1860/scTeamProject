@@ -39,4 +39,9 @@ public class ScommentServiceImpl implements ScommentService{
 		return scommentDAO.idCheck(cnum);
 	}
 
+	@Override
+	public int countScomment(int num) {
+		return scommentDAO.countScomment(num);
+	}
+
 }

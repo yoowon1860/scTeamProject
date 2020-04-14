@@ -18,24 +18,34 @@ public class ScommentDAO {
 		sqlSession = SqlSessionFactoryBean.getSqlSessionInstance();
 	}
 
+	// ´ñ±Û ÀÛ¼º
 	public void insertScomment(ScommentVO vo) {
 		System.out.println(vo);
 		sqlSession.insert("ScommentVO.insertScomment",vo);
 	}
 	
+	// ´ñ±Û¸ñ·Ï °¡Á®¿À±â
 	public List<ScommentVO> getScommentList(int snum){
 		return sqlSession.selectList("ScommentVO.getScommentList", snum);		
 	}
 	
+	// ´ñ±Û ¼öÁ¤
 	public void updateScomment(ScommentVO vo) {
 		sqlSession.update("ScommentVO.updateScomment",vo);
 	}
 	
+	// ´ñ±Û »èÁ¦
 	public void deleteScomment(ScommentVO vo) {
 		sqlSession.delete("ScommentVO.deleteScomment",vo);
 	}
 	
+	// ´ñ±Û¾´»ç¶÷ÀÇ ¾ÆÀÌµð return
 	public String idCheck(int cnum) {
 		return sqlSession.selectOne("ScommentVO.sCommentUserIdCheck",cnum);
+	}
+	
+	// ´ñ±Û ÃÑ°³¼ö
+	public int countScomment(int num) {
+		return sqlSession.selectOne("ScommentVO.countScomment",num);
 	}
 }

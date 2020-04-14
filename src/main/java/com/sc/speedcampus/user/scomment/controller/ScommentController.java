@@ -33,6 +33,7 @@ public class ScommentController {
 		return "redirect:studyRead.do?num=" + vo.getSnum();
 	}*/
 	
+	// ´ñ±Û Ãß°¡
 	@ResponseBody
 	@RequestMapping("insertScomment.do")
 	public void insertScomment(ScommentVO vo, HttpSession session){
@@ -50,7 +51,7 @@ public class ScommentController {
 		return "redirect:studyRead.do?num=" + vo.getSnum();
 	}
 	
-	// »óÇ° ¼Ò°¨(´ñ±Û) »èÁ¦
+	// ´ñ±Û »èÁ¦
 	@ResponseBody
 	@RequestMapping("deleteScomment.do")
 	public int getReplyList(ScommentVO vo, HttpSession session) throws Exception {
@@ -69,6 +70,7 @@ public class ScommentController {
 	 System.out.println("¸®ÀýÆ®" +result);
 	 return result; 
 	}
+	
 	// ´ñ±Û ¸ñ·Ï ºÒ·¯¿À±â
 	@ResponseBody
 	@RequestMapping(value="sCommentList.do", method=RequestMethod.GET)
@@ -76,8 +78,8 @@ public class ScommentController {
 		System.out.println(snum);
 		System.out.println(scommentService.getScommentList(snum));
 		return scommentService.getScommentList(snum);
-		
 	}
+	
 	
 	
 	
