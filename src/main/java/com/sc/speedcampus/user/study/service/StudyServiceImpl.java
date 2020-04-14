@@ -50,5 +50,10 @@ public class StudyServiceImpl implements StudyService{
 		return studyDAO.countStudy();
 	}
 
+	@Override
+	public List<StudyVO> popularStudy() {
+		return studyDAO.popularStudy();
+	}
+
 
 }

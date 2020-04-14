@@ -53,5 +53,11 @@ public class StudyDAO {
 	public int countStudy() {
 		return sqlSession.selectOne("StudyDAO.countStudy");
 	}
+	
+	// 인기 게시물 ( 최근 일주일 조회수 상위 4개 )
+	public List<StudyVO> popularStudy(){
+		return sqlSession.selectList("StudyDAO.popularStudy");
+	}
+	
 
 }

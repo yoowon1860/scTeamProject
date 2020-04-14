@@ -42,5 +42,17 @@
 	<select id="countStudy" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM study
 	</select>
+	
+	<select id="popularStudy" resultType="mystudy">
+		SELECT title,cnt,regdate,num
+		FROM 
+		 (
+		  SELECT title,cnt, regdate,num
+		  FROM study <![CDATA[WHERE regdate >= TO_CHAR(SYSDATE-7,'YYYYMMDD')]]>
+		  ORDER BY cnt DESC
+		 )
+		<![CDATA[WHERE rownum <= 4]]>
+	</select>
+	
 </mapper>
 
