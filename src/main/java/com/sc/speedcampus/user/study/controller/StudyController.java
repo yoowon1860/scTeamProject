@@ -1,7 +1,5 @@
 package com.sc.speedcampus.user.study.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,22 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.sc.speedcampus.user.scomment.service.ScommentService;
-import com.sc.speedcampus.user.scomment.vo.ScommentVO;
 import com.sc.speedcampus.user.study.service.StudyService;
 import com.sc.speedcampus.user.study.vo.StudyVO;
 import com.sc.speedcampus.util.PagingVO;
 
 @Controller
-@SessionAttributes("writer")
 public class StudyController {
 	
 	@Autowired
 	private StudyService studyService;
 	@Autowired
-	private ScommentService scommentService;
+	private ScommentService sCommentService;
 	
 	// 스터디 목록 가져오기
 	@RequestMapping(value = "/studyList.do", method = RequestMethod.GET )
@@ -58,13 +53,19 @@ public class StudyController {
 		
 		String mapping = request.getServletPath();
 		System.out.println(mapping);
+		
+		// studyRead.do 로 들어올 때
 		if(mapping.equals("/studyRead.do")) {
 			
 			// 인기 게시물 가져오기
 			model.addAttribute("popularStudy", studyService.popularStudy());
 			
+			// 댓글 수 가져오기
+			model.addAttribute("countScomment",sCommentService.countScomment(num));
+			
 			return "study/studyRead";
 		}
+		// studyUpdate.do 로 들어올 때
 		else return "study/studyUpdate";
 		
 		

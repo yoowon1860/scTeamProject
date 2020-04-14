@@ -35,6 +35,12 @@
 		WHERE cnum=#{cnum}
 	</select>
 	
+	<!-- 총 댓글 수 세기 -->
+	<select id="countScomment" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM scomment
+		WHERE snum=#{snum}
+	</select>
+	
  	
 </mapper>
  

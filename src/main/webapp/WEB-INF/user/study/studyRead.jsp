@@ -130,9 +130,9 @@ div>#paging {
 								<div class="feature-img">
 									<ul class="blog_meta list">
 										<i class="lnr lnr-user"></i>&nbsp;${study.writer }&emsp;
-										<i class="lnr lnr-calendar-full"></i>&nbsp;${study.regDate }&emsp;
+										<i class="lnr lnr-calendar-full"></i>&nbsp;<fmt:formatDate value="${study.regDate}" pattern="yyyy.MM.dd"/>&emsp;
 										<i class="lnr lnr-eye"></i>&nbsp;${study.cnt } Views&emsp;
-										<i class="lnr lnr-bubble"></i>&nbsp;06 Comments&emsp;
+										<i class="lnr lnr-bubble"></i>&nbsp;${countScomment } Comments&emsp;
 									</ul>
 								</div>
 							</div>
@@ -183,7 +183,7 @@ div>#paging {
 						
 						<!-- 댓글 목록 -->
 						 <div class="comments-area">
-							<h4>05 Comments</h4>
+							<h4>${countScomment } comments</h4>
 
 							<div class="sComment"></div>
 							<script>sCommentList();</script>
@@ -294,9 +294,13 @@ div>#paging {
 									<div class="media post_item">
 										<div class="media-body">
 											<a href="/speedcampus/studyRead.do?num=${popularStudy.num }">
-												<h3>${popularStudy.title }</h3>
+												<h3>${popularStudy.title } </h3>
 											</a>
-											<p>${popularStudy.regDate }</p>
+											<p>
+											<i class="lnr lnr-calendar-full"></i>&nbsp;
+											<fmt:formatDate value="${popularStudy.regDate}" pattern="yyyy.MM.dd"/> &nbsp;
+											<i class="lnr lnr-eye"></i>&nbsp;${popularStudy.cnt }
+											</p>
 										</div>
 									</div>
 								</c:forEach>
