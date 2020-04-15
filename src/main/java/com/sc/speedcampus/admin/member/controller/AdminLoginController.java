@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.sc.speedcampus.admin.course.service.GetCourseListService;
+import com.sc.speedcampus.admin.course.vo.CourseVO;
 import com.sc.speedcampus.admin.member.service.GetAdminService;
 import com.sc.speedcampus.admin.member.vo.AdminVO;
 

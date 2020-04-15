@@ -6,24 +6,22 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-@XmlAccessorType(XmlAccessType.FIELD)
 public class CourseVO {
 	private int num;
 	private String name;
 	private String price;
-	private String img;
 	private String youtube;
 	private String detail;
 	
-	@XmlTransient
-	private MultipartFile uploadFile;
+	private MultipartFile imgFile;
 	
 	
-	public MultipartFile getUploadFile() {
-		return uploadFile;
+	
+	public MultipartFile getImgFile() {
+		return imgFile;
 	}
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
+	public void setImgFile(MultipartFile imgFile) {
+		this.imgFile = imgFile;
 	}
 	public int getNum() {
 		return num;
@@ -43,12 +41,7 @@ public class CourseVO {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
-	}
+	
 	public String getYoutube() {
 		return youtube;
 	}
@@ -64,7 +57,7 @@ public class CourseVO {
 	
 	@Override
 	public String toString() {
-		return "CourseVO [num=" + num + ", name=" + name + ", price=" + price + ", img=" + img + ", youtube=" + youtube
+		return "CourseVO [num=" + num + ", name=" + name + ", price=" + price + ", img="  + ", youtube=" + youtube
 				+ ", detail=" + detail + "]";
 	}
 	

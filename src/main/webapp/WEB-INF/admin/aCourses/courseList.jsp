@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -756,8 +757,10 @@
                   <td>${course.youtube }</td>
                   <td>
 	                  <div style="text-align:center;">
+	                  	<a style="color:white" class="btn btn-primary btn-sm" href="courseImage.mdo">썸네일 추가</a>
 	                  	<a style="color:white" class="btn btn-primary btn-sm" href="courseUpdate.mdo">수정</a>
-	                  	<a style="color:white" class="btn btn-danger btn-sm" href="courseDelete?num=${course.num}.mdo">삭제</a>
+	                  
+	                  	<a style="color:white" class="btn btn-danger btn-sm" href="courseDelete.mdo?num=${course.num}">삭제</a>
 	                  </div>
                   </td>
                 </tr>
