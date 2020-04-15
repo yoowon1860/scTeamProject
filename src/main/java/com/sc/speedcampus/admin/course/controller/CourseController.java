@@ -2,6 +2,8 @@ package com.sc.speedcampus.admin.course.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,11 @@ import com.sc.speedcampus.admin.course.service.DeleteCourseService;
 import com.sc.speedcampus.admin.course.service.GetCourseListService;
 import com.sc.speedcampus.admin.course.service.GetCourseService;
 import com.sc.speedcampus.admin.course.service.RegisterCourseService;
+import com.sc.speedcampus.admin.course.service.RegisterImageService;
 import com.sc.speedcampus.admin.course.vo.CourseVO;
 
 @Controller
-@SessionAttributes("course")
+@SessionAttributes({"course","courseList"})
 public class CourseController {
 
 	@Autowired
@@ -28,8 +31,10 @@ public class CourseController {
 	private DeleteCourseService deleteCourseService;
 	@Autowired
 	private GetCourseService getCourseService;
-	
+	@Autowired
 	private GetCourseListService getCourseListService;
+	@Autowired
+	private RegisterImageService registerImageService;
 	
 	@RequestMapping(value="courseRead.mdo", method = RequestMethod.GET)
 	public String course(CourseVO vo, Model model) {
@@ -52,32 +57,32 @@ public class CourseController {
 	}
 	
 	@RequestMapping(value="courseInsert.mdo", method = RequestMethod.POST)
-	public String courseRegister(MultipartHttpServletRequest request) {
-		CourseVO vo = new CourseVO();
-		vo.setName(request.getParameter("name"));
-		vo.setPrice(request.getParameter("price"));
-		vo.setYoutube(request.getParameter("youtube"));
-		vo.setDetail(request.getParameter("detail"));
-		
-		//파일 업로드
-		MultipartFile mf =request.getFile("img");
-		String path = request.getRealPath("uploadFile/course");
-		String fileName = mf.getOriginalFilename();
-		File uploadFile = new File(path+"//"+fileName);
-		try {
-			mf.transferTo(uploadFile);
-		}catch(IllegalStateException e) {
-			e.printStackTrace();
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
-		
-		vo.setImg(fileName);
-		System.out.println("코스 등록 실행");
+	public String courseRegister(CourseVO vo) {
 		
 		registerCourseService.register(vo);
 		return "redirect:courseList.mdo";
 	}
+	
+	@RequestMapping(value="courseImage.mdo", method = RequestMethod.GET)
+	public String courseImgView(CourseVO vo, Model model) {
+		System.out.println("코스 이미지 등록 화면");
+		model.addAttribute("course", getCourseService.getCourseService(vo));
+		return "aCourses/courseImgInsert";
+	}
+
+	@RequestMapping(value="courseImgAction.mdo", method = RequestMethod.POST)
+	public String vdRegister(CourseVO vo) {
+	try {
+		Map<String, Object> hmap = new HashMap<String, Object>();
+		hmap.put("imgFile", vo.getImgFile().getBytes());
+		registerImageService.registerImage(hmap);
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+	return "redirect:courseList.mdo";
+	}
+	
+	
 	
 	@RequestMapping("courseDelete.mdo")
 	public String courseDelete(CourseVO vo) {

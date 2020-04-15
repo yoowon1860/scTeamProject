@@ -1,6 +1,8 @@
 package com.sc.speedcampus.admin.course.dao;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,10 @@ public class CourseDAO {
 		sqlSessionTemplate.insert("CourseDAO.register", vo);
 	}
 	
+	public void image(Map<String, Object> hmap) {
+		sqlSessionTemplate.insert("CourseDAO.registerImg", hmap);
+	}
+	
 	public void delete(CourseVO vo) {
 		sqlSessionTemplate.delete("CourseDAO.delete", vo);
 	}
@@ -29,4 +35,6 @@ public class CourseDAO {
 	public List<CourseVO> getCourseList(CourseVO vo){
 		return sqlSessionTemplate.selectList("CourseDAO.getCourseList", vo);
 	}
+	
+	
 }

@@ -582,40 +582,30 @@
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body pad">
+								<div class="mb-3">
 
-								<form action="courseInsert.mdo" method="post">
+									<form action="courseImgAction.mdo" method="post"
+										enctype="multipart/form-data">
+										<input type="hidden" name="vnum" value=${course.num }/>
+										
 
-									<div class="form-group">
-										<label>강좌명</label> <input type="text" class="form-control"
-											name="name" placeholder="강좌명을 입력하세요">
-									</div>
-
-									<div class="form-group">
-										<label>강좌 가격</label> <input type="text" class="form-control"
-											name="price" placeholder="가격을 입력하세요">
-									</div>
-
-									<div class="form-group">
-										<label>YouTube Link</label> <input type="text"
-											class="form-control" name="youtube"
-											placeholder="https://www.youtube.com/watch?v=BZSImWr2J_M">
-									</div>
+										<div class="form-group">
+											<label>썸네일 등록 ${course.num }</label> <input type="file"
+												class="form-control" name="imgFile">
+										</div>
 
 
+										
+								
+								<!-- /.card-body -->
 
-									<div class="form-group">
-										<label for="exampleInputFile">&emsp;&nbsp;상세 설명</label>
-										<textarea class="textarea" name="detail"
-											placeholder="Place some text here"
-											style="width: 100%; height: 800px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 20px;"></textarea>
+								
 
-									</div>
-
-									<div style="text-align: right">
-										<input type="submit" value="제출">
-									</div>
+								<div style="text-align: right">
+									<input type="submit" value="제출">
+								</div>
 								</form>
-
+								</div>
 							</div>
 
 

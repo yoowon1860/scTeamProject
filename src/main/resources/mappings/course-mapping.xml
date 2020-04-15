@@ -4,11 +4,17 @@
 
 <mapper namespace="CourseDAO">
 	
-	<!-- 강의 등록 -->
+	<!-- 강의 등록(이미지파일 제외) -->
 	<insert id="register" parameterType="admincourse" >
-		INSERT INTO vd
-		VALUES((select nvl(max(num), 0)+1 from vd), #{name}, #{price}, #{img}, #{youtube}, #{detail})
+		INSERT INTO vd (num, name, price, youtube, detail)
+		VALUES((select nvl(max(num), 0)+1 from vd), #{name}, #{price}, #{youtube}, #{detail})
 	</insert>
+	
+	<insert id="registerImg" parameterType="admincourse" >
+		INSERT INTO vd_img (num, imgfile, vnum)
+		VALUES((select nvl(max(num), 0)+1 from vd_img), #{imgfile}, #{vnum})
+	</insert>
+	
 	
 	<!-- 강의 삭제 -->
 	<delete id="delete" parameterType="admincourse">
