@@ -731,7 +731,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class ="row">
+    	<!-- Default box -->
           <div class="card">
             <div class="card-header">
               <h3 class="card-title"># &nbsp; ${notice.num }</h3>
@@ -751,12 +751,21 @@
               <!-- /.mailbox-read-info -->
               <div class="mailbox-controls with-border text-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
-                    <i class="far fa-trash-alt"></i></button>
-                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
-                    <i class="fas fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
-                    <i class="fas fa-share"></i></button>
+                    <a class="btn btn-primary btn-sm" href="noticeUpdate.mdo?num=${notice.num }">
+                              <i class="fas fa-folder">
+                              </i>
+                    	수정
+                     </a>
+                  <a class="btn btn-info btn-sm" href="noticeWrite.mdo">
+                  <i class="fas fa-pencil-alt">
+                     </i>
+	                              등록
+	         </a>
+	               <a class="btn btn-danger btn-sm" href="noticeDelete.mdo?num=${notice.num }">
+                              <i class="fas fa-trash">
+                              </i>
+                              	삭제
+                          </a>
                 </div>
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
@@ -764,8 +773,7 @@
               </div>
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
-                <p>Hello John,
-                ${notice.content }</p>
+                <p>${notice.content }</p>
 
               </div>
               <!-- /.mailbox-read-message -->
@@ -784,7 +792,6 @@
             <!-- /.card-footer -->
           </div>
           <!-- /.card -->
-          </div>
     </section>
     <!-- /.content -->
   </div>

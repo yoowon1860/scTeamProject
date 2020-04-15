@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sc.speedcampus.user.notice.service.NoticeService;
 import com.sc.speedcampus.user.notice.vo.NoticeVO;
@@ -39,10 +40,24 @@ public class AdminNoticeController {
 		return "redirect:noticeList.mdo";
 	}
 
+	/*
+	 * //In Admin ==> 게시물 수정을 처리해줄 메소드
+	 * 
+	 * @RequestMapping(value="/noticeUpdate.mdo", method = RequestMethod.POST)
+	 * public String updateNotice2(HttpServletRequest request, RedirectAttributes
+	 * attr) { noticeService.updateNotice2(request); attr.addFlashAttribute("msg",
+	 * "게시글 수정"); return "redirect:noticeList.mdo"; }
+	 */
+	
+	
 	// In Admin ==>Load Notice Modifying Page
 	@RequestMapping(value="/noticeUpdate.mdo")
-	public String noticeUpdateView() {
+	public String noticeUpdateView(Model model, HttpServletRequest request) throws Exception {
 		System.out.println("Move to Notice Modifying Page");
+
+		int num = Integer.parseInt(request.getParameter("num"));
+		model.addAttribute("notice", noticeService.getNotice(num));
+		
 		return "aBoard/noticeUpdate";
 	}
 	
@@ -52,7 +67,8 @@ public class AdminNoticeController {
 		System.out.println("Modify Notice!");
 		noticeService.updateNotice(vo);
 
-		return "redirect:noticeUpdate.mdo?num="+vo.getNum();
+		//return "redirect:noticeUpdate.mdo?num="+vo.getNum();
+		return "redirect:noticeList.mdo";
 	}
 
 	//In Admin ==> Read the Notice 
@@ -73,6 +89,7 @@ public class AdminNoticeController {
 		return "redirect:noticeList.mdo";
 	}
 
+	
 	// In Admin ==> Load Notice List
 	@RequestMapping(value = "/noticeList.mdo", method = RequestMethod.GET)
 	public String noticeList(PagingVO vo, Model model,

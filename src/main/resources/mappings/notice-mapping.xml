@@ -36,7 +36,7 @@
 	</delete>
 	
 	<update id="updateNotice" parameterType = "mynotice">
-		UPDATE notice SET title=#{title}, content=#{content} 
+		UPDATE notice SET title=#{title}, content=#{content}, regDate = sysdate 
 		WHERE num=#{num}
 	</update>
 
