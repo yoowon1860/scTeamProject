@@ -32,27 +32,30 @@
 		$.getJSON("/speedcampus/sCommentList.do" + "?snum=" + snum, function(data) {
 			var str = "";
 			$(data).each(function() {
-				console.log(data);
 				
 				// 날짜데이터 보기쉽게 변환
 				var regDate = new Date(this.regDate);
 				regDate = regDate.toLocaleDateString("ko-US");
-				
 				// HTML 코드조립
-				str += "<h5 class='comment'>" + this.userId + "</h5>"
+				str += "<div data-cnum='"+ this.cnum + "'><h5 class='comment'>" + this.userId + "</h5>"
 				+ "<p class='date'>" + regDate + "</p>"
 				+ "<p class='replyContent'>" + this.cContent + "</p><br>"
+				+ "<c:if test='${user != null}'>"
 				+ "<div class='replyFooter'>"
 				+ "<button type='button' class='modify' data-cnum='" + this.cnum + "'>수정</button>"
-				+ "<button type='button' class='delete' data-cnum='" + this.cnum + "'>삭제</button><br><hr><br>"
+				+ "<button type='button' class='delete' data-cnum='" + this.cnum + "'>삭제</button>"
+				
 				+ "</div>"
+				+ "</c:if>"
+				+"<br><hr><br>"
+				+"</div>"
 			});
 			$("div.sComment").html(str);
 		});
 								
 	}
 </script>
-
+	
 <style>
 
 
@@ -195,7 +198,7 @@ div>#paging {
 						$(document).on("click", ".modify", function(){
 							 $(".replyModal").fadeIn(200);
 							 var cnum = $(this).attr("data-cnum");
-							 console.log(cnum);
+							
 
 						     var cContent = $(this).parent().parent().children(".replyContent").text();
 						     $(".modal_cContent").val(cContent);
@@ -205,6 +208,8 @@ div>#paging {
 						</script>
 						<!-- 댓글 수정 끝 -->
 						
+						
+
 						<!-- 댓글 삭제 -->
 						<script>
 							$(document).on("click", ".delete", function() {
@@ -410,6 +415,39 @@ div>#paging {
 			$(".modal_cancel").click(function() {
 				$(".replyModal").fadeOut(200);
 			});
+			
+			// 댓글 수정
+			$(".modal_modify_btn").click(function() {
+				console.log('안녕');
+				var modifyConfirm = confirm("정말 수정하시겠습니까?");
+
+				if (modifyConfirm) {
+					var data = {
+						cnum : $(this).attr("data-cnum"),
+						cContent : $(".modal_cContent").val()
+					}; // ScommentVO 형태로 데이터 생성
+
+					$.ajax({
+						url : "/speedcampus/updateScomment.do",
+						type : "post",
+						data : data,
+						success : function(result) {
+
+							if (result == 1) {
+								sCommentList();
+								$(".replyModal").fadeOut(200);
+							} else {
+								alert("작성자 본인만 할 수 있습니다.");
+							}
+						},
+						error : function() {
+							alert("로그인하셔야합니다.")
+						}
+					});
+				}
+
+			});
+			
 		</script>
 		
 		

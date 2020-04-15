@@ -19,7 +19,7 @@
 	<!-- 댓글 수정 -->
 	<update id="updateScomment" parameterType="scomment">
 		UPDATE scomment  SET cContent=#{cContent}
-		WHERE cnum=#{cnum}
+		WHERE cnum=#{cnum} and userId=#{userId}
 	</update>
 	
 	<!-- 댓글 삭제 -->
