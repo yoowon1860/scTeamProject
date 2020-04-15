@@ -44,12 +44,24 @@ public class ScommentController {
 		scommentService.insertScomment(vo);
 	}
 	
+	// 댓글 수정
+	@ResponseBody
 	@RequestMapping("updateScomment.do")
-	public String updateScomment(ScommentVO vo) {
-		scommentService.updateScomment(vo);
-		
-		return "redirect:studyRead.do?num=" + vo.getSnum();
-	}
+	public int updateScomment(ScommentVO vo, HttpSession session) throws Exception {
+	 
+	 int result = 0;
+	 
+	 UserVO user = (UserVO)session.getAttribute("user");
+	 String userId = scommentService.idCheck(vo.getCnum());
+	 if(user.getEmail().equals(userId)) {
+	  
+		 vo.setUserId(user.getEmail());
+		 scommentService.updateScomment(vo);
+		 result = 1;
+	 }
+	 
+	 return result;
+	} 
 	
 	// 댓글 삭제
 	@ResponseBody
@@ -59,7 +71,7 @@ public class ScommentController {
 	 int result = 0;
 	 UserVO user = (UserVO)session.getAttribute("user");
 	 String userId = scommentService.idCheck(vo.getCnum());
-	   
+	 System.out.println(user.getEmail() + " " + userId);
 	 if(user.getEmail().equals(userId)) {
 	  
 	  vo.setUserId(user.getEmail());
@@ -67,7 +79,6 @@ public class ScommentController {
 	  result = 1;
 	 }
 	 
-	 System.out.println("리절트" +result);
 	 return result; 
 	}
 	
@@ -75,8 +86,6 @@ public class ScommentController {
 	@ResponseBody
 	@RequestMapping(value="sCommentList.do", method=RequestMethod.GET)
 	public List<ScommentVO> getScommentList(@RequestParam("snum") int snum){
-		System.out.println(snum);
-		System.out.println(scommentService.getScommentList(snum));
 		return scommentService.getScommentList(snum);
 	}
 	
