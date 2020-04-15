@@ -730,10 +730,9 @@
 
     <!-- Main content -->
     <section class="content">
-      <form class="" action="noticeWriteAction.mdo"
-								method="post" novalidate="novalidate">
-      <input type="hidden" name="writer" value="">
-      
+     <form class="row contact_form" action="noticeWriteAction.mdo"
+		method="post" novalidate="novalidate">
+       
       <div class="row">
       
         <div class="col-md-12">
@@ -746,11 +745,11 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">제목</label>
-                <input type="text" id="inputName" class="form-control">
+                <input type="text" id="inputName" class="form-control" name = "title">
               </div>
               <div class="form-group">
                 <label for="inputDescription">내용</label>
-                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+                <textarea id="inputDescription" class="form-control" rows="4" name = "content"></textarea>
               </div>
 
  <!--         <div class="form-group">

@@ -732,6 +732,7 @@
     <section class="content">
       <form class="row contact_form" action="noticeUpdateAction.mdo"
 		method="post" novalidate="novalidate">
+		<input type = "hidden" name = "num" value=${notice.num }>
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary">

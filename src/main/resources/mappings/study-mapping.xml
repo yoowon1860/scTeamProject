@@ -12,7 +12,7 @@
 	
 	<!-- 스터디 수정 -->
 	<update id="updateStudy" parameterType="mystudy" >
-		UPDATE study SET title=#{title}, content=#{content}
+		UPDATE study SET title=#{title}, content=#{content}, regDate= sysdate
 		WHERE num=#{num}
 	</update>
 	
