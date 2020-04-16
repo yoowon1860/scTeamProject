@@ -59,9 +59,20 @@
 									novalidate="novalidate">
 
 									<div class="col-md-12 form-group">
+
+										<div class="sorting">
+											<select>
+												<option value="1">문의 유형 선택</option>
+												<option value="1">강좌 관련</option>
+												<option value="1">회원 관련</option>
+												<option value="1">기타 문의</option>
+											</select>
+										</div>
+										</div>
+										<div class="col-md-12 form-group">
 										<label>이메일 주소</label> <input type="text" class="form-control"
 											id="first" name="name" placeholder="abc1234@naver.com">
-											<p>*문의 답변은 이메일로 보내드립니다.</p>
+											
 										<span class="placeholder" data-placeholder="First name"></span>
 									</div>
 									<div class="col-md-12 form-group">
@@ -69,10 +80,17 @@
 											id="" name="title">
 									</div>
 									<div class="col-md-12 form-group">
+									
 										<label>문의 내용</label><br/>
-										<textarea rows="10" cols="90" name="content"></textarea><br/>
-										<button style="float: right; background: lightgreen;">작성하기</button>
-										<button style="float: right; background: red;">취 소</button>
+										<textarea style="width:100%;" name="content"></textarea><br/>
+										* 문의 답변은 이메일로 보내드립니다.
+										<div style="text-align: right;">
+											<a href="studyList.do"
+												class="button button-postComment button--active"
+												style="padding: 5px">취소 </a>
+											<button class="button button-postComment button--active"
+												style="padding: 5px" type="submit" a>등록</button>
+										</div>
 									</div>
 									
 

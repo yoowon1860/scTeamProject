@@ -29,56 +29,54 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Courses</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">리눅스</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.html">Spring</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Java</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">파이썬</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">알고리즘</a></li>
-                </ul>
-			  </li>
-			  <li class="nav-item"><a class="nav-link" href="studyList.do">Study</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Board</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="noticeList.do">공지사항</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Q&A</a></li>
-                </ul>
-			 </li>
-			
-			 <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">My</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="myCourse.do">내 강의보기</a></li>
-                  <li class="nav-item"><a class="nav-link" href="myCart.do">장바구니</a></li>
-                  <li class="nav-item"><a class="nav-link" href="myWish.do">찜</a></li>
-				  <li class="nav-item"><a class="nav-link" href="myUpdate.do">정보수정</a></li>
-                </ul>
-              </li>
-              
-            </ul>
+					<div class="collapse navbar-collapse offset"
+						id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+							<li class="nav-item active"><a class="nav-link" href="userHome.do">Home</a></li>
+							<li class="nav-item submenu dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" 
+							role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="category.html">리눅스</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-product.html">Spring</a></li>
+									<li class="nav-item"><a class="nav-link" href="checkout.html">Java</a></li>
+									<li class="nav-item"><a class="nav-link" href="confirmation.html">파이썬</a></li>
+									<li class="nav-item"><a class="nav-link" href="cart.html">알고리즘</a></li>
+								</ul></li>
+							<li class="nav-item"><a class="nav-link" href="studyList.do">Study</a></li>
+							<li class="nav-item"><a class="nav-link" href="noticeList.do">Notice</a></li>
 
-            <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <c:if test = "${sessionScope.user.email == null  }">
-              <li class="nav-item"><a class="button button-header" href="login.do">Login</a></li>
-              </c:if>
-              
-              <c:if test = "${sessionScope.user.email != null }">
-              <li class="nav-item"><a class="button button-header" href="logout.do">Logout</a></li>
-              </c:if>
-            </ul>
-          </div>
-        </div>
+							<li class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">My</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="myCourse.do">내 강의보기</a></li>
+									<li class="nav-item"><a class="nav-link" href="myCart.do">장바구니</a></li>
+									<li class="nav-item"><a class="nav-link" href="myWish.do">찜</a></li>
+									<li class="nav-item"><a class="nav-link" href="myUpdate.do">정보수정</a></li>
+									<li class="nav-item"><a class="nav-link" href="qna.do">1:1 문의</a></li>
+								</ul></li>
+
+						</ul>
+
+						<ul class="nav-shop">
+							<li class="nav-item"><button>
+									<i class="ti-search"></i>
+								</button></li>
+							<li class="nav-item"><button>
+									<i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span>
+								</button></li>
+							<c:if test="${sessionScope.user.email == null  }">
+								<li class="nav-item"><a class="button button-header"
+									href="login.do">Login</a></li>
+							</c:if>
+
+							<c:if test="${sessionScope.user.email != null }">
+								<li class="nav-item"><a class="button button-header"
+									href="logout.do">Logout</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
       </nav>
     </div>
   </header>
