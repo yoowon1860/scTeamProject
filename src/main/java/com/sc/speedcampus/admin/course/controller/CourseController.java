@@ -72,13 +72,6 @@ public class CourseController {
 
 	@RequestMapping(value="courseImgAction.mdo", method = RequestMethod.POST)
 	public String vdRegister(CourseVO vo) {
-	try {
-		Map<String, Object> hmap = new HashMap<String, Object>();
-		hmap.put("imgFile", vo.getImgFile().getBytes());
-		registerImageService.registerImage(hmap);
-	}catch(Exception e) {
-		e.printStackTrace();
-	}
 	return "redirect:courseList.mdo";
 	}
 	
