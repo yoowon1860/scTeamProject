@@ -41,7 +41,7 @@
 
 	<!-- ================ start banner area ================= -->
 
-	
+
 	<h3>회원 정보 수정</h3>
 	<hr style="border: solid 1.5px #384aeb;">
 
@@ -58,38 +58,40 @@
 						<div class="row">
 							<div class="col-lg-8">
 								<h3>회원 정보 내역</h3>
-								<form class="row contact_form" action="userUpdate.do" method="post"
-									novalidate="novalidate">
+								<form class="row contact_form" action="userUpdate.do"
+									method="post" novalidate="novalidate">
 									<div class="col-md-12 form-group p_star">
 										<input type="hidden" class="form-control" id="email"
-											name="email" value="${sessionScope.user.email }"/>
+											name="email" value="${sessionScope.user.email }" />
 									</div>
-									
+
 									<div class="col-md-12 form-group">
 										<input type="text" class="form-control" id="first" name="name"
-											value="${sessionScope.user.name }" >
+											value="${sessionScope.user.name }">
 									</div>
 									<div class="col-md-12 form-group">
 										<input type="text" class="form-control" id="phone"
 											name="phone" value=" ${sessionScope.user.phone }">
 									</div>
-									<div class="col-md-12 form-group">
+
+									<div class="col-md-12 form-group p_star">
 										<input type="password" class="form-control" id="pass"
-											name="pass" placeholder="기존 비밀번호">
+											name="pass" placeholder="새로운 비밀번호" minlength="8" maxlength="15">
 									</div>
 									<div class="col-md-12 form-group p_star">
-										<input type="password" class="form-control" id="newPass1"
-											name="newPass1" placeholder="변경 비밀번호"> 
+										<input type="password" class="form-control" id="newPass"
+											name="newPass" placeholder="비밀번호 확인" minlength="8" maxlength="15">
 									</div>
-									<div class="col-md-12 form-group p_star">
-										<input type="password" class="form-control" id="newPass2"
-											name="newPass2" placeholder="비밀번호 확인"> 
+									<span id="alert-success" style="display: none; color:#6495ED; font-weight: bold;">비밀번호가
+										일치합니다.</span> 
+									<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold;">비밀번호가
+										일치하지 않습니다.</span>
+
+									<div class="col-md-12 form-group">
+										<input type="button" id="btn" class="button button-register w-100" style="display: none;" value="수정하기"/>
 									</div>
-									
-									 <div class="col-md-12 form-group">
-									<button type="submit" 
-								class="button button-register w-100">수정하기</button>
-									</div>
+
+
 								</form>
 							</div>
 
@@ -100,8 +102,27 @@
 			</div>
 		</div>
 	</section>
-	<!--================End Checkout Area =================-->
-
+	<!-- 변경 비밀번호 확인 절차-->
+	<script>
+    $('.form-control').focusout(function () {
+        var pwd1 = $("#pass").val();
+        var pwd2 = $("#newPass").val();
+ 
+        if ( pwd1 != '' && pwd2 == '' ) {
+        	null;
+        } else if (pwd1 != "" || pwd2 != "") {
+            if (pwd1 == pwd2) {
+                $("#alert-success").css('display', 'inline-block');
+                $("#alert-danger").css('display', 'none');
+                $("#btn").css('display', 'inline-block');
+            } else {
+            	$("#btn").css('display', 'none');
+                $("#alert-success").css('display', 'none');
+                $("#alert-danger").css('display', 'inline-block');
+            }
+        }
+    });
+	</script>
 
 
 	<!--================ Start footer Area  =================-->
@@ -118,5 +139,6 @@
 	<script src="vendors/jquery.ajaxchimp.min.js"></script>
 	<script src="vendors/mail-script.js"></script>
 	<script src="js/main.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
 </html>
