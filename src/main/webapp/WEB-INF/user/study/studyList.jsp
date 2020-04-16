@@ -133,17 +133,6 @@
            </div> 
 <!-- End Filter Bar -->
 
-  
-    <div align="right">
-      <!-- Login 검증 -->
-      <!-- jstl의 if문은 else가 없어서 따로 검증해야함. -->
-      <c:if test="${id != null}">
-        <%-- <%@include file="loginOk.jsp" %> --%>
-      </c:if>
-      <c:if test="${id == null}">
-        <%-- <%@include file="login.jsp" %> --%>
-      </c:if>
-    </div>
    
     <div id="list">
       <b>게시판 (전체 글: ${paging.total})</b>
