@@ -35,17 +35,11 @@
 	href="${pageContext.request.contextPath }/resources/css/style.css">
 </head>
 <body>
-	<!--================ Start Header Menu Area =================-->
 
-	<!--================ End Header Menu Area =================-->
 
-	<!-- ================ start banner area ================= -->
 	<h3>1:1 문의</h3>
 	<hr style="border: solid 1.5px #384aeb;">
-	<!-- ================ end banner area ================= -->
 
-
-	<!--================Checkout Area =================-->
 	<section class="checkout_area section-margin--small">
 		<div class="container">
 			<div class="returning_customer">
@@ -57,22 +51,20 @@
 								<h3>문의 작성</h3>
 								<form class="row contact_form" action="qna.do" method="post"
 									novalidate="novalidate">
-
 									<div class="col-md-12 form-group">
-
 										<div class="sorting">
 											<select>
-												<option value="1">문의 유형 선택</option>
+												<option value="0">문의 유형 선택</option>
 												<option value="1">강좌 관련</option>
-												<option value="1">회원 관련</option>
-												<option value="1">기타 문의</option>
+												<option value="2">회원 관련</option>
+												<option value="3">기타 문의</option>
 											</select>
 										</div>
-										</div>
-										<div class="col-md-12 form-group">
+									</div>
+									<div class="col-md-12 form-group">
 										<label>이메일 주소</label> <input type="text" class="form-control"
 											id="first" name="name" placeholder="abc1234@naver.com">
-											
+
 										<span class="placeholder" data-placeholder="First name"></span>
 									</div>
 									<div class="col-md-12 form-group">
@@ -80,10 +72,10 @@
 											id="" name="title">
 									</div>
 									<div class="col-md-12 form-group">
-									
-										<label>문의 내용</label><br/>
-										<textarea style="width:100%;" name="content"></textarea><br/>
-										* 문의 답변은 이메일로 보내드립니다.
+
+										<label>문의 내용</label><br />
+										<textarea style="width: 100%;" name="content"></textarea>
+										<br /> * 문의 답변은 이메일로 보내드립니다.
 										<div style="text-align: right;">
 											<a href="studyList.do"
 												class="button button-postComment button--active"
@@ -92,11 +84,11 @@
 												style="padding: 5px" type="submit" a>등록</button>
 										</div>
 									</div>
-									
+
 
 									<div>
-									<br>
-										
+										<br>
+
 									</div>
 
 								</form>
@@ -110,13 +102,6 @@
 			</div>
 		</div>
 	</section>
-	<!--================End Checkout Area =================-->
-
-
-
-	<!--================ Start footer Area  =================-->
-
-	<!--================ End footer Area  =================-->
 
 
 

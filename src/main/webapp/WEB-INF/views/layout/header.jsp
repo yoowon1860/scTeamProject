@@ -53,7 +53,7 @@
 									<li class="nav-item"><a class="nav-link" href="myCart.do">장바구니</a></li>
 									<li class="nav-item"><a class="nav-link" href="myWish.do">찜</a></li>
 									<li class="nav-item"><a class="nav-link" href="myUpdate.do">정보수정</a></li>
-									<li class="nav-item"><a class="nav-link" href="qna.do">1:1 문의</a></li>
+									<li class="nav-item"><a class="nav-link" href="qnaList.do">1:1 문의</a></li>
 								</ul></li>
 
 						</ul>
