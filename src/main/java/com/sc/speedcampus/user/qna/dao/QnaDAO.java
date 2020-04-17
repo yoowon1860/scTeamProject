@@ -41,7 +41,7 @@ public class QnaDAO {
 	} 
 	
 	// 질문리스트 읽기
-	public List<QnaVO> getQList(PagingVO vo) { 
-		return sqlSession.selectList("QnaDAO.getQList", vo);
+	public List<QnaVO> getQList(String writer) { 
+		return sqlSession.selectList("QnaDAO.getQList", writer);
 	}
 }

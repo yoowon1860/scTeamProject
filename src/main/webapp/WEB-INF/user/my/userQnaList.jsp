@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 	
 <!DOCTYPE html>
 <html >
@@ -83,7 +84,7 @@
 
 
 									<div style="float: right; padding-bottom: 20px;">
-										<a href="qna.do"
+										<a href="insertQForm.do"
 											class="button button-postComment button--active"
 											style="padding: 5px;"> <img
 											src="${pageContext.request.contextPath }/resources/img/write.png"
@@ -102,42 +103,31 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>1</td>
-													<td>임시</td>
-													<td>작성일</td>
-													<td>답변 대기</td>
-													<td>
-													<button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</button>
-													<button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button>
-													</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>문의</td>
-													<td>2020-04-16</td>
-													<td>답변 완료</td>
-													<td>불가능</td>
+												<c:forEach var="qna" items="${qnaList}" varStatus="status">
 													
-											
-										
-													
-												</tr>
-
-												<c:forEach var="study" items="${studyList}"
-													varStatus="status">
 													<tr>
-														<td>${study.num }</td>
-														<td id="title"><a
-															href="studyRead.do?num=${study.num }">${study.title}</a></td>
-														<td>${study.regDate}</td>
+														<td>${qna.qnum }</td>
+														<td id="title"><a href="studyRead.do?num=${qna.qnum }">${qna.title}</a></td>
+														<td><fmt:formatDate value="${qna.regDate}" pattern="yyyy-MM-dd"/></td>
+														<c:choose>
+														<c:when test="${qna.answerState eq 'N'}">
+															<td>답변 대기</td>
+															<td>
+																<button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</button>
+																<button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button>
+															</td>
+														</c:when>	
+														<c:when test="${qna.answerState eq 'Y'}">
+															<td>답변 완료</td>
+															<td>불가능</td>
+														</c:when>
+														</c:choose>
 													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
 									</div>
 								</div>
-						
 						</div>
 					</div>
 				</div>
