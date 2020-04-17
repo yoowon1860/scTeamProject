@@ -583,7 +583,7 @@
 							<!-- /.card-header -->
 							<div class="card-body pad">
 
-								<form action="courseInsert.mdo" method="post">
+								<form action="courseInsert.mdo" method="post" enctype="multipart/form-data">
 
 									<div class="form-group">
 										<label>강좌명</label> <input type="text" class="form-control"
@@ -600,6 +600,11 @@
 											class="form-control" name="youtube"
 											placeholder="https://www.youtube.com/watch?v=BZSImWr2J_M">
 									</div>
+									
+									<div class="form-group">
+											<label>썸네일 등록</label> <input type="file"
+												class="form-control" name="file">
+										</div>
 
 
 

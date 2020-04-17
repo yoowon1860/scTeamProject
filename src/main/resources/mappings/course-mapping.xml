@@ -5,14 +5,17 @@
 <mapper namespace="CourseDAO">
 	
 	<!-- 강의 등록(이미지파일 제외) -->
-	<insert id="register" parameterType="admincourse" >
-		INSERT INTO vd (num, name, price, youtube, detail)
-		VALUES((select nvl(max(num), 0)+1 from vd), #{name}, #{price}, #{youtube}, #{detail})
+	<insert id="register" parameterType="admincourse" useGeneratedKeys="true" keyProperty="num">
+		 <selectKey keyProperty="num" resultType="int" order="BEFORE">
+		 	SELECT NVL(max(num), 0)+1 FROM vd
+		 </selectKey>
+	    INSERT INTO vd (num, name, price, youtube, detail)
+		VALUES(#{num}, #{name}, #{price}, #{youtube}, #{detail})
 	</insert>
 	
-	<insert id="registerImg" parameterType="admincourse" >
-		INSERT INTO vd_img (num, imgfile, vnum)
-		VALUES((select nvl(max(num), 0)+1 from vd_img), #{imgfile}, #{vnum})
+	<insert id="registerImg" parameterType="hashMap" >
+		INSERT INTO vd_img (inum, org_img, stored_img, num)
+		VALUES((SELECT NVL(max(num), 0)+1 FROM vd_img), #{org_img}, #{stored_img}, #{num})
 	</insert>
 	
 	
@@ -34,5 +37,12 @@
 		SELECT *
 		FROM vd
 	</select>
+	
+	<!-- 강의 수정 -->
+	<update id="update" parameterType="admincourse">
+		update vd
+		SET name=#{name}, price=#{price}, youtube=#{youtube}, detail=#{detail}
+		WHERE num=#{num}
+	</update>
 	
 </mapper>

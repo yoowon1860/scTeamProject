@@ -757,8 +757,8 @@
                   <td>${course.youtube }</td>
                   <td>
 	                  <div style="text-align:center;">
-	                  	<a style="color:white" class="btn btn-primary btn-sm" href="courseImage.mdo">썸네일 추가</a>
-	                  	<a style="color:white" class="btn btn-primary btn-sm" href="courseUpdate.mdo">수정</a>
+	                  	
+	                  	<a style="color:white" class="btn btn-primary btn-sm" href="courseUpdate.mdo?num=${course.num}">수정</a>
 	                  
 	                  	<a style="color:white" class="btn btn-danger btn-sm" href="courseDelete.mdo?num=${course.num}">삭제</a>
 	                  </div>
