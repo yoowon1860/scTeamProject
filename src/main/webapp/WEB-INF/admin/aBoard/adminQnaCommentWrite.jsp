@@ -591,27 +591,35 @@
 								<form role="form">
 									<div class="form-group">
 										<div class="form-group">
-											<label>문의 유형</label> <input type="text" class="form-control"
-												id="exampleInputEmail" placeholder="Enter ...">
+										
+											<label>문의 유형</label> 
+											<br> - 
+											<c:choose>
+												<c:when test="${q.category eq 'courseQ'}">강의 관련</c:when>	
+												<c:when test="${q.category eq 'paymentQ'}">결제 관련</c:when>
+												<c:when test="${q.category eq 'memberQ'}">회원 관련</c:when>
+												<c:when test="${q.category eq 'otherQ'}">기타 문의</c:when>
+											</c:choose>
+											<hr>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="form-group">
 											<label>작성자 이메일</label> <input type="text" class="form-control"
-												id="exampleInputEmail" placeholder="Enter ...">
+												id="exampleInputEmail" value="${q.writer }" disabled="disabled">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="form-group">
 											<label>문의 제목</label> <input type="text" class="form-control"
-												id="exampleInputEmail" placeholder="Enter ...">
+												id="exampleInputEmail" value="${q.title }" disabled="disabled">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="form-group">
 											<label>문의 내용</label>
 											<textarea class="form-control" rows="3"
-												placeholder="Enter ..."></textarea>
+												disabled="disabled">${q.content }</textarea>
 										</div>
 									</div>
 								</form>

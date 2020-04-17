@@ -791,7 +791,7 @@ if (confirm("정말 삭제하시겠습니까??") == true){
 	                
 	                <c:choose>
 						<c:when test="${qna.answerState eq 'N'}">
-							<td><button onclick="location.href='answerWrite.mdo'" type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">답변하기</button></td>
+							<td><button onclick="location.href='answerWrite.mdo?qnum=${qna.qnum}'" type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">답변하기</button></td>
 						</c:when>	
 						<c:when test="${qna.answerState eq 'Y'}">
 							<td>답변 완료</td>

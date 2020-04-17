@@ -26,4 +26,9 @@ public class AdminQnaServiceImpl implements AdminQnaService {
 	public void deleteQ(QnaVO vo) {
 		qnaDAO.deleteQ(vo);
 	}
+
+	@Override
+	public QnaVO getQ(int qnum) {
+		return qnaDAO.getQ(qnum);
+	}
 }

@@ -1,5 +1,7 @@
 package com.sc.speedcampus.admin.qna.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,14 +24,25 @@ public class AdminQnaController {
 	}
 	
 	@RequestMapping("answerWrite.mdo")
-	public String answerWrite() {
+	public String answerWrite(Model model, HttpServletRequest request) {
+		
+		// 문의내용 불러오기
+		int qnum = Integer.parseInt(request.getParameter("qnum"));
+		model.addAttribute("q",adminQnaService.getQ(qnum));
+		
 		return "aBoard/adminQnaCommentWrite";
 	}
+	
 	
 	// QnA 삭제
 	@RequestMapping("deleteQna.mdo")
 	public String qnaDelete(QnaVO vo) {
 		adminQnaService.deleteQ(vo);
 		return "redirect:qnaList.mdo";
+	}
+	
+	@RequestMapping("getQ.mdo")
+	public void getQ(Model model, HttpServletRequest request) {
+		
 	}
 }
