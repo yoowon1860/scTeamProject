@@ -13,16 +13,8 @@ public class CourseVO {
 	private String youtube;
 	private String detail;
 	
-	private MultipartFile imgFile;
 	
 	
-	
-	public MultipartFile getImgFile() {
-		return imgFile;
-	}
-	public void setImgFile(MultipartFile imgFile) {
-		this.imgFile = imgFile;
-	}
 	public int getNum() {
 		return num;
 	}
