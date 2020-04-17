@@ -7,7 +7,7 @@
 	<!-- 질문 등록 -->
 	<insert id="insertQ" parameterType="myQ">
 		INSERT INTO qna (qnum, title, writer, content, category)
-		VALUES ((SELECT NVL(max(num), 0)+1 FROM qna), #{title}, #{writer}, #{content}, #{category})
+		VALUES ((SELECT NVL(max(qnum), 0)+1 FROM qna), #{title}, #{writer}, #{content}, #{category})
 	</insert>
 	
 	<!-- 질문 수정 -->
@@ -24,7 +24,7 @@
 	<!-- 질문 리스트 가져오기 -->
 	<select id="getQList" resultType="myQ">		
 		SELECT * 
-		FROM qnum
+		FROM qna
 		WHERE writer=#{writer} ORDER BY qnum DESC 
 	</select>
 	

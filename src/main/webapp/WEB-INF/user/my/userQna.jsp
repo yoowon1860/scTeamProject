@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
@@ -49,27 +48,27 @@
 						<div class="row">
 							<div class="col-lg-8">
 								<h3>문의 작성</h3>
-								<form class="row contact_form" action="qna.do" method="post"
+								<form class="row contact_form" action="insertQ.do" method="post"
 									novalidate="novalidate">
 									<div class="col-md-12 form-group">
+									<label>문의 유형</label>
 										<div class="sorting">
-											<select>
-												<option value="0">문의 유형 선택</option>
-												<option value="1">강좌 관련</option>
-												<option value="2">회원 관련</option>
-												<option value="3">기타 문의</option>
+										
+											<select name="category">
+												<option value="courseQ">강좌 관련</option>
+												<option value="memberQ">회원 관련</option>
+												<option value="otherQ">기타 문의</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-12 form-group">
 										<label>이메일 주소</label> <input type="text" class="form-control"
-											id="first" name="name" placeholder="abc1234@naver.com">
-
+											id="writer" name="writer" value="${sessionScope.user.email }" readonly="readonly">
 										<span class="placeholder" data-placeholder="First name"></span>
 									</div>
 									<div class="col-md-12 form-group">
 										<label>제목</label> <input type="text" class="form-control"
-											id="" name="title">
+											id="title" name="title">
 									</div>
 									<div class="col-md-12 form-group">
 
@@ -77,11 +76,11 @@
 										<textarea style="width: 100%;" name="content"></textarea>
 										<br /> * 문의 답변은 이메일로 보내드립니다.
 										<div style="text-align: right;">
-											<a href="studyList.do"
+											<a href="qnaList.do"
 												class="button button-postComment button--active"
 												style="padding: 5px">취소 </a>
 											<button class="button button-postComment button--active"
-												style="padding: 5px" type="submit" a>등록</button>
+												style="padding: 5px" type="submit" >등록</button>
 										</div>
 									</div>
 
