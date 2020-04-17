@@ -21,7 +21,7 @@
 		DELETE FROM qna WHERE num=#{num}
 	</delete>
 	
-	<!-- 질문 리스트 가져오기 -->
+	<!-- 질문 리스트 가져오기(사용자) -->
 	<select id="getQList" resultType="myQ">		
 		SELECT * 
 		FROM qna
@@ -33,7 +33,12 @@
 		SELECT * FROM qna WHERE qnum = #{qnum}
 	</select>
 	
-
+	<!-- 질문 전체 가져오기(관리자) -->
+	<select id="getQListAll" resultType="myQ">		
+		SELECT * 
+		FROM qna
+		ORDER BY qnum DESC 
+	</select>
 	
 </mapper>
 

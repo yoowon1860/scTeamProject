@@ -44,4 +44,9 @@ public class QnaDAO {
 	public List<QnaVO> getQList(String writer) { 
 		return sqlSession.selectList("QnaDAO.getQList", writer);
 	}
+	
+	// 질문 전체 가져오기(admin용)
+	public List<QnaVO> getQListAll() { 
+		return sqlSession.selectList("QnaDAO.getQListAll");
+	}
 }
