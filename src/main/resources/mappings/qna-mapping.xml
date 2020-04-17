@@ -16,9 +16,9 @@
 		WHERE qnum=#{qnum}
 	</update>
 	
-	<!-- 질문 삭제 -->
+	<!-- 질문 삭제(관리자) -->
 	<delete id="deleteQ" parameterType="myQ">
-		DELETE FROM qna WHERE num=#{num}
+		DELETE FROM qna WHERE qnum=#{qnum}
 	</delete>
 	
 	<!-- 질문 리스트 가져오기(사용자) -->

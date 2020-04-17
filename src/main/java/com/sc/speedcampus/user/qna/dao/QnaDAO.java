@@ -33,6 +33,7 @@ public class QnaDAO {
 	// 질문 삭제
 	public void deleteQ(QnaVO vo) { 
 		sqlSession.delete("QnaDAO.deleteQ", vo); 
+		System.out.println(vo);
 	}
 	
 	// 질문 읽기

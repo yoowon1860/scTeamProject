@@ -5,6 +5,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+
+function deleteConfirm(qnum){
+
+if (confirm("정말 삭제하시겠습니까??") == true){    
+
+	location.href = "deleteQna.mdo?qnum="+qnum;
+
+}else{   //취소
+
+    return;
+
+}
+
+}
+
+</script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 3 | DataTables</title>
@@ -774,14 +791,14 @@
 	                
 	                <c:choose>
 						<c:when test="${qna.answerState eq 'N'}">
-							<td><button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">답변하기</button></td>
+							<td><button onclick="location.href='answerWrite.mdo'" type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">답변하기</button></td>
 						</c:when>	
 						<c:when test="${qna.answerState eq 'Y'}">
 							<td>답변 완료</td>
 						</c:when>
 					</c:choose>
 	                 <td>
-						<button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button>
+						<button onclick="deleteConfirm(${qna.qnum});" type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button>
 					</td>
                 </tr>
                 </c:forEach>
