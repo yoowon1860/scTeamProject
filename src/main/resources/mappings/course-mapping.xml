@@ -38,4 +38,11 @@
 		FROM vd
 	</select>
 	
+	<!-- 강의 수정 -->
+	<update id="update" parameterType="admincourse">
+		update vd
+		SET name=#{name}, price=#{price}, youtube=#{youtube}, detail=#{detail}
+		WHERE num=#{num}
+	</update>
+	
 </mapper>

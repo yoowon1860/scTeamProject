@@ -24,6 +24,10 @@ public class CourseDAO {
 		sqlSessionTemplate.insert("courseDAO.registerImg", map);
 		
 	}	
+	
+	public void update(CourseVO vo) {
+		sqlSessionTemplate.update("CourseDAO.update", vo);
+	}
 
 	public void delete(CourseVO vo) {
 		sqlSessionTemplate.delete("CourseDAO.delete", vo);
