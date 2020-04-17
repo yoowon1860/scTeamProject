@@ -20,10 +20,11 @@ public class CourseDAO {
 		sqlSessionTemplate.insert("CourseDAO.register", vo);
 	}
 	
-	public void image(Map<String, Object> hmap) {
-		sqlSessionTemplate.insert("CourseDAO.registerImg", hmap);
-	}
-	
+	public void registerImg(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.insert("courseDAO.registerImg", map);
+		
+	}	
+
 	public void delete(CourseVO vo) {
 		sqlSessionTemplate.delete("CourseDAO.delete", vo);
 	}
@@ -35,6 +36,7 @@ public class CourseDAO {
 	public List<CourseVO> getCourseList(CourseVO vo){
 		return sqlSessionTemplate.selectList("CourseDAO.getCourseList", vo);
 	}
+	
 	
 	
 }

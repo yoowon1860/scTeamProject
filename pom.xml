@@ -44,7 +44,8 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-
+		
+		<!-- 첨부파일 올리기 -->
 		<!-- MultipartHttpServletRequset -->
 		<dependency>
 			<groupId>commons-io</groupId>

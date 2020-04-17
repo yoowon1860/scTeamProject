@@ -18,7 +18,6 @@ import com.sc.speedcampus.admin.course.service.DeleteCourseService;
 import com.sc.speedcampus.admin.course.service.GetCourseListService;
 import com.sc.speedcampus.admin.course.service.GetCourseService;
 import com.sc.speedcampus.admin.course.service.RegisterCourseService;
-import com.sc.speedcampus.admin.course.service.RegisterImageService;
 import com.sc.speedcampus.admin.course.vo.CourseVO;
 
 @Controller
@@ -33,8 +32,8 @@ public class CourseController {
 	private GetCourseService getCourseService;
 	@Autowired
 	private GetCourseListService getCourseListService;
-	@Autowired
-	private RegisterImageService registerImageService;
+
+
 	
 	@RequestMapping(value="courseRead.mdo", method = RequestMethod.GET)
 	public String course(CourseVO vo, Model model) {
@@ -51,32 +50,19 @@ public class CourseController {
 	}
 	
 	@RequestMapping(value="courseInsert.mdo", method = RequestMethod.GET)
-	public String courseRegisterView(CourseVO vo) {
+	public String courseRegisterView(CourseVO vo)  {
 		System.out.println("코스 등록 화면");
 		return "aCourses/courseInsert";
 	}
 	
 	@RequestMapping(value="courseInsert.mdo", method = RequestMethod.POST)
-	public String courseRegister(CourseVO vo) {
-		
-		registerCourseService.register(vo);
+	public String courseRegister(CourseVO vo, MultipartHttpServletRequest mpRequest) throws Exception{
+		System.out.println("코스 등록 실행");
+		registerCourseService.register(vo, mpRequest);
 		return "redirect:courseList.mdo";
 	}
 	
-	@RequestMapping(value="courseImage.mdo", method = RequestMethod.GET)
-	public String courseImgView(CourseVO vo, Model model) {
-		System.out.println("코스 이미지 등록 화면");
-		model.addAttribute("course", getCourseService.getCourseService(vo));
-		return "aCourses/courseImgInsert";
-	}
-
-	@RequestMapping(value="courseImgAction.mdo", method = RequestMethod.POST)
-	public String vdRegister(CourseVO vo) {
-	return "redirect:courseList.mdo";
-	}
-	
-	
-	
+		
 	@RequestMapping("courseDelete.mdo")
 	public String courseDelete(CourseVO vo) {
 		System.out.println("코스 삭제 실행");
