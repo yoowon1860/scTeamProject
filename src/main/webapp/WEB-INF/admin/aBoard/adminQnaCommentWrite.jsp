@@ -566,15 +566,115 @@
 			</div>
 			<!-- /.sidebar -->
 		</aside>
-		<div class="content-wrapper" >
+
+
+		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header" >
+			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div >
+						<div class="col-sm-6">
 							<h1>Q&A 답변작성</h1>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-md-6">
+					<div class="card card-warning">
+							<div class="card-header">
+								<h3 class="card-title">문의사항</h3>
 							</div>
-							<div id="wrap">
+							<!-- /.card-header -->
+							<div class="card-body">
+								<form role="form">
+									<div class="form-group">
+										<div class="form-group">
+											<label>문의 유형</label> <input type="text" class="form-control"
+												id="exampleInputEmail" placeholder="Enter ...">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-group">
+											<label>작성자 이메일</label> <input type="text" class="form-control"
+												id="exampleInputEmail" placeholder="Enter ...">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-group">
+											<label>문의 제목</label> <input type="text" class="form-control"
+												id="exampleInputEmail" placeholder="Enter ...">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-group">
+											<label>문의 내용</label>
+											<textarea class="form-control" rows="3"
+												placeholder="Enter ..."></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+						
+
+					</div>
+					<div class="col-md-6">
+						<div class="card card-primary">
+							<div class="card-header">
+								<h3 class="card-title">답변하기</h3>
+							</div>
+							<!-- /.card-header -->
+							<!-- form start -->
+							<form role="form">
+							
+								<div class="card-body">
+								
+									<div class="row">
+										<div class="col-sm-6">
+											<!-- select -->
+											<div class="form-group">
+												<label>작성자</label> <select class="form-control">
+													<option>유원상</option>
+													<option>정승은</option>
+													<option>이지성</option>
+												</select>
+											</div>
+										</div>
+					
+									</div>
+									<div class="form-group">
+										<div class="form-group">
+											<label>답변 제목</label> <input type="text" class="form-control"
+												id="exampleInputEmail" placeholder="Enter ...">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-group">
+											<label>답변 내용</label>
+											<textarea class="form-control" rows="3"
+												placeholder="Enter ..."></textarea>
+										</div>
+									</div>
+								
+								</div>
+								<!-- /.card-body -->
+
+								<div class="card-footer" style="text-align: right;">
+								<button onclick="deleteConfirm(${qna.qnum});" type="button" class="btn btn-danger" >취소</button>
+									<button type="submit" class="btn btn-primary">등록</button>
+								</div>
+								
+							</form>
+						</div>
+						<!-- general form elements disabled -->
+						
+
+					</div>
+					<%--	<div id="wrap">
 				<form action="qnaCommentWrite.do" method="post">
 				
 					
@@ -583,7 +683,6 @@
 						<div>
 							<input type="text"  name="title" value="${qnaTitle}">
 						</div>
-						<br />
 					</div><br />
 					<div>
 						<label>문의내용</label><br />
@@ -620,23 +719,21 @@
 					</div>
 				
 			</form>
-						</div>
-							<br/>
-							
-							</div>
-							</div>
-							
+						</div> --%>
+					<br />
 
-					
-				
-				<!-- /.container-fluid -->
-			</section>
+				</div>
 			</div>
-			
-			
-			
 
-			
+
+
+
+		</div>
+
+
+
+
+
 		<!-- /.content-wrapper -->
 		
 		
