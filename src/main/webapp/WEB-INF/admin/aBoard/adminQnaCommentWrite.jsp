@@ -593,7 +593,7 @@
 										<div class="form-group">
 										
 											<label>문의 유형</label> 
-											<br> - 
+											<br>
 											<c:choose>
 												<c:when test="${q.category eq 'courseQ'}">강의 관련</c:when>	
 												<c:when test="${q.category eq 'paymentQ'}">결제 관련</c:when>
@@ -637,8 +637,8 @@
 							</div>
 							<!-- /.card-header -->
 							<!-- form start -->
-							<form role="form">
-							
+							<form action="answerMail.mdo" method="post">
+								 <input type="hidden" name="tomail" value="${q.writer }" >
 								<div class="card-body">
 								
 									<div class="row">
@@ -657,14 +657,14 @@
 									<div class="form-group">
 										<div class="form-group">
 											<label>답변 제목</label> <input type="text" class="form-control"
-												id="exampleInputEmail" placeholder="Enter ...">
+												name="title" placeholder="제목을 입력해주세요">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="form-group">
 											<label>답변 내용</label>
-											<textarea class="form-control" rows="3"
-												placeholder="Enter ..."></textarea>
+											<textarea name="content" class="form-control" rows="3"
+												placeholder="내용을 입력해주세요"></textarea>
 										</div>
 									</div>
 								
@@ -672,7 +672,7 @@
 								<!-- /.card-body -->
 
 								<div class="card-footer" style="text-align: right;">
-								<button onclick="deleteConfirm(${qna.qnum});" type="button" class="btn btn-danger" >취소</button>
+									<button onclick="location.href='qnaList.mdo'" type="button" class="btn btn-danger" >취소</button>
 									<button type="submit" class="btn btn-primary">등록</button>
 								</div>
 								
