@@ -56,6 +56,7 @@
 										
 											<select name="category">
 												<option value="courseQ">강좌 관련</option>
+												<option value="paymentQ">결제 관련</option>
 												<option value="memberQ">회원 관련</option>
 												<option value="otherQ">기타 문의</option>
 											</select>

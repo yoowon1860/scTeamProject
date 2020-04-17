@@ -8,9 +8,11 @@ public class QnaVO {
 	private String title; 		// 질문 제목 
 	private String writer;		// 질문자 Id
 	private String content; 	// 질문 내용
-	private Date regDate;		// 질문 날자
+	private Date regDate;		// 질문 날짜
 	private String category; 	// 질문 카테고리
 	private String answerState; // 답변 상태
+	private Date answerDate;	// 답변 날짜
+	
 	public int getQnum() {
 		return qnum;
 	}
@@ -54,10 +56,17 @@ public class QnaVO {
 	public void setAnswerState(String answerState) {
 		this.answerState = answerState;
 	}
+	public Date getAnswerDate() {
+		return answerDate;
+	}
+	public void setAnswerDate(Date answerDate) {
+		this.answerDate = answerDate;
+	}
 	@Override
 	public String toString() {
 		return "QnaVO [qnum=" + qnum + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
-				+ regDate + ", category=" + category + ", answerState=" + answerState + "]";
+				+ regDate + ", category=" + category + ", answerState=" + answerState + ", answerDate=" + answerDate
+				+ "]";
 	}
 
 	

@@ -12,14 +12,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style>
@@ -746,22 +746,43 @@
                 <thead>
                 <tr>
                   <th>#</th>
+                  <th>문의유형</th>
                   <th>Q&A 제목</th>
                   <th>작성자이메일</th>
                   <th>문의날짜</th>
                   <th>답변날짜</th>
-                  <th>관 리</th>
+                  <th>답변상태</th>
+                  <th>관리</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="qna" items="${qnas }">
+                <c:forEach var="qna" items="${qList }">
                 <tr>
-                <td>${qna.num }</td>
-                <td>${qna.title }</td>
-                <td>${qna.writer }</td>
-                <td>${qna.regDate }</td>
-                <td>${qna_comment.regDate }?qna_comment.qna_num=${qna.Num}</td>
-                <td><button style="background:lightblue;" href="qnaWrite.jsp?num=${qna.num }">답변하기</button> <button style="background:red;" href="">삭제</button></td>
+	                <td>${qna.qnum }</td>
+	                <td> 
+		                <c:choose>
+							<c:when test="${qna.category eq 'courseQ'}">강의</c:when>	
+							<c:when test="${qna.category eq 'paymentQ'}">결제</c:when>
+							<c:when test="${qna.category eq 'memberQ'}">회원</c:when>
+							<c:when test="${qna.category eq 'otherQ'}">기타</c:when>
+						</c:choose>
+					</td>
+	                <td>${qna.title }</td>
+	                <td>${qna.writer }</td>
+	                <td>${qna.regDate }</td>
+	                <td>${qna.answerDate }</td>
+	                
+	                <c:choose>
+						<c:when test="${qna.answerState eq 'N'}">
+							<td><button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">답변하기</button></td>
+						</c:when>	
+						<c:when test="${qna.answerState eq 'Y'}">
+							<td>답변 완료</td>
+						</c:when>
+					</c:choose>
+	                 <td>
+						<button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button>
+					</td>
                 </tr>
                 </c:forEach>
                 </tbody>
@@ -771,8 +792,6 @@
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-
-          
         </div>
         <!-- /.col -->
       </div>
@@ -798,18 +817,18 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="${pageContext.request.contextPath }/resources/plugins/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="${pageContext.request.contextPath }/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="${pageContext.request.contextPath }/resources/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="${pageContext.request.contextPath }/resources/dist/js/adminlte.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="${pageContext.request.contextPath }/resources/dist/js/demo.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
   $(function () {
