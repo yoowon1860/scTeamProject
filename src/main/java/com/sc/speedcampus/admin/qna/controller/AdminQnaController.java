@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sc.speedcampus.admin.qna.service.AdminQnaService;
+import com.sc.speedcampus.user.qna.vo.QnaVO;
 
 @Controller
 public class AdminQnaController {
@@ -18,5 +19,17 @@ public class AdminQnaController {
 	public String qnaList(Model model) {
 		model.addAttribute("qList", adminQnaService.getQListAll());
 		return "aBoard/adminQnaList";
+	}
+	
+	@RequestMapping("answerWrite.mdo")
+	public String answerWrite() {
+		return "aBoard/adminQnaCommentWrite";
+	}
+	
+	// QnA ªË¡¶
+	@RequestMapping("deleteQna.mdo")
+	public String qnaDelete(QnaVO vo) {
+		adminQnaService.deleteQ(vo);
+		return "redirect:qnaList.mdo";
 	}
 }

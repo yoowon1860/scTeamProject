@@ -15,8 +15,15 @@ public class AdminQnaServiceImpl implements AdminQnaService {
 	@Autowired
 	private QnaDAO qnaDAO;
 
+	// QnaList 가져오기
 	@Override
 	public List<QnaVO> getQListAll() {
 		return qnaDAO.getQListAll();
+	}
+	
+	// Qna 삭제
+	@Override
+	public void deleteQ(QnaVO vo) {
+		qnaDAO.deleteQ(vo);
 	}
 }
