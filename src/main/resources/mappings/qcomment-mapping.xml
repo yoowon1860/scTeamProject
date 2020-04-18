@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="QnaDAO">
+<mapper namespace="QcommentDAO">
 
-	<!-- 질문 등록 -->
-	<insert id="insertQ" parameterType="myQ">
-		INSERT INTO qna (qnum, title, writer, content, category)
-		VALUES ((SELECT NVL(max(qnum), 0)+1 FROM qna), #{title}, #{writer}, #{content}, #{category})
+	<!-- 답글 등록 -->
+	<insert id="insertA" parameterType="myA">
+		INSERT INTO qcomment (anum, title, writer, content, qnum, userEmail)
+		VALUES ((SELECT NVL(max(anum), 0)+1 FROM qcomment), #{title}, #{writer}, #{content}, #{qnum}, #{userEmail})
 	</insert>
 	
 	<!-- 질문 수정 -->
@@ -16,7 +16,7 @@
 		WHERE qnum=#{qnum}
 	</update>
 	
-	<!-- 질문 삭제 -->
+	<!-- 질문 삭제(관리자) -->
 	<delete id="deleteQ" parameterType="myQ">
 		DELETE FROM qna WHERE qnum=#{qnum}
 	</delete>
@@ -39,12 +39,6 @@
 		FROM qna
 		ORDER BY qnum DESC 
 	</select>
-	
-	<!-- 답변 상태 수정(관리자) -->
-	<update id="updateAnswerState" parameterType="int" >
-		UPDATE qna SET answerState='Y', answerDate = sysdate
-		WHERE qnum=#{qnum}
-	</update>
 	
 </mapper>
 

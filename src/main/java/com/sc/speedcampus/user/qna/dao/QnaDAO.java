@@ -49,4 +49,9 @@ public class QnaDAO {
 	public List<QnaVO> getQListAll() { 
 		return sqlSession.selectList("QnaDAO.getQListAll");
 	}
+	
+	// 답변 상태 변경(admin용)
+	public void updateAnswerState(int qnum) {
+		sqlSession.update("QnaDAO.updateAnswerState",qnum);
+	}
 }
