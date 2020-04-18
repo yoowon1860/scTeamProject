@@ -27,24 +27,16 @@
             <div class="head">Courses</div>
             <ul class="main-categories">
               <li class="common-filter">
-                <form action="#">
                   <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">리눅스</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="women" name="brand"><label for="women">Java</label></li>
-					<li class="filter-list"><input class="pixel-radio" type="radio" id="accessories" name="brand"><label for="accessories">찜</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="footwear" name="brand"><label for="footwear">정보수정</label></li>
+                    <a href="course1.do"><li class="filter-list"><label ><b>리눅스</b></label></li></a><hr/>
+                    <a href="course2.do"><li class="filter-list"><label ><b>Spring</b></label></li></a><hr/>
+					<a href="course3.do"><li class="filter-list"><label ><b>Java</b></label></li></a><hr/>
+                    <a href="course4.do"><li class="filter-list"><label ><b>파이썬</b></label></li></a><hr/>
+                    <a href="course5.do"><li class="filter-list"><label ><b>알고리즘</b></label></li></a><hr/>
                   </ul>
-                </form>
+               
               </li>
             </ul>
-  
-
-	<!-- ================ category section end ================= -->		  
-
-
-
-
-
 
   <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/jquery/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.bundle.min.js"></script>
