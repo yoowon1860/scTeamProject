@@ -18,7 +18,7 @@ import com.sc.speedcampus.admin.course.vo.CourseVO;
 
 @Component("fileUtils")
 public class FileUtils {
-	private static final String filePath = "C:\\scProject\\img\\"; //파일이 저장될 위치
+	private static final String filePath = "C:\\scProject\\img\\"; //파일이 저장될 위치///
 	
 	public List<Map<String, Object>> parseInsertFileInfo(CourseVO courseVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
