@@ -61,13 +61,13 @@
 								<form class="row contact_form" action="userUpdate.do"
 									method="post" novalidate="novalidate">
 									<div class="col-md-12 form-group p_star">
-										<input type="hidden" class="form-control" id="email"
-											name="email" value="${sessionScope.user.email }" />
+										<input type="text" class="form-control" id="email"
+											name="email" value="${sessionScope.user.email }" readonly/>
 									</div>
 
 									<div class="col-md-12 form-group">
 										<input type="text" class="form-control" id="first" name="name"
-											value="${sessionScope.user.name }">
+											value="${sessionScope.user.name }" readonly/>
 									</div>
 									<div class="col-md-12 form-group">
 										<input type="text" class="form-control" id="phone"
