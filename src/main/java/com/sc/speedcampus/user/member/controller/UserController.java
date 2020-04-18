@@ -62,6 +62,13 @@ public class UserController {
 		return "userHome";
 	}
 	
+	@RequestMapping("getUserList.mdo")
+	public String getUserList(Model model) {
+		
+		model.addAttribute("userList", getUserService.getUserList());
+		return "aMember/memberList";
+	}
+	
 	
 	
 	

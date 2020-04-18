@@ -1,13 +1,13 @@
 package com.sc.speedcampus.user.member.dao;
 
 
-import org.apache.ibatis.session.SqlSession;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sc.speedcampus.user.member.vo.UserVO;
-import com.sc.speedcampus.util.SqlSessionFactoryBean;
 
 @Repository
 public class UserDAO {
@@ -23,8 +23,8 @@ public class UserDAO {
 		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
 	}
 	
-	public UserVO getUserData(UserVO vo) {
-		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUserData", vo);
+	public List<UserVO> getUserList() {
+		return sqlSessionTemplate.selectList("UserDAO.getUserList");
 	}
 	
 	public void update(UserVO vo) {

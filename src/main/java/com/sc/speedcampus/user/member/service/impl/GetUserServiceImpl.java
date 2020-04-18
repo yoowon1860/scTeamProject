@@ -1,6 +1,8 @@
 package com.sc.speedcampus.user.member.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +22,10 @@ public class GetUserServiceImpl implements GetUserService {
 		
 	}
 
+	// 유저 데이터 전부 불러오기(admin)
 	@Override
-	public UserVO getUserData(UserVO vo) {
-		return userDAO.getUserData(vo);
+	public List<UserVO> getUserList() {
+		return userDAO.getUserList();
 	}
 
 }
