@@ -14,6 +14,7 @@
 		<typeAlias type="com.sc.speedcampus.user.study.vo.StudyVO" alias="mystudy"/>		
 		<typeAlias type="com.sc.speedcampus.user.scomment.vo.ScommentVO" alias="scomment"/>	
 		<typeAlias type="com.sc.speedcampus.user.qna.vo.QnaVO" alias="myQ"/>	
+		<typeAlias type="com.sc.speedcampus.admin.qna.vo.QcommentVO" alias="myA"/>	
 						
 	</typeAliases>
 
@@ -37,5 +38,6 @@
 		<mapper resource = "mappings/study-mapping.xml"/>	
 		<mapper resource = "mappings/scomment-mapping.xml"/>
 		<mapper resource = "mappings/qna-mapping.xml"/>			
+		<mapper resource = "mappings/qcomment-mapping.xml"/>	
 	</mappers>
 </configuration>

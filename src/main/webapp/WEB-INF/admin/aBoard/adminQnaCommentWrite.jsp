@@ -6,18 +6,32 @@
 <html>
 <head>
 <script>
-function submit(qnum){
+function sub(){
+	document.replyForm.action= '${path}/speedcampus/insertA.mdo';
+	document.replyForm.submit();
+	
+}
+
+function mail(){
+	document.replyForm.action= '${path}/speedcampus/answerMail.mdo';
+	document.replyForm.submit();
+}
+function submit(){
+	console.log("hi");
 	   var replyConfirm = confirm('등록하시겠습니까?');
 	   if (replyConfirm) {
+		   
+		   document.replyForm.action= '${path}/speedcampus/insertA.mdo';
+		   document.replyForm.submit();
+		   
+		   
+	     
 	      alert('등록되었습니다.');
-
-	      document.replyForm.action= '${path}/speedcampus/answerMail.mdo';
-	      document.replyForm.action= '${path}/speedcampus/insertA.mdo';
 	      
 	   }
 	   else {
 	      alert('등록이 취소되었습니다.');
-	      location.href="${path}/speedcampus/answerWrite.mdo?qnum="+qnum;
+	      location.href="${path}/speedcampus/answerWrite.mdo?qnum="+q;
 	   }
 }
 
@@ -598,7 +612,7 @@ function submit(qnum){
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body">
-								<form role="form" name="replyForm">
+								<form role="form" >
 									<div class="form-group">
 										<div class="form-group">
 										
@@ -647,8 +661,9 @@ function submit(qnum){
 							</div>
 							<!-- /.card-header -->
 							<!-- form start -->
-							<form action="answerMail.mdo" method="post">
-								 <input type="hidden" name="tomail" value="${q.writer }" >
+							<form name="replyForm" method="post" action="answerMail.mdo">
+								 <input type="hidden" name="userEmail" value="${q.writer }" >
+								 <input type="hidden" name="qnum" value="${q.qnum }" >
 								<div class="card-body">
 								
 									<div class="row">
@@ -656,10 +671,10 @@ function submit(qnum){
 											<!-- select -->
 											<div class="form-group">
 												<label>담당자</label> 
-												<select class="form-control">
-													<option>유원상</option>
-													<option>정승은</option>
-													<option>이지성</option>
+												<select name="writer" class="form-control">
+													<option value="유원상">유원상</option>
+													<option value="정승은">정승은</option>
+													<option value="이지성">이지성</option>
 												</select>
 											</div>
 										</div>
@@ -684,7 +699,7 @@ function submit(qnum){
 
 								<div class="card-footer" style="text-align: right;">
 									<button onclick="location.href='qnaList.mdo'" type="button" class="btn btn-danger" >취소</button>
-									<button type="button" class="btn btn-primary" onclick='submit(${q.qnum});'>등록</button>
+									<input type="submit" class="btn btn-primary" onclick="sub();" value="등록">
 								</div>
 								
 							</form>
