@@ -33,7 +33,6 @@ public class AdminQnaController {
 		return "aBoard/adminQnaCommentWrite";
 	}
 	
-	
 	// QnA 삭제
 	@RequestMapping("deleteQna.mdo")
 	public String qnaDelete(QnaVO vo) {
@@ -41,8 +40,10 @@ public class AdminQnaController {
 		return "redirect:qnaList.mdo";
 	}
 	
-	@RequestMapping("getQ.mdo")
-	public void getQ(Model model, HttpServletRequest request) {
+	// 답변 db에 등록
+	@RequestMapping("insertA.mdo")
+	public void insertA() {
+		
 		
 	}
 }

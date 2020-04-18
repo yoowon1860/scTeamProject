@@ -5,6 +5,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+function submit(qnum){
+	   var replyConfirm = confirm('등록하시겠습니까?');
+	   if (replyConfirm) {
+	      alert('등록되었습니다.');
+
+	      document.replyForm.action= '${path}/speedcampus/answerMail.mdo';
+	      document.replyForm.action= '${path}/speedcampus/insertA.mdo';
+	      
+	   }
+	   else {
+	      alert('등록이 취소되었습니다.');
+	      location.href="${path}/speedcampus/answerWrite.mdo?qnum="+qnum;
+	   }
+}
+
+</script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 3 | DataTables</title>
@@ -12,23 +29,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Font Awesome -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/admin/plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/fontawesome-free/css/all.min.css">
 <!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- DataTables -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <!-- Theme style -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/admin/dist/css/adminlte.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <style>
 #wrap {
 	position: absolute;
@@ -588,7 +598,7 @@
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body">
-								<form role="form">
+								<form role="form" name="replyForm">
 									<div class="form-group">
 										<div class="form-group">
 										
@@ -645,7 +655,8 @@
 										<div class="col-sm-6">
 											<!-- select -->
 											<div class="form-group">
-												<label>작성자</label> <select class="form-control">
+												<label>담당자</label> 
+												<select class="form-control">
 													<option>유원상</option>
 													<option>정승은</option>
 													<option>이지성</option>
@@ -673,75 +684,17 @@
 
 								<div class="card-footer" style="text-align: right;">
 									<button onclick="location.href='qnaList.mdo'" type="button" class="btn btn-danger" >취소</button>
-									<button type="submit" class="btn btn-primary">등록</button>
+									<button type="button" class="btn btn-primary" onclick='submit(${q.qnum});'>등록</button>
 								</div>
 								
 							</form>
 						</div>
 						<!-- general form elements disabled -->
-						
-
 					</div>
-					<%--	<div id="wrap">
-				<form action="qnaCommentWrite.do" method="post">
-				
-					
-					<div id="title">
-						<label>문의제목</label>
-						<div>
-							<input type="text"  name="title" value="${qnaTitle}">
-						</div>
-					</div><br />
-					<div>
-						<label>문의내용</label><br />
-						<textarea rows="10" cols="70" 
-							name="content">${qnaContent }</textarea>
-						<br />
-					</div>
-					
-					<div>
-						<label>작성자</label><br/>
-						<select name="writer">
-							<option value="유원상">유원상</option>
-							<option value="정승은">정승은</option>
-							<option value="이지성">이지성</option>
-						</select> 
-					</div><br />
-					
-					<div id="title">
-						<label>답변제목</label>
-						<div>
-							<input type="text" placeholder="공지사항 제목을 입력해주세요." name="title">
-						</div>
-						<br />
-					</div><br />
-					<div>
-						<label>답변내용</label><br />
-						<textarea rows="10" cols="70" placeholder="내용을 입력해주세요."
-							name="content"></textarea>
-						<br />
-					</div>
-					<div>
-						<button style="float: right; background: lightgreen;">작성하기</button>
-						<button style="float: right; background: red;">취 소</button>
-					</div>
-				
-			</form>
-						</div> --%>
 					<br />
-
 				</div>
 			</div>
-
-
-
-
 		</div>
-
-
-
-
-
 		<!-- /.content-wrapper -->
 		
 		
