@@ -41,6 +41,10 @@ public class CourseDAO {
 		return sqlSessionTemplate.selectList("CourseDAO.getCourseList", vo);
 	}
 	
+	public List<CourseVO> getSelectCourseList(String name){
+		return sqlSessionTemplate.selectList("CourseDAO.getSelectCourseList", name);
+	}
+	
 	
 	
 }

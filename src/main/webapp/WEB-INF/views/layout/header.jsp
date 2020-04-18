@@ -36,11 +36,11 @@
 							<li class="nav-item submenu dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" 
 							role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="category.html">리눅스</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-product.html">Spring</a></li>
-									<li class="nav-item"><a class="nav-link" href="checkout.html">Java</a></li>
-									<li class="nav-item"><a class="nav-link" href="confirmation.html">파이썬</a></li>
-									<li class="nav-item"><a class="nav-link" href="cart.html">알고리즘</a></li>
+									<li class="nav-item"><a class="nav-link" href="course1.do">리눅스</a></li>
+									<li class="nav-item"><a class="nav-link" href="course2.do">Spring</a></li>
+									<li class="nav-item"><a class="nav-link" href="course3.do">Java</a></li>
+									<li class="nav-item"><a class="nav-link" href="course4.do">파이썬</a></li>
+									<li class="nav-item"><a class="nav-link" href="course5.do">알고리즘</a></li>
 								</ul></li>
 							<li class="nav-item"><a class="nav-link" href="studyList.do">Study</a></li>
 							<li class="nav-item"><a class="nav-link" href="noticeList.do">Notice</a></li>
