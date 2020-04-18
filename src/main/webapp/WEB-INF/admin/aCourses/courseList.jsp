@@ -752,7 +752,7 @@
                 <c:forEach var="course" items="${courseList}" varStatus="status">
                    <tr>
                   <td>${course.num }</td>
-                  <td><a href="courseRead.do?num=${course.num }">${course.name }</a></td>
+                  <td><a href="courseRead.mdo?num=${course.num }">${course.name }</a></td>
                   <td>${course.price }</td>
                   <td>${course.youtube }</td>
                   <td>
