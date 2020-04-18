@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	
 <!DOCTYPE html>
 <html>
@@ -786,8 +787,8 @@ if (confirm("정말 삭제하시겠습니까??") == true){
 					</td>
 	                <td>${qna.title }</td>
 	                <td>${qna.writer }</td>
-	                <td>${qna.regDate }</td>
-	                <td>${qna.answerDate }</td>
+	                <td><fmt:formatDate value="${qna.regDate }" pattern="yyyy-MM-dd"/></td>
+	                <td><fmt:formatDate value="${qna.answerDate }" pattern="yyyy-MM-dd"/></td>
 	                
 	                <c:choose>
 						<c:when test="${qna.answerState eq 'N'}">
