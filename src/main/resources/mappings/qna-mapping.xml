@@ -41,8 +41,8 @@
 	</select>
 	
 	<!-- 답변 상태 수정(관리자) -->
-	<update id="updateAnswerState" parameterType="int" >
-		UPDATE qna SET answerState='Y', answerDate = sysdate
+	<update id="updateAnswerState" parameterType="myA" >
+		UPDATE qna SET answerState='Y', answerDate = sysdate, answerContent=#{content}
 		WHERE qnum=#{qnum}
 	</update>
 	

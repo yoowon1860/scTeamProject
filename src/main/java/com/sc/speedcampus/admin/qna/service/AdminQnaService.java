@@ -11,5 +11,6 @@ public interface AdminQnaService {
 	public void deleteQ(QnaVO vo);
 	public QnaVO getQ(int qnum);
 	public void insertA(QcommentVO vo);
-	public void updateAnswerState(int qnum);
+	public void updateAnswerState(QcommentVO vo);
+	public QcommentVO getA(int qnum);
 }

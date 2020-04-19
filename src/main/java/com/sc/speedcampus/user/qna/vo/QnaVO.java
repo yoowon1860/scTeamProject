@@ -12,7 +12,14 @@ public class QnaVO {
 	private String category; 	// 질문 카테고리
 	private String answerState; // 답변 상태
 	private Date answerDate;	// 답변 날짜
+	private String answerContent;	// 답변 내용
 	
+	public String getAnswerContent() {
+		return answerContent;
+	}
+	public void setAnswerContent(String answerContent) {
+		this.answerContent = answerContent;
+	}
 	public int getQnum() {
 		return qnum;
 	}
@@ -66,8 +73,9 @@ public class QnaVO {
 	public String toString() {
 		return "QnaVO [qnum=" + qnum + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
 				+ regDate + ", category=" + category + ", answerState=" + answerState + ", answerDate=" + answerDate
-				+ "]";
+				+ ", answerContent=" + answerContent + "]";
 	}
+
 
 	
 	

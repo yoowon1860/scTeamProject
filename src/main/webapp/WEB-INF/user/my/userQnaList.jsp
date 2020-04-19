@@ -113,7 +113,7 @@
                                     <c:forEach var="qna" items="${qnaList}" varStatus="status">
                                        
                                        <tr class="item">
-                                          <td>${qna.qnum }</td>
+                                          <td id="qnum" value="${qna.qnum }">${qna.qnum }</td>
                                           <td id="title">${qna.title}</td>
                                           <td><fmt:formatDate value="${qna.regDate}" pattern="yyyy-MM-dd"/></td>
                                           <c:choose>
@@ -133,12 +133,16 @@
                                           </c:choose>
                                        </tr>
                                        <tr class="hide">
-                                       <td colspan="5">
+                                       <td>내용<hr>답변</td>
+                                       <td colspan="4">
                                        		${qna.content }
-                                       		
+                                       		<hr>
+                                       	${qna.answerContent }
                                        		<br>
                                        </td>
+                                       
                                        </tr>
+  
                                     </c:forEach>
                                  </tbody>
                               </table>
@@ -165,8 +169,10 @@
 
         $(function(){  
 			
-            var article = (".table table-striped table-bordered table-hover .show");  
+            var article = ("#arco .show");  
             $("#arco .item td").click(function() {  
+ 
+    			
 
                 var myArticle =$(this).parents().next("tr");  
                 if($(myArticle).hasClass('hide')) {  
@@ -175,16 +181,18 @@
 
                     $(myArticle).removeClass('hide').addClass('show');  
                 }  
-
                 else {  
 
                     $(myArticle).addClass('hide').removeClass('show');  
                 }  
-
             });  
+            
+            
+        	//document.qnumForm.action = "${path}/speedcampus/getQnum.do";
+        	//document.qnumForm.submit();
+
 
         });  
-
     </script>
 
 

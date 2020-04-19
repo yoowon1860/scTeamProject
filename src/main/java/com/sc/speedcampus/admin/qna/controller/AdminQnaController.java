@@ -74,8 +74,7 @@ public class AdminQnaController {
 		}
 	
 		// 답변 상태 바꾸기
-		int qnum = Integer.parseInt(vo.getQnum());
-		adminQnaService.updateAnswerState(qnum);
+		adminQnaService.updateAnswerState(vo);
 		
 		return "redirect:qnaList.mdo";
 	}
