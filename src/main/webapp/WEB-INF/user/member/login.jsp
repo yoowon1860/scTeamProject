@@ -6,6 +6,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<c:if test="${sessionScope.user != null }">
+	<script type="text/javascript">
+		location.href = "${path}/speedcampus/userHome.do";
+	</script>
+</c:if>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -32,19 +38,14 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css">
+	
+	
+
 </head>
 <body>
 
-	<!--================ Start Header Menu Area =================-->
 
-	<!--================ End Header Menu Area =================-->
-	
-<!-- ================ start banner area ================= -->	
 
-	<!-- ================ end banner area ================= -->
- 
-  
-  <!--================Login Box Area =================-->
 	<section class="login_box_area section-margin">
 		<div class="container">
 				<div class="row">

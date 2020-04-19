@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -36,7 +35,7 @@
               <div class="row justify-content-center align-items-center text-center">
                 <div class="col-lg-6">
                   <h1 data-aos="fade-up" data-aos-delay="0">${course.name } Course</h1>
-                  <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week  2,193 students ${course.detail }</p>
+                  <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week  2,193 students </p>
                 </div>
 
                 
@@ -56,7 +55,7 @@
             <div class="mb-5">
               <h3 class="text-black">Introduction of this Lecture</h3>
               <p class="mb-4">
-                <strong class="text-black mr-3">강의수: </strong> 5강
+                <strong class="text-black mr-3">강의 수: </strong> 5강
               </p>
               <p>1강 : ${course.name}란 무엇인가? </p>
 			  <p>2강 : ${course.name} 첫번째 실습</p>
@@ -65,22 +64,32 @@
 			  <p>5강 : ${course.name} 이론 마무리 및 마지막 실습</p>
 			  
               <p class="mt-4"><a href="#" class="btn btn-primary">지금구매</a>
-                <a href="reviewRead.do" class="btn btn-primary">구매후기 보기</a></p>
+                <a href="reviewRead.do?num=${course.num}" class="btn btn-primary">구매후기 보기</a>
+               
+                 <a href="userWish.do?num=${course.num}" class="btn btn-primary">찜</a></p>
+                  <form action="insertCart.do" method="post" novalidate="novalidate">
+                <input type="hidden" name="email" value="${sessionScope.user.email }"/>
+                <input type="hidden" name="vname" value="${course.name }"/>
+                <input type="hidden" name="price" value="${course.price }"/>
+                <input type="submit" value="장바구니 추가"/>
+                </form>
             </div>
           </div>
           <div class="col-lg-4 pl-lg-5">
             <div class="mb-5 text-center border rounded course-instructor">
-              <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Course Instructor</h3>
+              <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">강좌 설명</h3>
               <div class="mb-4 text-center">
                 <img src="images/person_2.jpg" alt="Image" class="w-25 rounded-circle mb-4">  
                 <h3 class="h5 text-black mb-4">Christine Downeyy</h3>
-                <p>Lorem ipsum dolor sit amet sectetur adipisicing elit. Ipsa porro expedita libero pariatur vero eos.</p>
+                <p>${course.detail }</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
+    
 
     
   <script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.min.js"></script>

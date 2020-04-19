@@ -27,13 +27,14 @@
 	<!--================ End Header Menu Area =================-->
 
 	<!-- ================ start banner area ================= -->	
-	<h3>장바구니</h3>
+	<h3>찜</h3>
+	
+	<c:if test="${wishList == null  }">
+								<p>찜한 상품이 없습니다.
+								   상품을 추가해보세요.</p>
+							</c:if>
+	
 	<hr style="border: solid 1.5px #384aeb;">
-	<!-- ================ end banner area ================= -->
-  
-  
-
-  <!--================Cart Area =================-->
   <section class="cart_area">
       <div class="container">
           <div class="cart_inner">
