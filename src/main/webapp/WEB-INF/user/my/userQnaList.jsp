@@ -99,7 +99,7 @@
                               </a>
                            </div>
                            <div>
-                              <table class="table table-striped table-bordered table-hover">
+                              <table class="table table-striped table-bordered table-hover" id="arco">
                                  <thead>
                                     <tr class="">
                                        <th width="70px;">번호</th>
@@ -132,8 +132,8 @@
                                        </tr>
                                        <tr class="hide">
                                        <td colspan="5">
-                                       		<br>
                                        		${qna.content }
+                                       		
                                        		<br>
                                        </td>
                                        </tr>
@@ -162,25 +162,21 @@
 <script type="text/javascript">  
 
         $(function(){  
-			console.log("하이");
+			
             var article = (".table table-striped table-bordered table-hover .show");  
-
-            $(".table table-striped table-bordered table-hover .item td").click(function() {  
+            $("#arco .item td").click(function() {  
 
                 var myArticle =$(this).parents().next("tr");  
-				console.log("hi");
                 if($(myArticle).hasClass('hide')) {  
 
                     $(article).removeClass('show').addClass('hide');  
 
                     $(myArticle).removeClass('hide').addClass('show');  
-                    console.log("hi2");
                 }  
 
                 else {  
 
                     $(myArticle).addClass('hide').removeClass('show');  
-                    //console.log("hi3");
                 }  
 
             });  
