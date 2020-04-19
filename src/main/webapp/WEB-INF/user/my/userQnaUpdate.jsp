@@ -32,6 +32,13 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css">
+<style>
+#UD{
+color:white;
+
+}
+</style>
+
 </head>
 <body>
 
@@ -48,7 +55,7 @@
 						<div class="row">
 							<div class="col-lg-8">
 								<h3>문의 수정</h3>
-								<form class="row contact_form" action="updateQ.do" method="post"
+								<form class="row contact_form" action="updateQaction.do" method="post"
 									novalidate="novalidate">
 									<input type="hidden" name ="qnum" value=${qna.qnum }>
 									<div class="col-md-12 form-group">
@@ -82,9 +89,10 @@
 												class="button button-postComment button--active"
 												style="padding: 5px">취소 </a>
 											<input class="button button-postComment button--active"
-												style="padding: 5px" type="submit" value="수정" >
+												type="submit" style="padding: 5px" value="수정" id="UD">
 											<!-- <button class="button button-postComment button--active"
 												style="padding: 5px" type="submit" >등록</button> -->
+												
 										</div>
 									</div>
 

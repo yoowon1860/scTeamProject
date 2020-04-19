@@ -40,4 +40,9 @@ public class QnaServiceImpl implements QnaService{
 		qnaDAO.deleteQ(vo);
 	}
 	
+	//Get Qna
+	@Override
+	public QnaVO getQ(int qnum) { 
+		return qnaDAO.getQ(qnum);
+		} 
 }

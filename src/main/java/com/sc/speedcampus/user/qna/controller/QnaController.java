@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sc.speedcampus.user.member.vo.UserVO;
@@ -40,8 +41,18 @@ public class QnaController {
 		return "redirect:qnaList.do";
 	}
 	
-	//Modify my Qna
+	//Load Qna Modifying Page
 	@RequestMapping("updateQ.do")
+	public String updateQview(Model model, HttpServletRequest request) throws Exception{
+		System.out.println("Move Qna Modifying PAge");
+		
+		int qnum = Integer.parseInt(request.getParameter("qnum"));
+		model.addAttribute("qna", qnaService.getQ(qnum));
+		
+		return "my/userQnaUpdate";
+	}
+	//Modify my Qna
+	@RequestMapping("updateQaction.do")
 	public String updateQ(QnaVO vo) {
 		System.out.println("modify My Qna");
 		qnaService.updateQ(vo);

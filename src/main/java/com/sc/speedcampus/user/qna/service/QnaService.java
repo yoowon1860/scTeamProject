@@ -10,4 +10,5 @@ public interface QnaService {
 	public List<QnaVO> getQList(String writer);
 	void updateQ(QnaVO vo);
 	void deleteQ(QnaVO vo);
+	public QnaVO getQ(int qnum);
 }
