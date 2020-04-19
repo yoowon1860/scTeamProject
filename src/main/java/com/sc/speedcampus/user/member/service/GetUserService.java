@@ -8,5 +8,6 @@ public interface GetUserService {
 
 	public UserVO getUser(UserVO vo);
 	public List<UserVO> getUserList();
+	public void deleteUser(UserVO vo);
 	
 }

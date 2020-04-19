@@ -30,4 +30,8 @@ public class UserDAO {
 	public void update(UserVO vo) {
 		sqlSessionTemplate.update("UserDAO.update", vo);
 	}
+	
+	public void deleteUser(UserVO vo) {
+		sqlSessionTemplate.delete("UserDAO.deleteUser",vo);
+	}
 }

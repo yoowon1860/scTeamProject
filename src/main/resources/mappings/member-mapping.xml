@@ -25,4 +25,8 @@
 		SET pass=#{pass}, name=#{name}, phone=#{phone}
 		WHERE email=#{email}
 	</update>
+	
+	<delete id="deleteUser" parameterType="myuser">
+		DELETE FROM user0 WHERE email=#{email}
+	</delete>
 </mapper>

@@ -759,7 +759,7 @@
                   <td>${userList.phone }</td>
                   <td>
 	                  <div style="text-align:center;">
-	                  	<a style="color:white" class="btn btn-danger btn-sm">삭제</a>
+	                  	<a style="color:white" class="btn btn-danger btn-sm" href="deleteUser.mdo?email=${userList.email }">삭제</a>
 
 	                  </div>
                   </td>

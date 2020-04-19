@@ -27,5 +27,15 @@ public class GetUserServiceImpl implements GetUserService {
 	public List<UserVO> getUserList() {
 		return userDAO.getUserList();
 	}
+	
+	// 유저 데이터 삭제(admin)
+	@Override
+	public void deleteUser(UserVO vo) {
+		userDAO.deleteUser(vo);
+		
+	}
+	
+	
+	
 
 }

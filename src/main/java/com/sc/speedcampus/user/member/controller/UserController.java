@@ -62,13 +62,19 @@ public class UserController {
 		return "userHome";
 	}
 	
+	// user 리스트 불러오기
 	@RequestMapping("getUserList.mdo")
 	public String getUserList(Model model) {
-		
 		model.addAttribute("userList", getUserService.getUserList());
 		return "aMember/memberList";
 	}
 	
+	// 유저 삭제
+	@RequestMapping("deleteUser.mdo")
+	public String deleteUser(UserVO vo) {
+		getUserService.deleteUser(vo);
+		return "redirect:getUserList.mdo";
+	}
 	
 	
 	
