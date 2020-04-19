@@ -10,6 +10,11 @@
 		VALUES ((SELECT NVL(max(anum), 0)+1 FROM qcomment), #{title}, #{writer}, #{content}, #{qnum}, #{userEmail})
 	</insert>
 	
+	<!--답글 하나 가져오기 -->
+	<select id="getA" parameterType="int" resultType="myA">
+		SELECT * FROM qcomment WHERE qnum = #{qnum}
+	</select>
+	
 	<!-- 질문 수정 -->
 	<update id="updateQ" parameterType="myQ" >
 		UPDATE qna SET title=#{title}, content=#{content}, regDate= sysdate, category=#{category}
@@ -28,10 +33,7 @@
 		WHERE writer=#{writer} ORDER BY qnum DESC 
 	</select>
 	
-	<!-- 질문 하나 가져오기 -->
-	<select id="getQ" parameterType="int" resultType="myQ">
-		SELECT * FROM qna WHERE qnum = #{qnum}
-	</select>
+
 	
 	<!-- 질문 전체 가져오기(관리자) -->
 	<select id="getQListAll" resultType="myQ">		

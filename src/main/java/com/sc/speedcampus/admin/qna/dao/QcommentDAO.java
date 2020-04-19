@@ -21,4 +21,8 @@ public class QcommentDAO {
 		sqlSession.insert("QcommentDAO.insertA", vo);
 	}
 	
+	public QcommentVO getA(int qnum) {
+		return sqlSession.selectOne("QcommentDAO.getA",qnum);
+	}
+	
 }

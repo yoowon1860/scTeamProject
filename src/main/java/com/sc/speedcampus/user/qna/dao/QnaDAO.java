@@ -6,9 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sc.speedcampus.admin.qna.vo.QcommentVO;
 import com.sc.speedcampus.user.qna.vo.QnaVO;
-import com.sc.speedcampus.user.study.vo.StudyVO;
-import com.sc.speedcampus.util.PagingVO;
 import com.sc.speedcampus.util.SqlSessionFactoryBean;
 
 @Repository
@@ -51,7 +50,7 @@ public class QnaDAO {
 	}
 	
 	// 답변 상태 변경(admin용)
-	public void updateAnswerState(int qnum) {
-		sqlSession.update("QnaDAO.updateAnswerState",qnum);
+	public void updateAnswerState(QcommentVO vo) {
+		sqlSession.update("QnaDAO.updateAnswerState",vo);
 	}
 }

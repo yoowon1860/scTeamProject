@@ -46,8 +46,14 @@ public class AdminQnaServiceImpl implements AdminQnaService {
 
 	// 답변 상태 변경
 	@Override
-	public void updateAnswerState(int qnum) {
-		qnaDAO.updateAnswerState(qnum);
+	public void updateAnswerState(QcommentVO vo) {
+		qnaDAO.updateAnswerState(vo);
 		
+	}
+
+	// 답글 하나 가져오기
+	@Override
+	public QcommentVO getA(int qnum) {
+		return qcommentDAO.getA(qnum);
 	}
 }
