@@ -1,5 +1,6 @@
 package com.sc.speedcampus.user.qna.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,29 @@ public class QnaController {
 	}
 	
 
+	//Load Qna Modifying Page
+	@RequestMapping("updateQ.do")
+	public String updateQview(Model model, HttpServletRequest request) throws Exception{
+		System.out.println("Move Qna Modifying PAge");
+		
+		int qnum = Integer.parseInt(request.getParameter("qnum"));
+		model.addAttribute("qna", qnaService.getQ(qnum));
+		
+		return "my/userQnaUpdate";
+	}
+	//Modify my Qna
+	@RequestMapping("updateQaction.do")
+	public String updateQ(QnaVO vo) {
+		System.out.println("modify My Qna");
+		qnaService.updateQ(vo);
+		return "redirect:qnaList.do";
+	}
+	
+	//Delete my qna
+	@RequestMapping("deleteQ.do")
+	public String deleteQ(QnaVO vo) {
+		System.out.println("delete My Qna");
+		qnaService.deleteQ(vo);
+		return "redirect:qnaList.do";
+	}
 }
