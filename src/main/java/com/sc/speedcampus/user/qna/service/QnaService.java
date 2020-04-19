@@ -8,4 +8,6 @@ public interface QnaService {
 
 	public void insertQ(QnaVO vo);
 	public List<QnaVO> getQList(String writer);
+	void updateQ(QnaVO vo);
+	void deleteQ(QnaVO vo);
 }

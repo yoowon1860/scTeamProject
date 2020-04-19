@@ -28,5 +28,16 @@ public class QnaServiceImpl implements QnaService{
 		return qnaDAO.getQList(writer);
 	}
 	
+	//Modify my qna
+	@Override
+	public void updateQ(QnaVO vo) {
+		qnaDAO.updateQ(vo);
+	}
+	
+	//Delete my qna
+	@Override
+	public void deleteQ(QnaVO vo) {
+		qnaDAO.deleteQ(vo);
+	}
 	
 }

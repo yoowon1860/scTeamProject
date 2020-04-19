@@ -47,9 +47,10 @@
 					<div class="billing_details">
 						<div class="row">
 							<div class="col-lg-8">
-								<h3>문의 작성</h3>
-								<form class="row contact_form" action="insertQ.do" method="post"
+								<h3>문의 수정</h3>
+								<form class="row contact_form" action="updateQ.do" method="post"
 									novalidate="novalidate">
+									<input type="hidden" name ="qnum" value=${qna.qnum }>
 									<div class="col-md-12 form-group">
 									<label>문의 유형</label>
 										<div class="sorting">
@@ -69,19 +70,21 @@
 									</div>
 									<div class="col-md-12 form-group">
 										<label>제목</label> <input type="text" class="form-control"
-											id="title" name="title">
+											id="title" name="title" value="${qna.title }">
 									</div>
 									<div class="col-md-12 form-group">
 
 										<label>문의 내용</label><br />
-										<textarea style="width: 100%;" name="content"></textarea>
+										<textarea style="width: 100%;" name="content">${qna.content }</textarea>
 										<br /> * 문의 답변은 이메일로 보내드립니다.
 										<div style="text-align: right;">
 											<a href="qnaList.do"
 												class="button button-postComment button--active"
 												style="padding: 5px">취소 </a>
-											<button class="button button-postComment button--active"
-												style="padding: 5px" type="submit" >등록</button>
+											<input class="button button-postComment button--active"
+												style="padding: 5px" type="submit" value="수정" >
+											<!-- <button class="button button-postComment button--active"
+												style="padding: 5px" type="submit" >등록</button> -->
 										</div>
 									</div>
 

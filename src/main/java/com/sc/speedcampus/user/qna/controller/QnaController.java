@@ -39,4 +39,20 @@ public class QnaController {
 		qnaService.insertQ(vo);
 		return "redirect:qnaList.do";
 	}
+	
+	//Modify my Qna
+	@RequestMapping("updateQ.do")
+	public String updateQ(QnaVO vo) {
+		System.out.println("modify My Qna");
+		qnaService.updateQ(vo);
+		return "redirect:qnaList.do";
+	}
+	
+	//Delete my qna
+	@RequestMapping("deleteQ.do")
+	public String deleteQ(QnaVO vo) {
+		System.out.println("delete My Qna");
+		qnaService.deleteQ(vo);
+		return "redirect:qnaList.do";
+	}
 }
