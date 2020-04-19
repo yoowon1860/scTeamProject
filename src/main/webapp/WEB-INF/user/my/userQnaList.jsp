@@ -1,17 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
-	
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+   
 <!DOCTYPE html>
 <html >
 <head>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>  
 <c:if test="${sessionScope.user == null }">
-	<script type="text/javascript">
-		alert("로그인이 필요한 서비스입니다")
-		location.href = "${path}/speedcampus/login.do";
-	</script>
+   <script type="text/javascript">
+      alert("로그인이 필요한 서비스입니다")
+      location.href = "${path}/speedcampus/login.do";
+   </script>
 </c:if>
 
 <meta charset="UTF-8">
@@ -52,97 +52,144 @@
     div > #paging {
       text-align: center;
     }
+    
+   .hide {display:none;}  
+   
+   .show {display:table-row;}  
+
+   .item td {cursor:pointer;}  
+
 </style>
 </head>
 <body>
 
-	<h3>1:1 문의</h3>
-	<hr style="border: solid 1.5px #384aeb;">
+   <h3>1:1 문의</h3>
+   <hr style="border: solid 1.5px #384aeb;">
 
-	<section class="checkout_area section-margin--small">
-		<div class="container">
-			<div class="returning_customer">
-				<div class="check_title">
+   <section class="checkout_area section-margin--small">
+      <div class="container">
+         <div class="returning_customer">
+            <div class="check_title">
 
-					<div class="billing_details">
-						<div class="row">
-
-
-								<div style="width: 100%;">
-
-									<!-- Start Filter Bar -->
-									<div class="sorting">
-										<select>
-											<option value="0">문의 유형 선택</option>
-											<option value="1">강좌 관련</option>
-											<option value="2">회원 관련</option>
-											<option value="3">기타 문의</option>
-										</select>
-									</div>
-									<!-- End Filter Bar -->
+               <div class="billing_details">
+                  <div class="row">
 
 
+                        <div style="width: 100%;">
 
-									<div style="float: right; padding-bottom: 20px;">
-										<a href="insertQForm.do"
-											class="button button-postComment button--active"
-											style="padding: 5px;"> <img
-											src="${pageContext.request.contextPath }/resources/img/write.png"
-											width="20px" height="20px">&nbsp;문의하기
-										</a>
-									</div>
-									<div>
-										<table class="table table-striped table-bordered table-hover">
-											<thead>
-												<tr>
-													<th width="70px;">번호</th>
-													<th width="300px;">제목</th>
-													<th width="150px;">작성일</th>
-													<th width="150px;">처리상태</th>
-													<th width="150px;">수정/삭제</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="qna" items="${qnaList}" varStatus="status">
-													
-													<tr>
-														<td>${qna.qnum }</td>
-														<td id="title"><a href="studyRead.do?num=${qna.qnum }">${qna.title}</a></td>
-														<td><fmt:formatDate value="${qna.regDate}" pattern="yyyy-MM-dd"/></td>
-														<c:choose>
-														<c:when test="${qna.answerState eq 'N'}">
-															<td>답변 대기</td>
-															<td>
-																<button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</button>
-																<button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button>
-															</td>
-														</c:when>	
-														<c:when test="${qna.answerState eq 'Y'}">
-															<td>답변 완료</td>
-															<td>불가능</td>
-														</c:when>
-														</c:choose>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</div>
-								</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                           <!-- Start Filter Bar -->
+                           <div class="sorting">
+                              <select>
+                                 <option value="0">문의 유형 선택</option>
+                                 <option value="1">강좌 관련</option>
+                                 <option value="2">회원 관련</option>
+                                 <option value="3">기타 문의</option>
+                              </select>
+                           </div>
+                           <!-- End Filter Bar -->
 
 
-	<script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-	<script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-	<script src="vendors/skrollr.min.js"></script>
-	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-	<script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-	<script src="vendors/jquery.ajaxchimp.min.js"></script>
-	<script src="vendors/mail-script.js"></script>
-	<script src="js/main.js"></script>
+
+                           <div style="float: right; padding-bottom: 20px;">
+                              <a href="insertQForm.do"
+                                 class="button button-postComment button--active"
+                                 style="padding: 5px;"> <img
+                                 src="${pageContext.request.contextPath }/resources/img/write.png"
+                                 width="20px" height="20px">&nbsp;문의하기
+                              </a>
+                           </div>
+                           <div>
+                              <table class="table table-striped table-bordered table-hover">
+                                 <thead>
+                                    <tr class="">
+                                       <th width="70px;">번호</th>
+                                       <th width="300px;">제목</th>
+                                       <th width="150px;">작성일</th>
+                                       <th width="150px;">처리상태</th>
+                                       <th width="150px;">수정/삭제</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <c:forEach var="qna" items="${qnaList}" varStatus="status">
+                                       
+                                       <tr class="item">
+                                          <td>${qna.qnum }</td>
+                                          <td id="title">${qna.title}</td>
+                                          <td><fmt:formatDate value="${qna.regDate}" pattern="yyyy-MM-dd"/></td>
+                                          <c:choose>
+                                          <c:when test="${qna.answerState eq 'N'}">
+                                             <td>답변 대기</td>
+                                             <td>
+                                                <button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</button>
+                                                <button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button>
+                                             </td>
+                                          </c:when>   
+                                          <c:when test="${qna.answerState eq 'Y'}">
+                                             <td>답변 완료</td>
+                                             <td>불가능</td>
+                                          </c:when>
+                                          </c:choose>
+                                       </tr>
+                                       <tr class="hide">
+                                       <td colspan="5">
+                                       		<br>
+                                       		${qna.content }
+                                       		<br>
+                                       </td>
+                                       </tr>
+                                    </c:forEach>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   
+   
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/skrollr.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/nice-select/jquery.nice-select.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/jquery.ajaxchimp.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/mail-script.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/main.js"></script>
+
+<script type="text/javascript">  
+
+        $(function(){  
+			console.log("하이");
+            var article = (".table table-striped table-bordered table-hover .show");  
+
+            $(".table table-striped table-bordered table-hover .item td").click(function() {  
+
+                var myArticle =$(this).parents().next("tr");  
+				console.log("hi");
+                if($(myArticle).hasClass('hide')) {  
+
+                    $(article).removeClass('show').addClass('hide');  
+
+                    $(myArticle).removeClass('hide').addClass('show');  
+                    console.log("hi2");
+                }  
+
+                else {  
+
+                    $(myArticle).addClass('hide').removeClass('show');  
+                    //console.log("hi3");
+                }  
+
+            });  
+
+        });  
+
+    </script>
+
+
+
 </body>
 </html>

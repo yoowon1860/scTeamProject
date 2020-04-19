@@ -65,7 +65,7 @@
 								<h3>
 									${course.name }
 								</h3>
-								<a href="courseDetail.do">강좌 상세 보러가기</a>
+								<a href="courseDetail.do?num=${course.num}">강좌 상세 보러가기</a>
 							</div>
 							<div class="d-flex border-top stats">
 								<div class="py-3 px-4">
