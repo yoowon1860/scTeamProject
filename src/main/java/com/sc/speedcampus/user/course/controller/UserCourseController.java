@@ -1,5 +1,8 @@
 package com.sc.speedcampus.user.course.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,8 @@ import com.sc.speedcampus.admin.course.service.GetCourseListService;
 import com.sc.speedcampus.admin.course.service.GetCourseService;
 import com.sc.speedcampus.admin.course.vo.CourseVO;
 import com.sc.speedcampus.user.course.service.GetSelectCourseListService;
+import com.sc.speedcampus.user.member.service.GetUserService;
+import com.sc.speedcampus.user.member.vo.UserVO;
 
 @Controller
 @SessionAttributes({"courseList","course"})
@@ -20,6 +25,8 @@ public class UserCourseController {
 	private GetSelectCourseListService getSelect;
 	@Autowired
 	private GetCourseService getCourse;
+	@Autowired
+	private GetUserService getUser;
 
 	@RequestMapping(value="course1.do", method = RequestMethod.GET)
 	public String course1View(String name, Model model) {
@@ -58,8 +65,10 @@ public class UserCourseController {
 	}
 	
 	@RequestMapping(value="courseDetail.do", method = RequestMethod.GET)
-	public String courseDetail(CourseVO vo, Model model) {
+	public String courseDetail(HttpServletRequest request,CourseVO vo, Model model) {
 		System.out.println("강좌 상세 페이지");
+		HttpSession session = request.getSession(false);
+		session.getAttribute("user") ;
 		model.addAttribute("course", getCourse.getCourseService(vo));
 		return "courses/courseDetail";
 	}

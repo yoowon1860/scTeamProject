@@ -120,8 +120,10 @@
                                           <c:when test="${qna.answerState eq 'N'}">
                                              <td>답변 대기</td>
                                              <td>
-                                                <button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</button>
-                                                <button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button>
+                                                <a href="updateQ.do?qnum=${qna.qnum}" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</a>
+                                                <a href="deleteQ.do?qnum=${qna.qnum }" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</a>
+<!--                                                 <button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</button>
+                                                <button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button> -->
                                              </td>
                                           </c:when>   
                                           <c:when test="${qna.answerState eq 'Y'}">
