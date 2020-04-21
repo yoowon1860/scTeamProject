@@ -48,7 +48,7 @@
 								role="button" aria-haspopup="true" aria-expanded="false">My</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="myCourse.do">내 강의보기</a></li>
-									<li class="nav-item"><a class="nav-link" href="myCart.do">장바구니</a></li>
+									<li class="nav-item"><a class="nav-link" href="myCart.domyCart.do?email=${sessionScope.user.email }">장바구니</a></li>
 									<li class="nav-item"><a class="nav-link" href="myUpdate.do">정보수정</a></li>
 									<li class="nav-item"><a class="nav-link" href="qnaList.do">1:1 문의</a></li>
 								</ul></li>
