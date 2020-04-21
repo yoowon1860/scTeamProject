@@ -6,13 +6,16 @@
 <!DOCTYPE html>
 <html >
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>  
+
+
 <c:if test="${sessionScope.user == null }">
    <script type="text/javascript">
       alert("로그인이 필요한 서비스입니다")
       location.href = "${path}/speedcampus/login.do";
    </script>
 </c:if>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>  
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,7 +116,7 @@
                                     <c:forEach var="qna" items="${qnaList}" varStatus="status">
                                        
                                        <tr class="item">
-                                          <td id="qnum" value="${qna.qnum }">${qna.qnum }</td>
+                                          <td id="qnum">${qna.qnum }</td>
                                           <td id="title">${qna.title}</td>
                                           <td><fmt:formatDate value="${qna.regDate}" pattern="yyyy-MM-dd"/></td>
                                           <c:choose>
@@ -122,8 +125,6 @@
                                              <td>
                                                 <a href="updateQ.do?qnum=${qna.qnum}" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</a>
                                                 <a href="deleteQ.do?qnum=${qna.qnum }" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</a>
-<!--                                                 <button type="button" class="btn btn-primary" style="padding: 5px; font-size: 10pt;">수정</button>
-                                                <button type="button" class="btn btn-danger" style="padding: 5px;  font-size: 10pt;">삭제</button> -->
                                              </td>
                                           </c:when>   
                                           <c:when test="${qna.answerState eq 'Y'}">
@@ -132,6 +133,7 @@
                                           </c:when>
                                           </c:choose>
                                        </tr>
+                                       
                                        <tr class="hide">
                                        <td>내용<hr>답변</td>
                                        <td colspan="4">
@@ -140,7 +142,6 @@
                                        	${qna.answerContent }
                                        		<br>
                                        </td>
-                                       
                                        </tr>
   
                                     </c:forEach>

@@ -5,6 +5,13 @@
 <!DOCTYPE html>
 <html >
 <head>
+
+<c:if test="${sessionScope.user == null }">
+	<script type="text/javascript">
+		alert("로그인이 필요한 서비스입니다")
+		location.href = "${path}/speedcampus/login.do";
+	</script>
+</c:if>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
