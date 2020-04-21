@@ -18,6 +18,17 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/owl-carousel/owl.theme.default.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style2.css">
+  
+      <!-- 로그인 안한 상태에서 장바구니 추가 버튼 누르기 -->
+<c:if test="${sessionScope.user == null }">
+    <script type="text/javascript">
+    function cart_event(){
+    	alert("로그인이 필요한 서비스입니다")
+    	location.href = "${path}/speedcampus/login.do";
+    	}
+    
+    </script>
+    </c:if>
 </head>
  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <!--================ Start Header Menu Area =================-->
@@ -66,12 +77,11 @@
               <p class="mt-4"><a href="#" class="btn btn-primary">지금구매</a>
                 <a href="reviewRead.do?num=${course.num}" class="btn btn-primary">구매후기 보기</a>
                
-                 <a href="userWish.do?num=${course.num}" class="btn btn-primary">찜</a></p>
                   <form action="insertCart.do" method="post" novalidate="novalidate">
                 <input type="hidden" name="email" value="${sessionScope.user.email }"/>
                 <input type="hidden" name="vname" value="${course.name }"/>
                 <input type="hidden" name="price" value="${course.price }"/>
-                <input type="submit" value="장바구니 추가"/>
+                <input type="submit" class="btn btn-primary" value="장바구니 추가" onclick="cart_event"/>
                 </form>
             </div>
           </div>
@@ -89,9 +99,7 @@
       </div>
     </div>
     
-    
 
-    
   <script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.js"></script>

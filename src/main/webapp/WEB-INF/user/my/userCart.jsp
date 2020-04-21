@@ -20,8 +20,18 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/nouislider/nouislider.min.css">
 
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
+  <c:if test="${sessionScope.user == null }">
+	<script type="text/javascript">
+		alert("로그인이 필요한 서비스입니다")
+		location.href = "${path}/speedcampus/login.do";
+	</script>
+</c:if>
+
+
+
 </head>
 <body>
+
   <!--================ Start Header Menu Area =================-->
 
 	<!--================ End Header Menu Area =================-->
@@ -38,17 +48,20 @@
       <div class="container">
           <div class="cart_inner">
               <div class="table-responsive">
+              <c:if test="${total != 0}">
                   <table class="table">
                       <thead>
                           <tr>
                           	  <th scope="col" width="100"><input type="checkbox"/> 전체선택</th>
                               <th scope="col">제 품 명</th>
                               <th scope="col">가 격</th>
-                              <th scope="col">강 좌 기 간</th>
+                              <th scope="col">강 좌 정 보</th>
                               
                           </tr>
                       </thead>
                       <tbody>
+                      <c:forEach var="cart" items="${cartList }" >
+              
                           <tr>
                           <td><input type="checkbox"/></td>
                               <td>
@@ -57,39 +70,19 @@
                                           <img src="${pageContext.request.contextPath }/resources/img/category/linuximage.png" height="100" width="150" alt="">
                                       </div>
                                       <div class="media-body">
-                                          <p>리 눅 스 강 좌</p>
+                                          <p>${ cart.vname }</p>
                                       </div>
                                   </div>
                               </td>
                               <td>
-                                  <h5>105,000원</h5>
+                                  <h5>${cart.price} 원</h5>
                               </td>
                               <td>
-                                  <h5>2020.03.17~</h5>
-                                  <h5> 2020.04.16</h5>
+                                  <h5>디테일</h5>
                               </td>
                               
                           </tr>
-                          
-                                            
-                          <tr class="bottom_button">
-                              <td>
-                                  <a class="button" href="#">Update Cart</a>
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                  <div class="cupon_text d-flex align-items-center">
-                                      <input type="text" placeholder="Coupon Code">
-                                      <a class="primary-btn" href="#">Apply</a>
-                                      <a class="button" href="#">Have a Coupon?</a>
-                                  </div>
-                              </td>
-                          </tr>
+                          </c:forEach>
                           <tr>
                               <td>
 
@@ -129,6 +122,11 @@
                           </tr>
                       </tbody>
                   </table>
+                  </c:if>
+                  <c:if test="${total == 0}">
+                  	<h>장바구니가 비었습니다.
+                  	장바구니를 채워보세요<h>
+	                  </c:if>
               </div>
           </div>
       </div>
