@@ -21,5 +21,11 @@
 		FROM cart
 		WHERE email=#{email,jdbcType=VARCHAR}
 	</select>
+		
+	<select id="totalPrice" resultType="java.lang.Integer">
+		SELECT sum(price)
+		FROM cart
+		WHERE email=#{email,jdbcType=VARCHAR}
+	</select>
 	
 </mapper>

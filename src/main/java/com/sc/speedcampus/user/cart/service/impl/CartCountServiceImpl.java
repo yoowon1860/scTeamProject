@@ -17,4 +17,9 @@ public class CartCountServiceImpl implements CartCountService {
 		return cartDAO.listCount(email);
 	}
 
+	@Override
+	public int totalPrice(String email) {
+		return cartDAO.totalPrice(email);
+	}
+
 }

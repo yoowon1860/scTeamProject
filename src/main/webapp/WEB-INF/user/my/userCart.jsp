@@ -52,7 +52,7 @@
                   <table class="table">
                       <thead>
                           <tr>
-                          	  <th scope="col" width="100"><input type="checkbox"/> 전체선택</th>
+                          	  <th scope="col"><input type="checkbox"/> 전체선택</th>
                               <th scope="col">제 품 명</th>
                               <th scope="col">가 격</th>
                               <th scope="col">강 좌 정 보</th>
@@ -91,10 +91,10 @@
 
                               </td>
                               <td>
-                                  <h5>Subtotal</h5>
+                                  <h5>총 합</h5>
                               </td>
                               <td>
-                                  <h5>$2160.00</h5>
+                                  <h5>${totalPrice }원</h5>
                               </td>
                           </tr>
                           <tr class="shipping_area">

@@ -39,6 +39,7 @@ public class CartController {
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
 		String email = vo.getEmail();
+		model.addAttribute("totalPrice", cartCount.totalPrice(email));
 		model.addAttribute("total", cartCount.listCount(email));
 		model.addAttribute("cartList", getCartList.cartList(email));
 		return "my/userCart";

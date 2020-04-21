@@ -25,4 +25,8 @@ public class CartDAO {
 	public int listCount(String email) {
 		return sqlSessionTemplate.selectOne("CartDAO.listCount",email);
 	}
+	
+	public int totalPrice(String email) {
+		return sqlSessionTemplate.selectOne("CartDAO.totalPrice",email);
+	}
 }
