@@ -28,5 +28,10 @@ public class MyCourseController {
 		myCourseService.getMyCourseEnd(userVO);
 		return "my/userCourse";
 	}
+	
+	@RequestMapping("playCourse.do")
+	public String playCourse() {
+		return "my/playCourse";
+	}
 
 }
