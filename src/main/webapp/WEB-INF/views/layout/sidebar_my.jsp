@@ -23,21 +23,16 @@
 
 	<!-- ================ category section start ================= -->		  
 
-      
             <div class="head">My</div>
             <ul class="main-categories">
               <li class="common-filter">
-                <form action="#">
                   <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men"><a href="myCourse.do">내 강의보기</a></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="women" name="brand"><label for="women">장바구니</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="accessories" name="brand"><label for="accessories">찜</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="footwear" name="brand"><label for="footwear">정보수정</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="food" name="brand"><label for="food"><a href="qna.do">1:1 문의</a></label></li>
-                    
-
+                    <a href="myCourse.do"><li class="filter-list"><label ><b>내 강의보기</b></label></li></a><hr/>
+                    <a href="#"><li class="filter-list"><label ><b>장바구니</b></label></li></a><hr/>
+                    <a href="myUpdate.do"><li class="filter-list"><label ><b>정보수정</b></label></li></a><hr/>
+                    <a href="qnaList.do"><li class="filter-list"><label ><b>1:1 문의</b></label></li></a><hr/>
                   </ul>
-                </form>
+               
               </li>
             </ul>
   

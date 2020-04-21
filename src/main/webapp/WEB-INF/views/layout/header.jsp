@@ -7,7 +7,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Home</title>
   <link rel="icon" href="${pageContext.request.contextPath }/resources/img/Fevicon.png" type="image/png">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/fontawesome/css/all.min.css">
@@ -22,7 +21,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"><img src="${pageContext.request.contextPath }/resources/img/logo.png" alt=""></a>
+          <a class="navbar-brand logo_h" href="userHome.do"><img src="${pageContext.request.contextPath }/resources/img/logo.png" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -51,7 +50,6 @@
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="myCourse.do">내 강의보기</a></li>
 									<li class="nav-item"><a class="nav-link" href="myCart.do">장바구니</a></li>
-									<li class="nav-item"><a class="nav-link" href="myWish.do">찜</a></li>
 									<li class="nav-item"><a class="nav-link" href="myUpdate.do">정보수정</a></li>
 									<li class="nav-item"><a class="nav-link" href="qnaList.do">1:1 문의</a></li>
 								</ul></li>
