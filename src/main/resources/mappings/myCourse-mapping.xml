@@ -3,29 +3,55 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MyCourseDAO">
+	<!-- 
+	<resultMap type="admincourse" id="admincourse">
+		<id column="name" property="name"/>
+		<id column="price" property="price"/>
+		<id column="youtube" property="youtube"/>
+		<id column="num" property="num"/>
+	</resultMap>
+
+	<resultMap type="mycourse" id="mycourse">
+		<id column="num" property="num"/>
+		<id column="email" property="email"/>
+		<id column="vnum" property="vnum"/>
+		<id column="startdate" property="startdate"/>
+		<id column="enddate" property="enddate"/>
+	</resultMap>
 	
-	<!-- 나의 모든 강의 불러오기 -->
-	<select id="getMyCourseList" resultType="mycourse">
-		SELECT * FROM list WHERE mail=#{mail}
+	<resultMap type="com.sc.speedcampus.user.mycourse.vo.courseMyCourseData" id="data">
+		<collection property="mycourse" resultMap="mycourseMap"/>
+		<collection property="vd" resultMap="vdMap"/>
+	</resultMap>
+ -->
+	<!-- 나의 모든 강의 불러오기 
+	<select id="getMyCourseList" resultType="data" parameterType="String">
+		SELECT * FROM mycourse a, vd b
+		WHERE a.vnum = b.num and a.email=#{email}
 	</select>
+	-->
 	
-	<!-- 나의 수강 중 강의 불러오기 -->
+
+	<select id="getMyCourseList" resultType="mycourse" parameterType="String">
+	SELECT * FROM mycourse Where email=#{email}
+	</select>
+	<!-- 나의 수강 중 강의 불러오기 
 	<select id="getMyIngList" resultType="mycourse">
 		SELECT * 
-		FROM list 
-		WHERE mail=#{mail}
+		FROM mycourse 
+		WHERE email=#{email}
 		AND
-		end <![CDATA[<]]> #{sysdate}
-	</select>
+		endDate <![CDATA[<]]> #{sysdate}
+	</select>-->
 	
-	<!-- 나의 수강 완료 강의 불러오기 -->
+	<!-- 나의 수강 완료 강의 불러오기 
 	<select id="getMyEndList" resultType="mycourse">
 		SELECT * 
-		FROM list 
-		WHERE mail=#{mail}
+		FROM mycourse 
+		WHERE email=#{email}
 		AND
-		end <![CDATA[>]]> #{sysdate}
+		enddate <![CDATA[>]]> #{sysdate}
 	</select>
-
+-->
 	
 </mapper>

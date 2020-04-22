@@ -9,6 +9,7 @@ import com.sc.speedcampus.user.member.vo.UserVO;
 import com.sc.speedcampus.user.mycourse.dao.MyCourseDAO;
 import com.sc.speedcampus.user.mycourse.service.GetMyCourseService;
 import com.sc.speedcampus.user.mycourse.vo.MyCourseVO;
+import com.sc.speedcampus.user.mycourse.vo.couseMyCourseData;
 
 @Service("GetMyCourseService")
 public class GetMyCourseServiceImpl implements GetMyCourseService {
@@ -26,9 +27,16 @@ public class GetMyCourseServiceImpl implements GetMyCourseService {
 		return mycourseDAO.getEnd(vo);
 	}
 
-	@Override
-	public List<MyCourseVO> getMyCourseList(UserVO vo) {
-		return mycourseDAO.getAll(vo);
-	}
+	/*@Override
+	public couseMyCourseData getMyCourseList(String email) {
+		System.out.println("이메일"+email);
+		System.out.println("서비스임플" + mycourseDAO.getAll(email));
+		return mycourseDAO.getAll(email);
+	}*/
 
+	public List<MyCourseVO> getMyCourseList(String email) {
+		System.out.println("이메일"+email);
+		System.out.println("서비스임플" + mycourseDAO.getAll(email));
+		return mycourseDAO.getAll(email);
+	}
 }

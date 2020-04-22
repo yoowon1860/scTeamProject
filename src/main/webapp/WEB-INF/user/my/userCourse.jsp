@@ -1,5 +1,5 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,10 +7,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Aroma Shop - Product Details</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath }/resources/img/Fevicon.png"
-	type="image/png">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.min.css">
 <link rel="stylesheet"
@@ -31,107 +27,86 @@
 </head>
 <body>
 
-
-	<!--================Product Description Area =================-->
-	<input type="hidden" class="form-control" id="email"
-											name="email" value="${sessionScope.user.email }"/>
+	<h3>내 강의보기</h3>
+	<hr style="border: solid 1.5px #384aeb;">
+		
+			<!--================Product Description Area =================-->
+	<section class="product_description_area">
 		<div class="container">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item"><a class="nav-link" id="home-tab"
-					data-toggle="tab" href="myCourseAll.do" role="tab" aria-controls="home"
-					aria-selected="true">전체 목록</a></li>
-				<li class="nav-item"><a class="nav-link" id="profile-tab"
-					data-toggle="tab" href="myCourseIng.do" role="tab"
-					aria-controls="profile" aria-selected="false">수강 중</a></li>
-				<li class="nav-item"><a class="nav-link" id="contact-tab"
-					data-toggle="tab" href="myCourseEd.do" role="tab"
-					aria-controls="contact" aria-selected="false">수강 완료</a></li>
-			</ul>
-			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade" id="home" role="tabpanel"
-					aria-labelledby="home-tab">
-					<section class="cart_area">
-						<div class="container">
-							<div class="cart_inner">
-								<div class="table-responsive">
-									<table class="table">
-										<thead>	
-											<tr>
-												<th scope="col"></th>
-												<th scope="col"> 제 품 정 보</th>
-												<th scope="col"> 이 용 기 간</th>
-											</tr>
-										</thead>
-										<tbody>
-										 <c:forEach var="article" items="${articles}" varStatus="status">
-											<tr>
-												<td><img
-													src="${pageContext.request.contextPath }/resources/img/category/linuximage.png"
-													height="100" width="150" alt="">
-													<p>강의 상세 보러가기</p></td> <!-- 강좌 상세 화면 페이지로 이동 -->
-												<td>
-													<p>리 눅 스 강 좌</p>
-													<p>300원</p>
-													<p>수강 완료</p>
-												</td>
-												<td>
-													<h5>2020.03.17~</h5>
-													<h5>2020.04.16</h5>
-												</td>
-											</tr>
-										</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</section>
-				</div>
-				<div class="tab-pane fade" id="profile" role="tabpanel"
-					aria-labelledby="profile-tab">
-					<h3>강의 목록이 존재하지 않습니다.</h3>
-				</div>
-				<div class="tab-pane fade" id="contact" role="tabpanel"
-					aria-labelledby="contact-tab">
-					<section class="cart_area">
-						<div class="container">
-							<div class="cart_inner">
-								<div class="table-responsive">
-									<table class="table">
-										<thead>
-											<tr>
-												<th scope="col"></th>
-												<th scope="col">제 품 정 보</th>
-												<th scope="col">이 용 기 간</th>
-												<th scope="col"></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><img
-													src="${pageContext.request.contextPath }/resources/img/category/linuximage.png"
-													height="100" width="150" alt="">
-													<p>강의 상세 보러가기</p></td>  <!-- 강좌 상세 화면 페이지로 이동 -->
-												<td>
-													<p>리 눅 스 강 좌</p>
-												</td>
-												<td>
-													<h5>2020.03.17~</h5>
-													<h5>2020.04.16</h5>
-												</td>
-												<td><input type="button" value="후기 작성하기"/> <!-- 구매후기 작성페이지 이동. 작성 이후 (후기작성 완료)버튼으로 뜨기(click 불가능)-->
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</section>
-				</div>
+				<li class="nav-item">
+					<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+					 aria-selected="false">전체 수강 강좌</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+					 aria-selected="false">수강 중</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+					 aria-selected="false">수강 종료</a>
+				</li>
 
+			</ul>
+					<div class="tab-content" id="myTabContent">
+			<!-- 수강 전체 -->
+			<div class="tab-pane fade show active" id="review" role="tabpanel"
+				aria-labelledby="review-tab">
+				<div class="row">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col"></th>
+								<th scope="col">강좌정보</th>
+								<th scope="col">이용기간</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="course" items="${myCourseList}"
+								varStatus="status">
+								<tr>
+									<td><img
+										src="${pageContext.request.contextPath }/resources/img/category/linuximage.png"
+										height="100" width="150" alt="">
+										<p>강의 상세 보러가기</p></td>
+									<!-- 강좌 상세 화면 페이지로 이동 -->
+									<td>
+										<p>리 눅 스 강 좌</p>
+										<p>300원</p>
+										<p>수강 완료</p>
+									</td>
+									<td>
+										<h5>${course.startDate }</h5>
+										<h5>${course.endDate }</h5>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
+			<!-- 수강 중 -->
+			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				
+					<div class="row">
+					<div class="col-lg-6">
+						수강중 내용
+					</div>
+				</div>
+			</div>
+
+				<!-- 수강 종료 -->
+				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-lg-6">
+							수강 종료내용
+						</div>
+			
+					</div>
+				</div>
+				</div>
 		</div>
+	</section>
 	
 	<!--================End Product Description Area =================-->
 

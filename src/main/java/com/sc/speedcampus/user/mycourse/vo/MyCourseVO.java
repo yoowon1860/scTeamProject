@@ -6,9 +6,9 @@ public class MyCourseVO {
 	
 	private int num;
 	private String email;
-	private String vd;
-	private Date start;
-	private Date end;
+	private int vnum;
+	private Date startDate;
+	private Date endDate;
 	public int getNum() {
 		return num;
 	}
@@ -21,29 +21,31 @@ public class MyCourseVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getVd() {
-		return vd;
+
+	public int getVnum() {
+		return vnum;
 	}
-	public void setVd(String vd) {
-		this.vd = vd;
+	public void setVnum(int vnum) {
+		this.vnum = vnum;
 	}
-	public Date getStart() {
-		return start;
+	public Date getStartDate() {
+		return startDate;
 	}
-	public void setStart(Date start) {
-		this.start = start;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	public Date getEnd() {
-		return end;
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setEnd(Date end) {
-		this.end = end;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	@Override
 	public String toString() {
-		return "MyCourseVO [num=" + num + ", email=" + email + ", vd=" + vd + ", start=" + start + ", end=" + end + "]";
+		return "MyCourseVO [num=" + num + ", email=" + email + ", vnum=" + vnum + ", startDate=" + startDate
+				+ ", endDate=" + endDate + "]";
 	}
-	
+
 	
 	
 
