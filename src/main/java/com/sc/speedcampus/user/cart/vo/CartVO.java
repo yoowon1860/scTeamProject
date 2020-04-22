@@ -1,10 +1,22 @@
 package com.sc.speedcampus.user.cart.vo;
 
+import com.sc.speedcampus.admin.course.vo.CourseVO;
+
+
 public class CartVO {
 	private int num;
 	private String email;
 	private String vname;
 	private int price;
+	
+	private CourseVO courseVO;
+	
+	public CourseVO getCourseVO() {
+		return courseVO;
+	}
+	public void setCourseVO(CourseVO courseVO) {
+		this.courseVO = courseVO;
+	}
 	public int getNum() {
 		return num;
 	}
