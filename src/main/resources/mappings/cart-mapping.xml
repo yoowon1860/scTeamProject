@@ -49,4 +49,11 @@
 		WHERE email=#{email,jdbcType=VARCHAR}
 	</select>
 	
+	<!-- 카트 삭제 -->
+	<delete id="delete" parameterType="mycart">
+		DELETE cart
+		WHERE num=#{num}
+		AND email=#{email}
+	</delete>
+	
 </mapper>

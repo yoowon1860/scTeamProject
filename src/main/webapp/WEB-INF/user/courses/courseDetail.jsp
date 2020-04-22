@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,7 @@
             <div class="col-12">
               <div class="row justify-content-center align-items-center text-center">
                 <div class="col-lg-6">
-                  <h1 data-aos="fade-up" data-aos-delay="0">${course.name } Course</h1>
+                  <h1 data-aos="fade-up" data-aos-delay="0">${course.name } 과정</h1>
                   <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week  2,193 students </p>
                 </div>
 
@@ -87,7 +87,7 @@
           </div>
           <div class="col-lg-4 pl-lg-5">
             <div class="mb-5 text-center border rounded course-instructor">
-              <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">강좌 설명</h3>
+              <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3"><fmt:formatNumber value="${course.price}" pattern="#,###" />원</h3>
               <div class="mb-4 text-center">
                 <img src="images/person_2.jpg" alt="Image" class="w-25 rounded-circle mb-4">  
                 <h3 class="h5 text-black mb-4">Christine Downeyy</h3>

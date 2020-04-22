@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -222,7 +223,7 @@
                    <tr>
                   <td>${course.num }</td>
                   <td><a href="courseRead.mdo?num=${course.num }">${course.name }</a></td>
-                  <td>${course.price }</td>
+                  <td><fmt:formatNumber value="${course.price }" pattern="#,###" /></td>
                   <td>${course.youtube }</td>
                   <td>
 	                  <div style="text-align:center;">
