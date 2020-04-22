@@ -29,4 +29,8 @@ public class CartDAO {
 	public int totalPrice(String email) {
 		return sqlSessionTemplate.selectOne("CartDAO.totalPrice",email);
 	}
+	
+	public void delete(CartVO vo) throws Exception{
+		sqlSessionTemplate.delete("CartDAO.delete", vo);
+	}
 }
