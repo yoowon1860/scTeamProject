@@ -30,10 +30,18 @@ public class QnaController {
 	// 문의 리스트 
 	@RequestMapping("qnaList.do")
 	public String qnaList(Model model, HttpSession session) {
-		UserVO user = (UserVO)session.getAttribute("user");
-		String userId = user.getEmail();
-		model.addAttribute("qnaList", qnaService.getQList(userId));
-		return  "my/userQnaList";
+		
+		try {
+			UserVO user = (UserVO)session.getAttribute("user");
+			String userId = user.getEmail();
+			model.addAttribute("qnaList", qnaService.getQList(userId));
+			return  "my/userQnaList";
+			
+		} catch (Exception e) {
+			// user 없을시  nullpointerException 처리
+			return  "member/login";
+		}
+		
 	}
 	
 	// 문의 작성

@@ -8,13 +8,6 @@
 <head>
 
 
-<c:if test="${sessionScope.user == null }">
-   <script type="text/javascript">
-      alert("로그인이 필요한 서비스입니다")
-      location.href = "${path}/speedcampus/login.do";
-   </script>
-</c:if>
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>  
 
 <meta charset="UTF-8">
