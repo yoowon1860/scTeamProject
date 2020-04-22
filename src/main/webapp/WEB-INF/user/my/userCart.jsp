@@ -78,7 +78,7 @@
                                   <h5>${cart.price} 원</h5>
                               </td>
                               <td>
-                                  <h5>디테일</h5>
+                                  <h5>${cart.courseVO.detail}</h5>
                               </td>
                               
                           </tr>

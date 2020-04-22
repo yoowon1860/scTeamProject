@@ -39,9 +39,9 @@ public class CartController {
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
 		String email = vo.getEmail();
-		model.addAttribute("totalPrice", cartCount.totalPrice(email));
-		model.addAttribute("total", cartCount.listCount(email));
-		model.addAttribute("cartList", getCartList.cartList(email));
+		model.addAttribute("totalPrice", cartCount.totalPrice(email)); //cart에 담긴 총액 
+		model.addAttribute("total", cartCount.listCount(email));		//cart에 물품이 담겨있는지 확인
+		model.addAttribute("cartList", getCartList.cartList(email));	//email을 통해 데이터 가져오기
 		return "my/userCart";
 	}
 	
