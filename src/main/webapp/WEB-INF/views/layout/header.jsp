@@ -42,7 +42,7 @@
 								</ul></li>
 							<li class="nav-item"><a class="nav-link" href="studyList.do">Study</a></li>
 							<li class="nav-item"><a class="nav-link" href="noticeList.do">Notice</a></li>
-
+							<c:if test="${sessionScope.user.email != null }">
 							<li class="nav-item submenu dropdown"><a href="#"
 								class="nav-link dropdown-toggle" data-toggle="dropdown"
 								role="button" aria-haspopup="true" aria-expanded="false">My</a>
@@ -52,6 +52,7 @@
 									<li class="nav-item"><a class="nav-link" href="myUpdate.do">정보수정</a></li>
 									<li class="nav-item"><a class="nav-link" href="qnaList.do">1:1 문의</a></li>
 								</ul></li>
+								</c:if>
 
 						</ul>
 
