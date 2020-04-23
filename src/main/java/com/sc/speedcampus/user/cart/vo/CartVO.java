@@ -41,5 +41,12 @@ public class CartVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	@Override
+	public String toString() {
+		return "CartVO [num=" + num + ", email=" + email + ", vname=" + vname + ", price=" + price + ", courseVO="
+				+ courseVO + "]";
+	}
+	
+	
 	
 }

@@ -3,38 +3,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MyCourseDAO">
-	<!-- 
-	<resultMap type="admincourse" id="admincourse">
-		<id column="name" property="name"/>
-		<id column="price" property="price"/>
-		<id column="youtube" property="youtube"/>
-		<id column="num" property="num"/>
-	</resultMap>
 
 	<resultMap type="mycourse" id="mycourse">
-		<id column="num" property="num"/>
-		<id column="email" property="email"/>
-		<id column="vnum" property="vnum"/>
-		<id column="startdate" property="startdate"/>
-		<id column="enddate" property="enddate"/>
+		<id column="num" property="num" />
+		<result column="email" property="email" />
+		<result column="vnum" property="vnum" />
+		<result column="startdate" property="startDate" />
+		<result column="enddate" property="endDate" />
+		
+		<collection javaType="admincourse" property="courseVO">
+			<id column="num" property="num" />
+			<result column="name" property="name" />
+			<result column="price" property="price" />
+			<result column="youtube" property="youtube" />
+			<result column="detail" property="detail" />
+		</collection>
 	</resultMap>
-	
-	<resultMap type="com.sc.speedcampus.user.mycourse.vo.courseMyCourseData" id="data">
-		<collection property="mycourse" resultMap="mycourseMap"/>
-		<collection property="vd" resultMap="vdMap"/>
-	</resultMap>
- -->
-	<!-- 나의 모든 강의 불러오기 
-	<select id="getMyCourseList" resultType="data" parameterType="String">
-		SELECT * FROM mycourse a, vd b
-		WHERE a.vnum = b.num and a.email=#{email}
-	</select>
-	-->
-	
 
-	<select id="getMyCourseList" resultType="mycourse" parameterType="String">
-	SELECT * FROM mycourse Where email=#{email}
+
+	<select id="getMyCourseList" resultMap="mycourse" parameterType="mycourse">
+		SELECT m.num, m.email, m.vnum, m.startdate, m.enddate, v.name, v.price, v.youtube
+		FROM mycourse m
+		LEFT JOIN
+			vd v
+		ON m.vnum=v.num
+		WHERE email=#{email}
 	</select>
+	
 	<!-- 나의 수강 중 강의 불러오기 
 	<select id="getMyIngList" resultType="mycourse">
 		SELECT * 

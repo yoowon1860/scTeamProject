@@ -10,6 +10,20 @@
 		</layout>
 	</appender>
 	
+	 <!-- 쿼리테이블 로그에 출력 -->
+    <logger name="jdbc.resultsettable">
+     <level value="debug"/>
+    </logger>
+   
+	 <!-- 쿼리 로그에 출력 -->
+	 <logger name="jdbc.sqlonly">
+	    <level value="debug"/>
+	 </logger>
+  
+	 <logger name="net.sf.log4jdbc" additivity="false">
+	  <level value="info"/>
+	 </logger>
+	
 	<!-- Application Loggers -->
 	<logger name="com.sc.web">
 		<level value="info" />

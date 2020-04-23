@@ -42,4 +42,6 @@
 		<mapper resource = "mappings/qcomment-mapping.xml"/>
 		<mapper resource = "mappings/cart-mapping.xml"/>	
 	</mappers>
+	
+	
 </configuration>

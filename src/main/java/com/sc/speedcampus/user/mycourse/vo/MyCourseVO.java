@@ -2,6 +2,8 @@ package com.sc.speedcampus.user.mycourse.vo;
 
 import java.sql.Date;
 
+import com.sc.speedcampus.admin.course.vo.CourseVO;
+
 public class MyCourseVO {
 	
 	private int num;
@@ -9,6 +11,16 @@ public class MyCourseVO {
 	private int vnum;
 	private Date startDate;
 	private Date endDate;
+	
+	private CourseVO courseVO;
+	
+	
+	public CourseVO getCourseVO() {
+		return courseVO;
+	}
+	public void setCourseVO(CourseVO courseVO) {
+		this.courseVO = courseVO;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -43,7 +55,7 @@ public class MyCourseVO {
 	@Override
 	public String toString() {
 		return "MyCourseVO [num=" + num + ", email=" + email + ", vnum=" + vnum + ", startDate=" + startDate
-				+ ", endDate=" + endDate + "]";
+				+ ", endDate=" + endDate + ", courseVO=" + courseVO + "]";
 	}
 
 	

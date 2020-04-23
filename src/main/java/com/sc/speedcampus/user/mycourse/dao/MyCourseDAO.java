@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.sc.speedcampus.user.member.vo.UserVO;
 import com.sc.speedcampus.user.mycourse.vo.MyCourseVO;
-import com.sc.speedcampus.user.mycourse.vo.couseMyCourseData;
 import com.sc.speedcampus.util.SqlSessionFactoryBean;
 
 @Repository
@@ -21,14 +20,8 @@ public class MyCourseDAO {
 		sqlSession = SqlSessionFactoryBean.getSqlSessionInstance();
 	}
 	
-	/*public couseMyCourseData getAll(String email){
-		System.out.println(email);
-		System.out.println("dao:"+sqlSession.selectList("MyCourseDAO.getMyCourseList", email));
-		return sqlSession.getMapper(couseMyCourseData.class);
-	}*/
+	// 내 강좌 리스트 불러오기
 	public List<MyCourseVO> getAll(String email){
-		System.out.println(email);
-		System.out.println("dao:"+sqlSession.selectList("MyCourseDAO.getMyCourseList", email));
 		return sqlSession.selectList("MyCourseDAO.getMyCourseList", email);
 	}
 	
