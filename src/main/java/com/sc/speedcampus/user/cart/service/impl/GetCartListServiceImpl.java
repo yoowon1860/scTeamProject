@@ -18,7 +18,7 @@ public class GetCartListServiceImpl implements GetCartListService {
 	
 	@Override
 	public List<CartVO> cartList(String email) {
-		
+		System.out.println(cartDAO.GetCartList(email));
 		return cartDAO.GetCartList(email);
 	}
 

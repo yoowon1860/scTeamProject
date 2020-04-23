@@ -71,8 +71,8 @@
 										<p>강의 상세 보러가기</p></td>
 									<!-- 강좌 상세 화면 페이지로 이동 -->
 									<td>
-										<p>리 눅 스 강 좌</p>
-										<p>300원</p>
+										<p>${course.courseVO.name }</p>
+										<p>${course.courseVO.price }</p>
 										<p>수강 완료</p>
 									</td>
 									<td>
