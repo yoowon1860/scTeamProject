@@ -27,7 +27,8 @@
 		LEFT JOIN
 			vd v
 		ON m.vnum=v.num
-		WHERE email=#{email}
+		WHERE email=#{email} 
+		ORDER BY enddate DESC
 	</select>
 	
 	<!-- 나의 수강 중 강의 불러오기 
