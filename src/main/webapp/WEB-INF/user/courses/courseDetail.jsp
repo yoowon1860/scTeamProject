@@ -19,16 +19,15 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style2.css">
   
-      <!-- 로그인 안한 상태에서 장바구니 추가 버튼 누르기 -->
-<c:if test="${sessionScope.user == null }">
-    <script type="text/javascript">
-    function cart_event(){
-    	alert("로그인이 필요한 서비스입니다")
-    	location.href = "${path}/speedcampus/login.do";
-    	}
-    
-    </script>
-    </c:if>
+     <c:if test="${sessionScope.user ==null }">
+  	<script type="text/javascript">
+  	function myFunction(){
+  		location.href = "${path}/speedcampus/login.do";
+  	alert("로그인이 필요한 서비스입니다")
+	
+  	}
+  	</script>
+  </c:if>
 </head>
  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <!--================ Start Header Menu Area =================-->
@@ -74,15 +73,16 @@
 			  <p>4강 : ${course.name} 이론 심화편</p>
 			  <p>5강 : ${course.name} 이론 마무리 및 마지막 실습</p>
 			  
-              <p class="mt-4"><a href="#" class="btn btn-primary">지금구매</a>
                 <a href="reviewRead.do?num=${course.num}" class="btn btn-primary">구매후기 보기</a>
+                
                
                   <form action="insertCart.do" method="post" novalidate="novalidate">
                 <input type="hidden" name="email" value="${sessionScope.user.email }"/>
                 <input type="hidden" name="vname" value="${course.name }"/>
                 <input type="hidden" name="price" value="${course.price }"/>
-                <input type="submit" class="btn btn-primary" value="장바구니 추가" onclick="cart_event"/>
+                <input type="submit" class="btn btn-primary" value="장바구니 추가" onclick="myFunction()"/>
                 </form>
+                
             </div>
           </div>
           <div class="col-lg-4 pl-lg-5">

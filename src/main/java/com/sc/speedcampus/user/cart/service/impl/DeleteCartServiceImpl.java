@@ -14,8 +14,8 @@ public class DeleteCartServiceImpl implements DeleteCartService {
 	private CartDAO cartDAO;
 	
 	@Override
-	public void delete(CartVO vo) throws Exception{
-		cartDAO.delete(vo);
+	public void delete(int num) throws Exception{
+		cartDAO.delete(num);
 	}
 
 }

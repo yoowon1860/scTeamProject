@@ -30,7 +30,7 @@ public class CartDAO {
 		return sqlSessionTemplate.selectOne("CartDAO.totalPrice",email);
 	}
 	
-	public void delete(CartVO vo) throws Exception{
-		sqlSessionTemplate.delete("CartDAO.delete", vo);
+	public void delete(int num) throws Exception{
+		sqlSessionTemplate.delete("CartDAO.delete", num);
 	}
 }
