@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- 숫자 세자리마다 콤마(,) 넣기 -->
 
 <!DOCTYPE html>
-  <c:if test="${total == 0}"> <!-- 장바구니 목록에 아무것도 없을 때 -->
+  <c:if test="${total ==0 }"> <!-- 장바구니 목록에 아무것도 없을 때 -->
                   	<h>장바구니가 비었습니다.
                   	장바구니를 채워보세요<h>
 	                  </c:if>
@@ -72,7 +72,7 @@ $("#allCheck").click(function(){
 </script>
 </div>
 <div>
-                      		<th colspan="2"><button type="button" class="btn btn-danger btn-sm" id="selectDelete_btn"  style="float:right;">선택삭제</button></th>
+                      		<th colspan="2"><button  class="btn btn-danger btn-sm" id="selectDelete_btn"  style="float:right;">선택삭제</button></th>
                       		<script type="text/javascript">
  $("#selectDelete_btn").click(function(){
   var confirm_val = confirm("정말 삭제하시겠습니까?");
@@ -88,15 +88,12 @@ $("#allCheck").click(function(){
     url : "deleteCart.do",
     type : "post",
     data : { chbox : checkArr },
-    success : function(result){
-    	if(result==1){
-    		$("#cartL").load(window.location.href + "cartL");
-    		location.href="myCart.do?email=${sessionScope.user.email}";
-    	}else{
-    		alert("삭제 실패");
-    	}
+    success : function(email){
+    		location.href="email";
+    	
     }
    });
+  
   } 
  });
 </script>

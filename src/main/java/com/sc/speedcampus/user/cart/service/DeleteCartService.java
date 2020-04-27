@@ -4,5 +4,5 @@ import com.sc.speedcampus.user.cart.vo.CartVO;
 
 public interface DeleteCartService {
 
-	public void delete(CartVO vo) throws Exception;
+	public void delete(int num) throws Exception;
 }

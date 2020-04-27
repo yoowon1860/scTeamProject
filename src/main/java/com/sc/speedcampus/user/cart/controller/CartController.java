@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +36,13 @@ public class CartController {
 	
 	@RequestMapping(value="insertCart.do", method = RequestMethod.POST)
 	public String insert(CartVO vo) {
+	try{
 		System.out.println("장바구니 추가");
 		insertCart.insert(vo);
 		return "redirect:myCart.do?email="+vo.getEmail();
+	}catch(DataIntegrityViolationException e) {
+		return  "member/login";
+	}
 	}
 	
 	@RequestMapping(value="myCart.do", method = RequestMethod.GET)
@@ -53,7 +58,7 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="deleteCart.do", method=RequestMethod.POST)
-	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO vo) throws Exception {
+	public String deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO vo) throws Exception {
 		UserVO userVO = (UserVO) session.getAttribute("user");
 		String email = userVO.getEmail();
 		
@@ -65,13 +70,13 @@ public class CartController {
 		
 		 for(String i : chArr) {   
 			   num = Integer.parseInt(i);
-			   vo.setNum(num);
-			   deleteCart.delete(vo);
+			   deleteCart.delete(num);
+
+				 System.out.println(num+"삭제");
 			  }
 		 result =1;
 		}
-		 
-		 return result;
+		 return "redirect:myCart.do?email="+vo.getEmail();
 	}
 	
 }
