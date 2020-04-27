@@ -50,16 +50,16 @@
   
 
   <!--================Cart Area =================-->
+  <c:if test="${total !=0 }">
   <section class="cart_area">
       <div class="container">
           <div class="cart_inner">
               <div class="table-responsive" id="cartL">
-              <c:if test="${total != 0}"> <!-- 장바구니 목록 1개 이상일 때 -->
                   <table class="table">
                       <thead>
                       	<tr>
                       	<div>
-                      		<th colspan="2"><input type="checkbox" name="allCheck" id="allCheck" onclick="allChk(this);"><b>&nbsp;모두선택</b></th>
+                      		<th colspan="2"><input type="checkbox" name="allCheck" id="allCheck"/><b>&nbsp;모두선택</b></th>
                       		<script type="text/javascript">
 $("#allCheck").click(function(){
  var chk = $("#allCheck").prop("checked");
@@ -72,7 +72,7 @@ $("#allCheck").click(function(){
 </script>
 </div>
 <div>
-                      		<th colspan="2"><button  class="btn btn-danger btn-sm" id="selectDelete_btn"  style="float:right;">선택삭제</button></th>
+                      		<th colspan="2"><button type="button" class="btn btn-danger btn-sm" id="selectDelete_btn"  style="float:right;">선택삭제</button></th>
                       		<script type="text/javascript">
  $("#selectDelete_btn").click(function(){
   var confirm_val = confirm("정말 삭제하시겠습니까?");
@@ -88,8 +88,9 @@ $("#allCheck").click(function(){
     url : "deleteCart.do",
     type : "post",
     data : { chbox : checkArr },
-    success : function(email){
-    		location.href="email";
+    success : function(result){
+    	if(result==1)
+    		location.href="${path}/speedcampus/login.do";
     	
     }
    });
@@ -112,6 +113,11 @@ $("#allCheck").click(function(){
               
                           <tr>
                           <td><input type="checkbox"  name="chBox" class="chBox" data-cartNum="${cart.num}" /></td>
+                          <script type="text/javascript">
+ $(".chBox").click(function(){
+  $("#allCheck").prop("checked", false);
+ });
+</script>
                               <td>
                                   <div class="media">
                                       <div class="d-flex">
@@ -130,11 +136,7 @@ $("#allCheck").click(function(){
                                   <input type="hidden" value="${cart.num}"/>
                                   
                               </td>
-                              <script type="text/javascript">
- $(".chBox").click(function(){
-  $("#allCheck").prop("checked", false);
- });
-</script>
+                              
                               
                               
                           </tr>
@@ -185,13 +187,11 @@ $("#allCheck").click(function(){
                           </tr>
                       </tbody>
                   </table>
-                  </c:if>
-                
               </div>
           </div>
       </div>
   </section>
-  
+  </c:if>
 
 
 

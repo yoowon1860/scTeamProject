@@ -40,7 +40,7 @@ public class CartController {
 		System.out.println("장바구니 추가");
 		insertCart.insert(vo);
 		return "redirect:myCart.do?email="+vo.getEmail();
-	}catch(DataIntegrityViolationException e) {
+	}catch(DataIntegrityViolationException e) { // 무결성 제약 위반시 로그인창으로 이동(장바구니 추가 시 세션값 없는 경우) 
 		return  "member/login";
 	}
 	}
@@ -48,6 +48,7 @@ public class CartController {
 	@RequestMapping(value="myCart.do", method = RequestMethod.GET)
 	public String myCartView(HttpServletRequest request,CartVO vo, Model model) {
 		System.out.println("내 장바구니 화면");
+		try {
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
 		String email = vo.getEmail();
@@ -55,10 +56,13 @@ public class CartController {
 		model.addAttribute("total", cartCount.listCount(email));		//cart에 물품이 담겨있는지 확인
 		model.addAttribute("cartList", getCartList.cartList(email));	//email을 통해 데이터 가져오기
 		return "my/userCart";
+		}catch(NullPointerException e) {
+			return "my/userCartEmpty";
+		}
 	}
 	
 	@RequestMapping(value="deleteCart.do", method=RequestMethod.POST)
-	public String deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO vo) throws Exception {
+	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO vo) throws Exception {
 		UserVO userVO = (UserVO) session.getAttribute("user");
 		String email = userVO.getEmail();
 		
@@ -70,13 +74,14 @@ public class CartController {
 		
 		 for(String i : chArr) {   
 			   num = Integer.parseInt(i);
-			   deleteCart.delete(num);
+			   vo.setNum(num);
+			   deleteCart.delete(vo);
 
 				 System.out.println(num+"삭제");
 			  }
 		 result =1;
 		}
-		 return "redirect:myCart.do?email="+vo.getEmail();
+		 return result;
 	}
 	
 }
