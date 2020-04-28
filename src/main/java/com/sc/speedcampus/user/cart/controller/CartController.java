@@ -51,10 +51,10 @@ public class CartController {
 		try {
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
-		String email = vo.getEmail();
-		model.addAttribute("totalPrice", cartCount.totalPrice(email)); //cart에 담긴 총액 
-		model.addAttribute("total", cartCount.listCount(email));		//cart에 물품이 담겨있는지 확인
-		model.addAttribute("cartList", getCartList.cartList(email));	//email을 통해 데이터 가져오기
+		UserVO userVO = (UserVO)session.getAttribute("user");
+		model.addAttribute("totalPrice", cartCount.totalPrice(userVO.getEmail())); //cart에 담긴 총액 
+		model.addAttribute("total", cartCount.listCount(userVO.getEmail()));		//cart에 물품이 담겨있는지 확인
+		model.addAttribute("cartList", getCartList.cartList(userVO.getEmail()));	//email을 통해 데이터 가져오기
 		return "my/userCart";
 		}catch(NullPointerException e) {
 			return "my/userCartEmpty";

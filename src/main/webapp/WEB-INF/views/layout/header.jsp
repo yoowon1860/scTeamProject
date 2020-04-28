@@ -60,18 +60,21 @@
 							<li class="nav-item"><button>
 									<i class="ti-search"></i>
 								</button></li>
-							<li class="nav-item"><button>
+								
+								<c:if test="${sessionScope.user.email != null }"> <!-- 로그인 상태에서만 화면 표출 -->
+							<li class="nav-item"><button type="button" onclick="location.href='myCart.do'">
 									<i class="ti-shopping-cart"></i><span class="nav-shop__circle">${total }</span>
 								</button></li>
-							<c:if test="${sessionScope.user.email == null  }">
+								
+								<li class="nav-item"><a class="button button-header"
+									href="logout.do">Logout</a></li>
+							</c:if>
+							<c:if test="${sessionScope.user.email == null  }">	<!-- 비로그인 상태에서 화면 표출 -->
 								<li class="nav-item"><a class="button button-header"
 									href="login.do">Login</a></li>
 							</c:if>
 
-							<c:if test="${sessionScope.user.email != null }">
-								<li class="nav-item"><a class="button button-header"
-									href="logout.do">Logout</a></li>
-							</c:if>
+							
 						</ul>
 					</div>
 				</div>
