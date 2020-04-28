@@ -72,11 +72,12 @@
 			  <p>3강 : ${course.name} 두번째 실습</p>
 			  <p>4강 : ${course.name} 이론 심화편</p>
 			  <p>5강 : ${course.name} 이론 마무리 및 마지막 실습</p>
-			  
-                <a href="reviewRead.do?num=${course.num}" class="btn btn-primary">구매후기 보기</a>
+			 
+                <a href="reviewRead.do?num=${course.num}" class="btn btn-primary">구매후기 보기</a> 
                 
-               
-                  <form action="insertCart.do" method="post" novalidate="novalidate">
+                
+                <form action="insertCart.do" method="post" novalidate="novalidate">
+                <p></p>
                 <input type="hidden" name="email" value="${sessionScope.user.email }"/>
                 <input type="hidden" name="vname" value="${course.name }"/>
                 <input type="hidden" name="price" value="${course.price }"/>
