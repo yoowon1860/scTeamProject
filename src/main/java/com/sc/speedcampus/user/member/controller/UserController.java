@@ -59,12 +59,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="userHome.do")
-	public String homeView(HttpServletRequest request, Model model, UserVO vo) {
+	public String homeView(HttpServletRequest request, Model model) {
 		System.out.println("홈 화면 호출");
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
-		String email = vo.getEmail();
-		model.addAttribute("total", cartCount.listCount(email));
+		UserVO userVO = (UserVO)session.getAttribute("user");
+		model.addAttribute("total", cartCount.listCount(userVO.getEmail())); //장바구니에 담은 갯수 표출
 		return "userHome";
 	}
 	
