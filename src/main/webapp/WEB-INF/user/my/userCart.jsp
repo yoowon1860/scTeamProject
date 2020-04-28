@@ -4,10 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- 숫자 세자리마다 콤마(,) 넣기 -->
 
 <!DOCTYPE html>
-  <c:if test="${total ==0 }"> <!-- 장바구니 목록에 아무것도 없을 때 -->
-                  	<h>장바구니가 비었습니다.
-                  	장바구니를 채워보세요<h>
-	                  </c:if>
+ 
 <html lang="en">
 <head>
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
@@ -31,6 +28,10 @@
 		alert("로그인이 필요한 서비스입니다")
 		location.href = "${path}/speedcampus/login.do";
 	</script>
+</c:if>
+<c:if test="${total==0 }">
+	<h style="text-align:center; font-size:1.5em; ">장바구니가 비었습니다.
+                  	장바구니를 채워보세요<h>
 </c:if>
 
 
@@ -74,6 +75,11 @@ $("#allCheck").click(function(){
 <div>
                       		<th colspan="2"><button type="button" class="btn btn-danger btn-sm" id="selectDelete_btn"  style="float:right;">선택삭제</button></th>
                       		<script type="text/javascript">
+                      		
+                      		function refreshCartList(){	//새로고침 정의
+                      			location.reload();
+                      		}
+                      		
  $("#selectDelete_btn").click(function(){
   var confirm_val = confirm("정말 삭제하시겠습니까?");
   
@@ -89,11 +95,15 @@ $("#allCheck").click(function(){
     type : "post",
     data : { chbox : checkArr },
     success : function(result){
-    	if(result==1)
-    		location.href="${path}/speedcampus/login.do";
     	
+    	if(result==1){
+    		location.href="myCart.do";
+    	}else{
+    		alert("삭제 실패");
+    	}
     }
    });
+   refreshCartList();	//새로고침 실행
   
   } 
  });

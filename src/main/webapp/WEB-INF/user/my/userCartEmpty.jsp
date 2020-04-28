@@ -45,7 +45,7 @@
 	<hr style="border: solid 1.5px #384aeb;">
 	<!-- ================ end banner area ================= -->
   
-  	<h>장바구니가 비었습니다.
+  	<h style="text-align:center; font-size:1.5em; ">장바구니가 비었습니다.
                   	장바구니를 채워보세요<h>
 
   <!--================Cart Area =================-->

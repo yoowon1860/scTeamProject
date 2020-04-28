@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.sc.speedcampus.user.cart.service.CartCountService;
 import com.sc.speedcampus.user.member.service.GetUserService;
 import com.sc.speedcampus.user.member.service.RegisterService;
 import com.sc.speedcampus.user.member.service.UpdateService;
 import com.sc.speedcampus.user.member.vo.UserVO;
 
 @Controller
+@SessionAttributes({"total", "userList"})
 public class UserController {
 
 	@Autowired
@@ -25,6 +27,8 @@ public class UserController {
 	private RegisterService registerService;
 	@Autowired
 	private UpdateService updateService;
+	@Autowired
+	private CartCountService cartCount;
 	
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
 	public String register(UserVO vo) {
@@ -55,10 +59,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="userHome.do")
-	public String homeView(HttpServletRequest request) {
+	public String homeView(HttpServletRequest request, Model model, UserVO vo) {
 		System.out.println("홈 화면 호출");
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
+		String email = vo.getEmail();
+		model.addAttribute("total", cartCount.listCount(email));
 		return "userHome";
 	}
 	

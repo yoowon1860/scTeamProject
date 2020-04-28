@@ -77,7 +77,7 @@ public class CartController {
 			   vo.setNum(num);
 			   deleteCart.delete(vo);
 
-				 System.out.println(num+"삭제");
+				 System.out.println(num+"번 장바구니 삭제");
 			  }
 		 result =1;
 		}
