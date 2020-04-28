@@ -55,6 +55,7 @@
 								
 	}
 </script>
+
 	
 <style>
 
@@ -172,6 +173,7 @@ div>#paging {
 							</div>
 						</div>
 						<div class="navigation-area">
+						<div style="height: 200px;">
 							<p style="padding-top: 10px; float: bottom;">${study.content }</p>
 
 							<div class="row">
@@ -182,15 +184,21 @@ div>#paging {
 									class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 								</div>
 							</div>
+							</div>
 						</div>
 						
 						<!-- 댓글 목록 -->
+				
 						 <div class="comments-area">
 							<h4>${countScomment } comments</h4>
 
 							<div class="sComment"></div>
 							<script>sCommentList();</script>
+							<c:if test="${countScomment ==0 }">
+								작성된 댓글이 없습니다. 첫 댓글을 작성해보세요 :)
+							</c:if>
 						</div>
+					
 						<!-- 댓글 목록 끝 -->
 						
 						<!-- 댓글 수정 -->
@@ -313,6 +321,9 @@ div>#paging {
 							</aside>
 							<!-- 인기 게시물 끝 -->
 							
+							<!-- 태그,카테고리 -->
+							
+							<%-- 
 							<aside class="single_sidebar_widget ads_widget">
 								<a href="#"> <img class="img-fluid" src="img/blog/add.jpg"
 									alt="">
@@ -369,6 +380,8 @@ div>#paging {
 									<li><a href="#">Adventure</a></li>
 								</ul>
 							</aside>
+							--%>
+							<!-- 태그,카테고리 -->
 						</div>
 					</div>
 				</div>
