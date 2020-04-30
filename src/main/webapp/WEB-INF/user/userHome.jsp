@@ -43,312 +43,85 @@
         </div>
       </div>
     </section>
-    <!--================ Hero banner start =================-->
-
-    <!--================ Hero Carousel start =================-->
-
-    <!--================ Hero Carousel end =================-->
     
-    <!-- ================ Best Selling item  carousel ================= --> 
+    <!-- 신규 강좌 -->  
     <section class="section-margin calc-60px">
-    
-    
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Class</p>
-          <h2>Programming <span class="section-intro__style">Courses</span></h2>
+          <p>신규 강좌</p>
+          <h2><span class="section-intro__style">New Courses</span></h2>
         </div>
         <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_android.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Mobile App Programming</p>
-              <h4 class="card-product__title"><a href="single-product.html">Android</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_cpp.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Programming</p>
-              <h4 class="card-product__title"><a href="single-product.html">CPP</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_java.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Programming</p>
-              <h4 class="card-product__title"><a href="single-product.html">Java</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_spring.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Web Programming</p>
-              <h4 class="card-product__title"><a href="single-product.html">Spring Framework</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-          
-            <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_linux.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>OS</p>
-              <h4 class="card-product__title"><a href="single-product.html">Linux</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-
-          <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_android.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Mobile App Programming</p>
-              <h4 class="card-product__title"><a href="single-product.html">Android</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_cpp.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Programming</p>
-              <h4 class="card-product__title"><a href="single-product.html">CPP</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_java.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Programming</p>
-              <h4 class="card-product__title"><a href="single-product.html">Java</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_spring.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Web Programming</p>
-              <h4 class="card-product__title"><a href="single-product.html">Spring Framework</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-          
-            <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_linux.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>OS</p>
-              <h4 class="card-product__title"><a href="single-product.html">Linux</a></h4>
-              <p class="card-product__price">초급과정</p>
-            </div>
-          </div>
-        </div>
+          <c:forEach var="n" items="${newCourse}" varStatus="status">
+          	<div class="card text-center card-product">
+           		<form action="insertCart.do" method="post" novalidate="novalidate">
+          		<input type="hidden" name="email" value="${sessionScope.user.email }"/>
+          		<input type="hidden" name="vname" value="${n.name }"/>
+          		<input type="hidden" name="price" value="${n.price }"/>
+            	<div class="card-product__img">
+              		<img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_linux.png" alt="">
+              		<ul class="card-product__imgOverlay">
+                		<li><button type="button" onclick="location.href='courseDetail.do?num=${n.num}'" ><i class="ti-search"></i></button></li>
+                		<li><button><i class="ti-shopping-cart"></i></button></li>
+              		</ul>
+            	</div>
+            	<div class="card-body">
+              		<p> </p>
+              		<h4 class="card-product__title"><a href="single-product.html">${n.name }</a></h4>
+              		<p class="card-product__price"> </p>
+            	</div>
+            	</form>
+          	</div>
+        </c:forEach>
       </div>
       </div>
     </section>
-    <!-- ================ Best Selling item  carousel end ================= --> 
+    <!-- 신규 강좌 끝  -->  
 
-    <!-- ================ trending product section start ================= -->  
+    <!-- 인기 강좌 -->  
     <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Class</p>
-          <h2>Programming <span class="section-intro__style">Courses</span></h2>
+          <p>인기 강좌</p>
+          <h2><span class="section-intro__style">Popular Courses</span></h2>
         </div>
         <div class="row">
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_java.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Programming</p>
-                <h4 class="card-product__title"><a href="single-product.html">Java Programming</a></h4>
-                <p class="card-product__price">초급과정</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_cpp.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Programming</p>
-                <h4 class="card-product__title"><a href="single-product.html">CPP</a></h4>
-                <p class="card-product__price">초급과정</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_linux.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>OS</p>
-                <h4 class="card-product__title"><a href="single-product.html">Linux</a></h4>
-                <p class="card-product__price">초급과정</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_android.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Mobile App</p>
-                <h4 class="card-product__title"><a href="single-product.html">Android</a></h4>
-                <p class="card-product__price">초급과정</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_spring.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Web Programming</p>
-                <h4 class="card-product__title"><a href="single-product.html">Spring Framework</a></h4>
-                <p class="card-product__price">초급과정</p>
-              </div>
-            </div>
-          </div>
-         
+        	<c:forEach var="p" items="${popularCourse}" varStatus="status">
+         		<div class="col-md-6 col-lg-4 col-xl-3">
+           			<form action="insertCart.do" method="post" novalidate="novalidate">
+          			<input type="hidden" name="email" value="${sessionScope.user.email }"/>
+          			<input type="hidden" name="vname" value="${p.courseVO.name }"/>
+          			<input type="hidden" name="price" value="${p.courseVO.price }"/>
+            		<div class="card text-center card-product">
+              			<div class="card-product__img">
+                			<img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_java.png" alt="">
+                			<ul class="card-product__imgOverlay">
+                 				<li><button type="button" onclick="location.href='courseDetail.do?num=${p.vnum}'"><i class="ti-search"></i></button></li>
+                  				<li><button><i class="ti-shopping-cart"></i></button></li>
+                			</ul>
+              			</div>
+              			<div class="card-body">
+                			<p> </p>
+                			<h4 class="card-product__title"><a href="single-product.html">${p.courseVO.name }</a></h4>
+                			<p class="card-product__price"> </p>
+              			</div>
+            		</div>
+             		</form>
+          		</div>
+         	</c:forEach>
+	          <%--
+	          		사진 경로 
+	              <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_cpp.png" alt="">
+	              <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_linux.png" alt="">
+	              <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_android.png" alt="">
+	       		  <img class="card-img" src="${pageContext.request.contextPath }/resources/img/product/class_spring.png" alt="">
+	         --%>
         </div>
       </div>
     </section>
-    <!-- ================ trending product section end ================= -->  
-
-
-    <!-- ================ offer section start ================= --> 
-
-    <!-- ================ offer section end ================= --> 
-
-
-
-    <!-- ================ Blog section start ================= -->  
- 
-    <!-- ================ Blog section end ================= -->  
-
-    <!-- ================ Subscribe section start ================= --> 
-
-    <!-- ================ Subscribe section end ================= --> 
-
-    
+       <!-- 인기 강좌 끝--> 
 
   </main>
-
-
-  <!--================ Start footer Area  =================-->	
-
-	<!--================ End footer Area  =================-->
-
 
   
   <script type="text/javascript" src="${pageContext.request.contextPath }/resources/vendors/jquery/jquery-3.2.1.min.js"></script>

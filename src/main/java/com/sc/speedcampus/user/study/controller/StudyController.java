@@ -41,6 +41,7 @@ public class StudyController {
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
 		model.addAttribute("studyList", studyService.getStudyList(vo));
+		
 		return "study/studyList";
 	}
 	
@@ -59,6 +60,7 @@ public class StudyController {
 			
 			// 인기 게시물 가져오기
 			model.addAttribute("popularStudy", studyService.popularStudy());
+			System.out.println(studyService.popularStudy());
 			
 			// 댓글 수 가져오기
 			model.addAttribute("countScomment",sCommentService.countScomment(num));

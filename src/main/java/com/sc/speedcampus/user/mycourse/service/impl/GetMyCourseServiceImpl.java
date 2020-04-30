@@ -17,19 +17,14 @@ public class GetMyCourseServiceImpl implements GetMyCourseService {
 	private MyCourseDAO mycourseDAO;
 
 	@Override
-	public List<MyCourseVO> getMyCourseIng(UserVO vo) {
-		return mycourseDAO.getIng(vo);
-	}
-
-	@Override
-	public List<MyCourseVO> getMyCourseEnd(UserVO vo) {
-		return mycourseDAO.getEnd(vo);
-	}
-	
-	@Override
 	public List<MyCourseVO> getMyCourseList(String email) {
 		System.out.println("이메일"+email);
 		System.out.println("서비스임플" + mycourseDAO.getAll(email));
 		return mycourseDAO.getAll(email);
+	}
+
+	@Override
+	public List<MyCourseVO> getPopularCourse() {
+		return mycourseDAO.getPopularCourse();
 	}
 }

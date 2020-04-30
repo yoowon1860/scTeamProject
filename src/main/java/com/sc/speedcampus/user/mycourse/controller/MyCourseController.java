@@ -33,9 +33,6 @@ public class MyCourseController {
 		return "my/userCourse";
 	}
 	
-	@RequestMapping("playCourse.do")
-	public String playCourse() {
-		return "my/playCourse";
-	}
+
 
 }

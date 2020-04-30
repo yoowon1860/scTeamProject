@@ -6,16 +6,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.sc.speedcampus.admin.course.service.GetCourseService;
 import com.sc.speedcampus.user.cart.service.CartCountService;
 import com.sc.speedcampus.user.member.service.GetUserService;
 import com.sc.speedcampus.user.member.service.RegisterService;
 import com.sc.speedcampus.user.member.service.UpdateService;
 import com.sc.speedcampus.user.member.vo.UserVO;
+import com.sc.speedcampus.user.mycourse.service.GetMyCourseService;
 
 @Controller
 @SessionAttributes({"total", "userList"})
@@ -29,6 +30,10 @@ public class UserController {
 	private UpdateService updateService;
 	@Autowired
 	private CartCountService cartCount;
+	@Autowired
+	private GetMyCourseService myCourseService;
+	@Autowired 
+	private GetCourseService getCourseService;
 	
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
 	public String register(UserVO vo) {
@@ -64,7 +69,14 @@ public class UserController {
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
 		UserVO userVO = (UserVO)session.getAttribute("user");
-		model.addAttribute("total", cartCount.listCount(userVO.getEmail())); //장바구니에 담은 갯수 표출
+		//model.addAttribute("total", cartCount.listCount(userVO.getEmail())); //장바구니에 담은 갯수 표출
+		
+		// 인기강좌 가져오기
+		model.addAttribute("popularCourse", myCourseService.getPopularCourse());
+		
+		// 최신강좌 가져오기
+		model.addAttribute("newCourse", getCourseService.getNewCourse());
+		
 		return "userHome";
 	}
 	

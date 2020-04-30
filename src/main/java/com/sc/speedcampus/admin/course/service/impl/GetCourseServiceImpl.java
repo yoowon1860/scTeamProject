@@ -1,5 +1,7 @@
 package com.sc.speedcampus.admin.course.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class GetCourseServiceImpl implements GetCourseService {
 	@Override
 	public CourseVO getCourseService(CourseVO vo) {
 		return courseDAO.getCourse(vo);
+	}
+
+	@Override
+	public List<CourseVO> getNewCourse() {
+		return courseDAO.getNewCourse();
 	}
 
 }

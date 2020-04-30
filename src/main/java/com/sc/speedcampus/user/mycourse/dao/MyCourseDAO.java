@@ -25,11 +25,8 @@ public class MyCourseDAO {
 		return sqlSession.selectList("MyCourseDAO.getMyCourseList", email);
 	}
 	
-	public List<MyCourseVO> getEnd(UserVO vo){
-		return sqlSession.selectList("MyCourseDAO.getMyEndList", vo);
-	}
-	
-	public List<MyCourseVO> getIng(UserVO vo){
-		return sqlSession.selectList("MyCourseDAO.getMyIngList", vo);
+	// 인기 강좌 리스트 불러오기
+	public List<MyCourseVO> getPopularCourse(){
+		return sqlSession.selectList("MyCourseDAO.getPopularCourse");
 	}
 }
