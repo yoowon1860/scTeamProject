@@ -24,30 +24,20 @@
 	<select id="getMyCourseList" resultMap="mycourse" parameterType="mycourse">
 		SELECT m.num, m.email, m.vnum, m.startdate, m.enddate, v.name, v.price, v.youtube
 		FROM mycourse m
-		LEFT JOIN
-			vd v
+		LEFT JOIN vd v
 		ON m.vnum=v.num
 		WHERE email=#{email} 
 		ORDER BY enddate DESC
 	</select>
 	
-	<!-- 나의 수강 중 강의 불러오기 
-	<select id="getMyIngList" resultType="mycourse">
-		SELECT * 
-		FROM mycourse 
-		WHERE email=#{email}
-		AND
-		endDate <![CDATA[<]]> #{sysdate}
-	</select>-->
-	
-	<!-- 나의 수강 완료 강의 불러오기 
-	<select id="getMyEndList" resultType="mycourse">
-		SELECT * 
-		FROM mycourse 
-		WHERE email=#{email}
-		AND
-		enddate <![CDATA[>]]> #{sysdate}
+	<select id="getPopularCourse" resultMap="mycourse" >
+		SELECT m.vnum, v.name, v.price 
+		FROM mycourse m
+		LEFT JOIN vd v 
+		ON m.vnum=v.num
+		GROUP BY m.vnum, v.name, v.price
+		ORDER BY count(m.vnum) desc
 	</select>
--->
+
 	
 </mapper>

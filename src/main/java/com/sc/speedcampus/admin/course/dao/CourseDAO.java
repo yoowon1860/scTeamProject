@@ -45,6 +45,10 @@ public class CourseDAO {
 		return sqlSessionTemplate.selectList("CourseDAO.getSelectCourseList", name);
 	}
 	
+	// 최근 등록 강좌 5개 가져오기
+	public List<CourseVO> getNewCourse(){
+		return sqlSessionTemplate.selectList("CourseDAO.newCourseFive");
+	}
 	
 	
 }

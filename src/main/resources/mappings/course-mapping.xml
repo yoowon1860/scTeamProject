@@ -53,4 +53,16 @@
 		WHERE name LIKE '%' || #{name} || '%'
 	</select>
 	
+	<!-- 최근등록강좌 5개 가져오기 -->
+	<select id="newCourseFive" resultType="admincourse">
+		SELECT *
+		FROM 
+		 (
+		  SELECT *
+		  FROM vd 
+		  ORDER BY num DESC
+		 )
+		<![CDATA[WHERE rownum <= 5]]>
+	</select>
+	
 </mapper>
