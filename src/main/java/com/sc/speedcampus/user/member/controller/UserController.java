@@ -69,6 +69,7 @@ public class UserController {
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
 		UserVO userVO = (UserVO)session.getAttribute("user");
+		if(userVO != null) {
 		model.addAttribute("total", cartCount.listCount(userVO.getEmail())); //장바구니에 담은 갯수 표출
 		
 		// 인기강좌 가져오기
@@ -78,6 +79,9 @@ public class UserController {
 		model.addAttribute("newCourse", getCourseService.getNewCourse());
 		
 		return "userHome";
+		}else {
+			return "userHome";	//userVO null일 때 그냥 홈페이지 화면 호출
+		}
 	}
 	
 	// user 리스트 불러오기
