@@ -69,7 +69,7 @@ public class UserController {
 		HttpSession session = request.getSession(false);
 		session.getAttribute("user") ;
 		UserVO userVO = (UserVO)session.getAttribute("user");
-		//model.addAttribute("total", cartCount.listCount(userVO.getEmail())); //장바구니에 담은 갯수 표출
+		model.addAttribute("total", cartCount.listCount(userVO.getEmail())); //장바구니에 담은 갯수 표출
 		
 		// 인기강좌 가져오기
 		model.addAttribute("popularCourse", myCourseService.getPopularCourse());

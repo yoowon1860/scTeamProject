@@ -33,8 +33,5 @@ public class RegisterCourseServiceImpl implements RegisterCourseService {
 		for (int i = 0; i < size; i++) {
 			courseDAO.registerImg(list.get(i));
 		}
-		
 	}
-	
-	
 }
