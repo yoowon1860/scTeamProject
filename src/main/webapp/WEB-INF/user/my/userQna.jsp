@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-
+<title>SpeedCampus - QnA</title>
 <c:if test="${sessionScope.user == null }">
 	<script type="text/javascript">
 		alert("로그인이 필요한 서비스입니다")

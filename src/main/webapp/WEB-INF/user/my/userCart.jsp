@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Cart</title>
+  <title>SpeedCampus - 장바구니</title>
 	<link rel="icon" href="${pageContext.request.contextPath }/resources/img/Fevicon.png" type="image/png">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/fontawesome/css/all.min.css">
@@ -35,7 +35,21 @@
 </c:if>
 
 
+<script language="javascript">	//체크박스 선택된 품목들 금액 총합 구하기
 
+function itemSum(frm)
+{
+   var sum = 0;
+   var count = frm.chBox.length;
+   for(var i=0; i < count; i++ ){
+       if( frm.chBox[i].checked == true ){
+	    sum += parseInt(frm.chBox[i].value);
+       }
+   }
+   frm.total_sum.value = sum;
+}
+
+</script>
 </head>
 <body>
 
@@ -56,6 +70,7 @@
       <div class="container">
           <div class="cart_inner">
               <div class="table-responsive" id="cartL">
+              <form name="form">
                   <table class="table">
                       <thead>
                       	<tr>
@@ -79,6 +94,7 @@ $("#allCheck").click(function(){
                       		function refreshCartList(){	//새로고침 정의
                       			location.reload();
                       		}
+                      		
                       		
  $("#selectDelete_btn").click(function(){
   var confirm_val = confirm("정말 삭제하시겠습니까?");
@@ -119,15 +135,18 @@ $("#allCheck").click(function(){
                           </tr>
                       </thead>
                       <tbody >
+                      
                       <c:forEach var="cart" items="${cartList }" >
               
                           <tr>
-                          <td><input type="checkbox"  name="chBox" class="chBox" data-cartNum="${cart.num}" /></td>
+                          <td><input type="checkbox"  name="chBox" class="chBox" data-cartNum="${cart.num}" value="${cart.price}" onClick="itemSum(this.form)"/></td>
                           <script type="text/javascript">
  $(".chBox").click(function(){
   $("#allCheck").prop("checked", false);
  });
 </script>
+
+
                               <td>
                                   <div class="media">
                                       <div class="d-flex">
@@ -142,7 +161,7 @@ $("#allCheck").click(function(){
                                   <h5>${cart.courseVO.detail}</h5>
                               </td>
                               <td>
-                                  <h5><fmt:formatNumber value="${cart.price}" pattern="#,###" />원</h5> <!-- 숫자 세자리마다 콤마(,) 넣기 -->
+                                  <h5><fmt:formatNumber value="${cart.price}" pattern="#,###,###" />원</h5> <!-- 숫자 세자리마다 콤마(,) 넣기 -->
                                   <input type="hidden" value="${cart.num}"/>
                                   
                               </td>
@@ -174,7 +193,7 @@ $("#allCheck").click(function(){
                                  <h5><b> 총 결제액</b></h5>
                               </td>
                               <td>
-                                  <h5><b><fmt:formatNumber value="${totalPrice }" pattern="#,###" />원</b></h5>
+                                  <h5><b><input name="total_sum" type="number" size="10" pattern="([0-9]{1,3}).([0-9]{1,3})" readonly>원</b></h5>
                               </td>
                           </tr>
                           
@@ -197,6 +216,7 @@ $("#allCheck").click(function(){
                           </tr>
                       </tbody>
                   </table>
+                  </form>
               </div>
           </div>
       </div>

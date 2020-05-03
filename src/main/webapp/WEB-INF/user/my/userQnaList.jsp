@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-
+<title>SpeedCampus - QnA</title>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>  
 
