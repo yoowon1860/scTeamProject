@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Cart</title>
+  <title>SpeedCampus - 장바구니</title>
 	<link rel="icon" href="${pageContext.request.contextPath }/resources/img/Fevicon.png" type="image/png">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendors/fontawesome/css/all.min.css">
@@ -28,19 +28,41 @@
 		alert("로그인이 필요한 서비스입니다")
 		location.href = "${path}/speedcampus/login.do";
 	</script>
-	</c:if>
-	<c:if test="${total==0 }">
-		<h style="text-align:center; font-size:1.5em; ">장바구니가 비었습니다.
-	                  	장바구니를 채워보세요<h>
-	</c:if>
+</c:if>
+<c:if test="${total==0 }">
+	<h style="text-align:center; font-size:1.5em; ">장바구니가 비었습니다.
+                  	장바구니를 채워보세요<h>
+</c:if>
 
 
+<script language="javascript">	//체크박스 선택된 품목들 금액 총합 구하기
 
+function itemSum(frm)
+{
+   var sum = 0;
+   var count = frm.chBox.length;
+   for(var i=0; i < count; i++ ){
+       if( frm.chBox[i].checked == true ){
+	    sum += parseInt(frm.chBox[i].value);
+       }
+   }
+   frm.total_sum.value = sum;
+}
+
+</script>
 </head>
 <body>
 
+  <!--================ Start Header Menu Area =================-->
+
+	<!--================ End Header Menu Area =================-->
+
+	<!-- ================ start banner area ================= -->	
 	<h3>장바구니</h3>
 	<hr style="border: solid 1.5px #384aeb;">
+	<!-- ================ end banner area ================= -->
+  
+  
 
   <!--================Cart Area =================-->
   <c:if test="${total !=0 }">
@@ -48,85 +70,60 @@
       <div class="container">
           <div class="cart_inner">
               <div class="table-responsive" id="cartL">
+              <form name="form">
                   <table class="table">
                       <thead>
                       	<tr>
                       	<div>
                       		<th colspan="2"><input type="checkbox" name="allCheck" id="allCheck"/><b>&nbsp;모두선택</b></th>
                       		<script type="text/javascript">
-								$("#allCheck").click(function(){
-								 var chk = $("#allCheck").prop("checked");
-								 if(chk) {
-								  $(".chBox").prop("checked", true);
-								 } else {
-								  $(".chBox").prop("checked", false);
-								 }
-								});
-							</script>
-						</div>
-			<div>
+$("#allCheck").click(function(){
+ var chk = $("#allCheck").prop("checked");
+ if(chk) {
+  $(".chBox").prop("checked", true);
+ } else {
+  $(".chBox").prop("checked", false);
+ }
+});
+</script>
+</div>
+<div>
                       		<th colspan="2"><button type="button" class="btn btn-danger btn-sm" id="selectDelete_btn"  style="float:right;">선택삭제</button></th>
                       		<script type="text/javascript">
                       		
                       		function refreshCartList(){	//새로고침 정의
                       			location.reload();
                       		}
-							                      		
-							 $("#selectDelete_btn").click(function(){
-							  var confirm_val = confirm("정말 삭제하시겠습니까?");
-							  
-							  if(confirm_val) {
-							   var checkArr = new Array();
-							   
-							   $("input[class='chBox']:checked").each(function(){
-							    checkArr.push($(this).attr("data-cartNum"));
-							   });
-							    
-							   $.ajax({
-							    url : "deleteCart.do",
-							    type : "post",
-							    data : { chbox : checkArr },
-							    success : function(result){
-							    	
-							    	if(result==1){
-							    		location.href="myCart.do";
-							    	}else{
-							    		alert("삭제 실패");
-							    	}
-							    }
-							   });
-							   refreshCartList();	//새로고침 실행
-							  
-							  } 
-							 });
-							 
-							 // 결제하기
-							 $("#paymentBtn").click(function(){
-								  
-								  if(confirm_val) {
-								   var checkArr = new Array();
-								   
-								   $("input[class='chBox']:checked").each(function(){
-								    checkArr.push($(this).attr("data-cartNum"));
-								   });
-								    
-								   $.ajax({
-								    url : "paymentList.do",
-								    type : "post",
-								    data : { chbox : checkArr },
-								    success : function(result){
-								    	
-								    	if(result==1){
-								    		location.href="paymentList.do";
-								    	}else{
-								    		alert("결제 실패");
-								    	}
-								    }
-								   });
-								  
-								  } 
-								 });
-							</script>
+                      		
+                      		
+ $("#selectDelete_btn").click(function(){
+  var confirm_val = confirm("정말 삭제하시겠습니까?");
+  
+  if(confirm_val) {
+   var checkArr = new Array();
+   
+   $("input[class='chBox']:checked").each(function(){
+    checkArr.push($(this).attr("data-cartNum"));
+   });
+    
+   $.ajax({
+    url : "deleteCart.do",
+    type : "post",
+    data : { chbox : checkArr },
+    success : function(result){
+    	
+    	if(result==1){
+    		location.href="myCart.do";
+    	}else{
+    		alert("삭제 실패");
+    	}
+    }
+   });
+   refreshCartList();	//새로고침 실행
+  
+  } 
+ });
+</script>
 
                       	</tr>
                           <tr>
@@ -138,16 +135,19 @@
                           </tr>
                       </thead>
                       <tbody >
+                      
                       <c:forEach var="cart" items="${cartList }" >
               
                           <tr>
-                          <td><input type="checkbox"  name="chBox" class="chBox" data-cartNum="${cart.num}" /></td>
+                          <td><input type="checkbox"  name="chBox" class="chBox" data-cartNum="${cart.num}" value="${cart.price}" onClick="itemSum(this.form)"/></td>
                           <script type="text/javascript">
-							 $(".chBox").click(function(){
-							  $("#allCheck").prop("checked", false);
-							 });
-						 </script>
-						 <td>
+ $(".chBox").click(function(){
+  $("#allCheck").prop("checked", false);
+ });
+</script>
+
+
+                              <td>
                                   <div class="media">
                                       <div class="d-flex">
                                           <img src="${pageContext.request.contextPath }/resources/img/category/linuximage.png" height="100" width="150" alt="">
@@ -161,7 +161,7 @@
                                   <h5>${cart.courseVO.detail}</h5>
                               </td>
                               <td>
-                                  <h5><fmt:formatNumber value="${cart.price}" pattern="#,###" />원</h5> <!-- 숫자 세자리마다 콤마(,) 넣기 -->
+                                  <h5><fmt:formatNumber value="${cart.price}" pattern="#,###,###" />원</h5> <!-- 숫자 세자리마다 콤마(,) 넣기 -->
                                   <input type="hidden" value="${cart.num}"/>
                                   
                               </td>
@@ -193,7 +193,7 @@
                                  <h5><b> 총 결제액</b></h5>
                               </td>
                               <td>
-                                  <h5><b><fmt:formatNumber value="${totalPrice }" pattern="#,###" />원</b></h5>
+                                  <h5><b><input name="total_sum" type="number" size="10" pattern="([0-9]{1,3}).([0-9]{1,3})" readonly>원</b></h5>
                               </td>
                           </tr>
                           
@@ -208,19 +208,15 @@
 
                               </td>
                               <td>
-                              <form method="post" action="kakaoPay.do">
-                              <input type="hidden" value=${totalPrice } name="total_amount">
-								    <button>카카오페이로 결제하기</button>
-							  </form>
- 
                                   <div class="checkout_btn_inner d-flex align-items-center">
                                       <a class="gray_btn" href="course1.do">계속 쇼핑하기</a>
-                                      <button type="button" id="paymentBtn" class="primary-btn ml-2">결제하기</button>
+                                      <a class="primary-btn ml-2" href="#">결제하기</a>
                                   </div>
                               </td>
                           </tr>
                       </tbody>
                   </table>
+                  </form>
               </div>
           </div>
       </div>
