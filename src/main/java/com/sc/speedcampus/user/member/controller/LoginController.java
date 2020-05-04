@@ -4,11 +4,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sc.speedcampus.user.member.service.GetUserService;
 import com.sc.speedcampus.user.member.vo.UserVO;
@@ -40,6 +38,14 @@ public class LoginController {
 		}
 
 	}
+	
+	 @RequestMapping(value = "/oauth", produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
+	 public String kakaoLogin(@RequestParam("code") String code) {
+        System.out.println(access_token);
+       return "home";
+	 }
+
+
 	
 	
 	}

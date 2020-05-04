@@ -33,4 +33,8 @@ public class CartDAO {
 	public void delete(CartVO vo) throws Exception{
 		sqlSessionTemplate.delete("CartDAO.delete", vo);
 	}
+	
+	public CartVO getCartOne(CartVO vo) {
+		return sqlSessionTemplate.selectOne("CartDAO.getCartOne", vo);
+	}
 }
