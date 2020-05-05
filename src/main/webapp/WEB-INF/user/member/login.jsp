@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <c:if test="${sessionScope.user != null }">
 	<script type="text/javascript">
 		location.href = "${path}/speedcampus/userHome.do";
@@ -35,10 +36,64 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/vendors/nouislider/nouislider.min.css">
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/style.css">
-	
-	
+	<title>카카오톡 로그인</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			Kakao.init("3d52c442ccdfdc09ceeda1ecc2b4c155");
+			function getKakaotalkUserProfile(){
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function(res) {
+						$("#kakao-profile").append(res.properties.email);
+						$("#kakao-profile").append(res.properties.nickname);
+						$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname+"님의 프로필 사진"}));
+						console.log(res);
+					},
+					fail: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			function createKakaotalkLogin(){
+				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+				var loginBtn = $("<a/>",{"class":"kakao-login-btn","text":"카카오톡으로 로그인"});
+				loginBtn.click(function(){
+					Kakao.Auth.login({
+						persistAccessToken: true,
+						persistRefreshToken: true,
+						success: function(authObj) {
+							getKakaotalkUserProfile();
+							createKakaotalkLogout();
+						},
+						fail: function(err) {
+							console.log(err);
+						}
+					});
+				});
+				$("#kakao-logged-group").prepend(loginBtn)
+			}
+			function createKakaotalkLogout(){
+				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+				var logoutBtn = $("<a/>",{"class":"kakao-logout-btn","text":"로그아웃"});
+				logoutBtn.click(function(){
+					Kakao.Auth.logout();
+					createKakaotalkLogin();
+					$("#kakao-profile").text("");
+				});
+				$("#kakao-logged-group").prepend(logoutBtn);
+			}
+			if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
+				createKakaotalkLogout();
+				getKakaotalkUserProfile();
+			}else{
+				createKakaotalkLogin();
+			}
+		});
+	</script>
+
 
 </head>
 <body>
@@ -75,6 +130,30 @@
 							</div> -->
 							<div class="col-md-12 form-group">
 								<button type="submit" class="button button-login w-100">로그인</button>
+								<a id="kakao-login-btn"></a>
+								<!-- 카카오 -->
+								<a href="http://developers.kakao.com/logout"></a>
+								<%-- <script type='text/javascript'>
+								  //<![CDATA[
+								    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+								    Kakao.init('3d52c442ccdfdc09ceeda1ecc2b4c155');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
+								    // 카카오 로그인 버튼을 생성합니다.
+								    Kakao.Auth.createLoginButton({
+								      container: '#kakao-login-btn',
+								      success: function(authObj) {
+								        alert(JSON.stringify(authObj));
+								        console.log(JSON.stringify(authObj));
+								      },
+								      fail: function(err) {
+								         alert(JSON.stringify(err));
+								      }
+								    });
+								  //]]>
+								</script>--%>
+								<!-- 카카오 끝 -->
+								<div id="kakao-logged-group"></div>
+								<div id="kakao-profile"></div>
+
 								<a href="#">비밀번호 찾기</a>
 							</div>
 						</form>

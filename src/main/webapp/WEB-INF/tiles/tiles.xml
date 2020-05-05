@@ -66,6 +66,10 @@
       <put-attribute name="content" value="/WEB-INF/user/study/{1}.jsp" />
     </definition>   
     
+    <definition name="pay/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/user/pay/{1}.jsp"/>  
+    </definition>
+    
 
     
 </tiles-definitions>

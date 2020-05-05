@@ -47,22 +47,22 @@ function itemSum(frm)
        }
    }
    frm.total_sum.value = sum;
+   console.log(sum);
+   $('input[name=total_amount]').attr('value',sum);
+   console.log(sum);
 }
 
 </script>
 </head>
 <body>
 
-  <!--================ Start Header Menu Area =================-->
-
-	<!--================ End Header Menu Area =================-->
-
 	<!-- ================ start banner area ================= -->	
 	<h3>장바구니</h3>
 	<hr style="border: solid 1.5px #384aeb;">
 	<!-- ================ end banner area ================= -->
-  
-  
+ 	<form method="post" id="kakao_form" name="kakao_form" action="kakaoPay.do">
+        <input type="hidden" name="total_amount" value=""> 
+   </form>
 
   <!--================Cart Area =================-->
   <c:if test="${total !=0 }">
@@ -72,58 +72,57 @@ function itemSum(frm)
               <div class="table-responsive" id="cartL">
               <form name="form">
                   <table class="table">
+                  
                       <thead>
                       	<tr>
                       	<div>
                       		<th colspan="2"><input type="checkbox" name="allCheck" id="allCheck"/><b>&nbsp;모두선택</b></th>
                       		<script type="text/javascript">
-$("#allCheck").click(function(){
- var chk = $("#allCheck").prop("checked");
- if(chk) {
-  $(".chBox").prop("checked", true);
- } else {
-  $(".chBox").prop("checked", false);
- }
-});
-</script>
-</div>
-<div>
+								$("#allCheck").click(function(){
+								 var chk = $("#allCheck").prop("checked");
+								 if(chk) {
+								  $(".chBox").prop("checked", true);
+								 } else {
+								  $(".chBox").prop("checked", false);
+								 }
+								});
+							</script>
+						</div>
+						<div>
                       		<th colspan="2"><button type="button" class="btn btn-danger btn-sm" id="selectDelete_btn"  style="float:right;">선택삭제</button></th>
                       		<script type="text/javascript">
                       		
-                      		function refreshCartList(){	//새로고침 정의
-                      			location.reload();
-                      		}
-                      		
-                      		
- $("#selectDelete_btn").click(function(){
-  var confirm_val = confirm("정말 삭제하시겠습니까?");
-  
-  if(confirm_val) {
-   var checkArr = new Array();
-   
-   $("input[class='chBox']:checked").each(function(){
-    checkArr.push($(this).attr("data-cartNum"));
-   });
-    
-   $.ajax({
-    url : "deleteCart.do",
-    type : "post",
-    data : { chbox : checkArr },
-    success : function(result){
-    	
-    	if(result==1){
-    		location.href="myCart.do";
-    	}else{
-    		alert("삭제 실패");
-    	}
-    }
-   });
-   refreshCartList();	//새로고침 실행
-  
-  } 
- });
-</script>
+		                      		function refreshCartList(){	//새로고침 정의
+		                      			location.reload();
+		                      		}
+								 $("#selectDelete_btn").click(function(){
+								  var confirm_val = confirm("정말 삭제하시겠습니까?");
+								  
+								  if(confirm_val) {
+								   var checkArr = new Array();
+								   
+								   $("input[class='chBox']:checked").each(function(){
+								    checkArr.push($(this).attr("data-cartNum"));
+								   });
+								    
+								   $.ajax({
+								    url : "deleteCart.do",
+								    type : "post",
+								    data : { chbox : checkArr },
+								    success : function(result){
+								    	
+								    	if(result==1){
+								    		location.href="myCart.do";
+								    	}else{
+								    		alert("삭제 실패");
+								    	}
+								    }
+								   });
+								   refreshCartList();	//새로고침 실행
+								  
+								  } 
+								 });
+							</script>
 
                       	</tr>
                           <tr>
@@ -141,10 +140,10 @@ $("#allCheck").click(function(){
                           <tr>
                           <td><input type="checkbox"  name="chBox" class="chBox" data-cartNum="${cart.num}" value="${cart.price}" onClick="itemSum(this.form)"/></td>
                           <script type="text/javascript">
- $(".chBox").click(function(){
-  $("#allCheck").prop("checked", false);
- });
-</script>
+							 $(".chBox").click(function(){
+							  $("#allCheck").prop("checked", false);
+							 });
+						</script>
 
 
                               <td>
@@ -196,8 +195,9 @@ $("#allCheck").click(function(){
                                   <h5><b><input name="total_sum" type="number" size="10" pattern="([0-9]{1,3}).([0-9]{1,3})" readonly>원</b></h5>
                               </td>
                           </tr>
-                          
+                           
                           <tr class="out_button_area">
+                           
                               <td class="d-none-l">
 
                               </td>
@@ -208,15 +208,23 @@ $("#allCheck").click(function(){
 
                               </td>
                               <td>
+                             
+                           
+      							
                                   <div class="checkout_btn_inner d-flex align-items-center">
                                       <a class="gray_btn" href="course1.do">계속 쇼핑하기</a>
-                                      <a class="primary-btn ml-2" href="#">결제하기</a>
+                                      <button type="submit" form="kakao_form" name="button" class="primary-btn ml-2">결제하기</button>
                                   </div>
+                                  
+                                  
                               </td>
+                              
                           </tr>
                       </tbody>
+                      
                   </table>
                   </form>
+                 
               </div>
           </div>
       </div>

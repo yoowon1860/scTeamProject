@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.sc.speedcampus.user.cart.service.CartCountService;
 import com.sc.speedcampus.user.cart.service.DeleteCartService;
 import com.sc.speedcampus.user.cart.service.GetCartListService;
+import com.sc.speedcampus.user.cart.service.GetCartOneService;
 import com.sc.speedcampus.user.cart.service.InsertCartService;
 import com.sc.speedcampus.user.cart.vo.CartVO;
 import com.sc.speedcampus.user.member.vo.UserVO;
@@ -33,6 +34,8 @@ public class CartController {
 	private CartCountService cartCount;
 	@Autowired
 	private DeleteCartService deleteCart;
+	@Autowired
+	private GetCartOneService getCartOne;
 	
 	@RequestMapping(value="insertCart.do", method = RequestMethod.POST)
 	public String insert(CartVO vo) {
@@ -77,6 +80,30 @@ public class CartController {
 			   vo.setNum(num);
 			   deleteCart.delete(vo);
 
+				 System.out.println(num+"번 장바구니 삭제");
+			  }
+		 result =1;
+		}
+		 return result;
+	}
+	
+	@RequestMapping(value="paymentList.do", method=RequestMethod.POST)
+	public int paymentList(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO vo) throws Exception {
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		String email = userVO.getEmail();
+		
+		int result = 0;
+		int num = 0;
+		int price = 0;
+		
+		if(userVO!=null) {
+			vo.setEmail(email);
+		
+		 for(String i : chArr) {   
+			   num = Integer.parseInt(i);
+			   System.out.println(num);
+			   vo.setNum(num);
+			   getCartOne.getCartOne(vo);
 				 System.out.println(num+"번 장바구니 삭제");
 			  }
 		 result =1;

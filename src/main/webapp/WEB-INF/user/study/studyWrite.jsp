@@ -7,6 +7,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+	var str = document.getElementById("textarea").value;
+
+	str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
+	document.getElementById("text").innerHTML = str;
+</script>
 
 <c:if test="${sessionScope.user == null }">
 	<script type="text/javascript">
@@ -98,8 +105,12 @@ to {
 										name="title">
 								</div>
 								<div class="col-md-12 form-group">
+								
 									<label>내용</label><br />
-									<textarea rows="10" cols="75" name="content"></textarea>
+									<textarea id="textarea" rows="10" cols="75" name="content" wrap="hard">
+										
+									</textarea>
+									
 									<br/>
 
 

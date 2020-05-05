@@ -61,4 +61,12 @@
 		AND email=#{email}
 	</delete>
 	
+	<!-- 카트 하나 불러오기 -->
+	<select id="getCartOne" resultType="mycart" parameterType="mycart">
+		SELECT * 
+		FROM cart
+		WHERE num=#{num}
+		AND email=#{email}
+	</select>
+	
 </mapper>
