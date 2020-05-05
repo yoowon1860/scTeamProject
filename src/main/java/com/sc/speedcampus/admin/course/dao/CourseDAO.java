@@ -21,7 +21,7 @@ public class CourseDAO {
 	}
 	
 	public void registerImg(Map<String, Object> map) throws Exception{
-		sqlSessionTemplate.insert("courseDAO.registerImg", map);
+		sqlSessionTemplate.insert("CourseDAO.registerImg", map);
 		
 	}	
 	

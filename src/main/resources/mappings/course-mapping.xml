@@ -7,15 +7,16 @@
 	<!-- 강의 등록(이미지파일 제외) -->
 	<insert id="register" parameterType="admincourse" useGeneratedKeys="true" keyProperty="num">
 		 <selectKey keyProperty="num" resultType="int" order="BEFORE">
-		 	SELECT NVL(max(num), 0)+1 FROM vd
+		 	SELECT VD_SEQ.NEXTVAL FROM DUAL
 		 </selectKey>
 	    INSERT INTO vd (num, name, price, youtube, detail)
 		VALUES(#{num}, #{name}, #{price}, #{youtube}, #{detail})
 	</insert>
 	
+	<!-- 강의 이미지 삽입 -->
 	<insert id="registerImg" parameterType="hashMap" >
 		INSERT INTO vd_img (inum, org_img, stored_img, num)
-		VALUES((SELECT NVL(max(num), 0)+1 FROM vd_img), #{org_img}, #{stored_img}, #{num})
+		VALUES(vdi_seq.nextval, #{ORG_IMG,jdbcType=VARCHAR}, #{STORED_IMG,jdbcType=VARCHAR}, #{NUM, jdbcType=INTEGER})
 	</insert>
 	
 	

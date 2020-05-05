@@ -18,7 +18,7 @@ import com.sc.speedcampus.admin.course.vo.CourseVO;
 
 @Component("fileUtils")
 public class FileUtils {
-	private static final String filePath = "C:\\scProject\\img\\"; //파일이 저장될 위치///
+	private static final String filePath = "C:\\scProject\\img\\"; //파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(CourseVO courseVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
@@ -50,9 +50,9 @@ public class FileUtils {
 				file = new File(filePath + storedFileName);
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
-				listMap.put("num", num);
-				listMap.put("org_img", originalFileName);
-				listMap.put("stored_img", storedFileName);
+				listMap.put("NUM", num);
+				listMap.put("ORG_IMG", originalFileName);
+				listMap.put("STORED_IMG", storedFileName);
 				
 				list.add(listMap);
 			}

@@ -60,6 +60,7 @@
 			<param-value>  
 			/WEB-INF/spring/adminContext/admin-servlet.xml  
 			/WEB-INF/spring/appServlet/servlet-context.xml
+			/WEB-INF/spring/context-common.xml
 			<!--   
 				아래와 같이 각 팀원들이 만들 컨텍스트를 등록하면 됩니다.   
 				/WEB-INF/spring/adminContext/adminPageContext.xml  

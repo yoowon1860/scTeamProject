@@ -226,7 +226,7 @@
 									
 									<div class="form-group">
 											<label>썸네일 등록</label> <input type="file"
-												class="form-control" name="file">
+												class="form-control" name="org_img">
 										</div>
 
 
