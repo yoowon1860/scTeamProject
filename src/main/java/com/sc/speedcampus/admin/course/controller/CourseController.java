@@ -74,7 +74,7 @@ public class CourseController {
 	
 	@RequestMapping(value="courseUpdate.mdo", method = RequestMethod.POST)
 	public String courseUpdate(CourseVO vo) {
-		System.out.println("코스 수정 화면");
+		System.out.println("코스 수정 실행");
 		updateCourse.update(vo);
 		return "redirect:courseList.mdo";
 	}
