@@ -29,10 +29,15 @@
 		WHERE email=#{email,jdbcType=VARCHAR}
 	</select>
 	
-	<!-- 사용자ID, 강좌명, 가격 넣기 -->
+	<!-- 내 장바구니 추가하기(장바구니에 중복 추가 방지) -->
 	<insert id="insert" parameterType="mycart" >
 		INSERT INTO cart (num, email, vname, price)
-		VALUES((SELECT NVL(max(num), 0)+1 FROM cart), #{email}, #{vname}, #{price})
+		SELECT (SELECT NVL(max(num), 0)+1 FROM cart), #{email}, #{vname}, #{price}
+		FROM dual
+		WHERE NOT EXISTS (
+							SELECT * FROM cart
+							WHERE email=#{email} AND vname=#{vname}
+						)
 	</insert>
 	
 	
