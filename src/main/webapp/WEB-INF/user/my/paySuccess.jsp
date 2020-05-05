@@ -6,7 +6,7 @@
 <!DOCTYPE html>
                   
 	                  
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
   <meta charset="UTF-8">

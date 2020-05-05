@@ -41,7 +41,7 @@ public class LoginController {
 	
 	 @RequestMapping(value = "/oauth", produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
 	 public String kakaoLogin(@RequestParam("code") String code) {
-        System.out.println(access_token);
+        //System.out.println(access_token);
        return "home";
 	 }
 
