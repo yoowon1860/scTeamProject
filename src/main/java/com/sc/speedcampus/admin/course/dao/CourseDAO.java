@@ -50,5 +50,9 @@ public class CourseDAO {
 		return sqlSessionTemplate.selectList("CourseDAO.newCourseFive");
 	}
 	
+	// 코스명에 따른 고유번호 가져오기
+	public int getCourseNum(String name) {
+		return sqlSessionTemplate.selectOne("CourseDAO.getCourseNum",name);
+	}
 	
 }

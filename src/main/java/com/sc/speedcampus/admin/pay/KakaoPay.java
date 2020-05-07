@@ -22,6 +22,7 @@ public class KakaoPay {
 	    
 	    
 	    public String kakaoPayReady(KakaoPayReadyVO vo) {
+	    	System.out.println(vo);
 	        RestTemplate restTemplate = new RestTemplate();
 	        System.out.println(vo.getTotal_amount());
 	        // 서버로 요청할 Header
@@ -33,12 +34,13 @@ public class KakaoPay {
 	        // 서버로 요청할 Body
 	        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 	        params.add("cid", "TC0ONETIME");
-	        params.add("partner_order_id", "1001");
-	        params.add("partner_user_id", "gorany");
+	        params.add("partner_order_id", vo.getPartner_order_id());
+	        params.add("partner_user_id", vo.getPartner_user_id());
 	        params.add("item_name", "SpeedCampus 강좌");
 	        params.add("quantity", "1");
+	        
 	        //1번
-	       // params.add("total_amount", "12");
+	        //params.add("total_amount", "2100");
 	        //2번
 	        params.add("total_amount", vo.getTotal_amount());
 	        params.add("tax_free_amount", "100");
@@ -64,8 +66,9 @@ public class KakaoPay {
 	        
 	    }
 	    
-	    public KakaoPayApprovalVO kakaoPayInfo(String pg_token) {
-	    	 
+	    public KakaoPayApprovalVO kakaoPayInfo(String pg_token, KakaoPayReadyVO vo ) {
+	  
+	    	 System.out.println("실행여부");
 	        //log.info("KakaoPayInfoVO............................................");
 	        //log.info("-----------------------------");
 	        
@@ -80,11 +83,11 @@ public class KakaoPay {
 	        // 서버로 요청할 Body
 	        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 	        params.add("cid", "TC0ONETIME");
-	        params.add("tid", kakaoPayReadyVO.getTid());
-	        params.add("partner_order_id", "1001");
-	        params.add("partner_user_id", "gorany");
+	        params.add("tid", kakaoPayReadyVO.getTid());  				// 결제고유번호(카카오페이)
+	        params.add("partner_order_id", vo.getPartner_order_id());	// 결제 번호(테이블 내)
+	        params.add("partner_user_id", vo.getPartner_user_id());		// 결제 아이디
 	        params.add("pg_token", pg_token);
-	        params.add("total_amount", "2100");
+	        params.add("total_amount", vo.getTotal_amount());
 	        
 	        HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 	        

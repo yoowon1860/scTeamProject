@@ -1,6 +1,7 @@
 package com.sc.speedcampus.admin.pay;
 
 import java.util.Date;
+import java.util.List;
 
 public class KakaoPayApprovalVO {
 
@@ -12,8 +13,19 @@ public class KakaoPayApprovalVO {
     private String item_name, item_code, payload;
     private Integer quantity, tax_free_amount, vat_amount;
     private Date created_at, approved_at;
+    private List<String> courseNameList;	// 결제 강좌 이름 리스트
     
     
+	public List<String> getCourseNameList() {
+		return courseNameList;
+	}
+
+
+	public void setCourseNameList(List<String> courseNameList) {
+		this.courseNameList = courseNameList;
+	}
+
+
 	public String getAid() {
 		return aid;
 	}
@@ -188,9 +200,10 @@ public class KakaoPayApprovalVO {
 	public String toString() {
 		return "KakaoPayApprovalVO [aid=" + aid + ", tid=" + tid + ", cid=" + cid + ", sid=" + sid
 				+ ", partner_order_id=" + partner_order_id + ", partner_user_id=" + partner_user_id
-				+ ", payment_method_type=" + payment_method_type + ", item_name=" + item_name + ", item_code="
-				+ item_code + ", payload=" + payload + ", quantity=" + quantity + ", tax_free_amount=" + tax_free_amount
-				+ ", vat_amount=" + vat_amount + ", created_at=" + created_at + ", approved_at=" + approved_at + "]";
+				+ ", payment_method_type=" + payment_method_type + ", amount=" + amount + ", card_info=" + card_info
+				+ ", item_name=" + item_name + ", item_code=" + item_code + ", payload=" + payload + ", quantity="
+				+ quantity + ", tax_free_amount=" + tax_free_amount + ", vat_amount=" + vat_amount + ", created_at="
+				+ created_at + ", approved_at=" + approved_at + ", courseNameList=" + courseNameList + "]";
 	}
     
     

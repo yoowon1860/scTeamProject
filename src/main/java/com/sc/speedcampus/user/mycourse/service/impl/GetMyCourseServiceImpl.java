@@ -27,4 +27,14 @@ public class GetMyCourseServiceImpl implements GetMyCourseService {
 	public List<MyCourseVO> getPopularCourse() {
 		return mycourseDAO.getPopularCourse();
 	}
+
+	@Override
+	public void insertMyCourse(MyCourseVO vo) {
+		System.out.println("실행여부");
+		System.out.println(vo);
+		mycourseDAO.insertMyCourse(vo);
+		
+	}
+
+	
 }

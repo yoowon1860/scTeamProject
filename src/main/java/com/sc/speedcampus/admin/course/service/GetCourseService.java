@@ -8,5 +8,6 @@ public interface GetCourseService {
 	
 	public CourseVO getCourseService(CourseVO vo);
 	public List<CourseVO> getNewCourse();
+	public int getCourseNum(String name);
 
 }
