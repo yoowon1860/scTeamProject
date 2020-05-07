@@ -28,6 +28,10 @@ public class CourseDAO {
 	public void update(CourseVO vo) {
 		sqlSessionTemplate.update("CourseDAO.update", vo);
 	}
+	
+	public void updateImg(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.update("CourseDAO.updateImg", map);
+	}
 
 	public void delete(CourseVO vo) {
 		sqlSessionTemplate.delete("CourseDAO.delete", vo);

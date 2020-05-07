@@ -22,4 +22,9 @@ public class GetCartListServiceImpl implements GetCartListService {
 		return cartDAO.GetCartList(email);
 	}
 
+	@Override
+	public List<CartVO> cartListNum(String email) {
+		return cartDAO.GetCartListNum(email);
+	}
+
 }

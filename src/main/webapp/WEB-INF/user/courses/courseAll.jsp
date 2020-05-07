@@ -54,7 +54,7 @@
 						<div class="course bg-white h-100 align-self-stretch">
 							<figure class="m-0">
 								<a href="course-single.html"><img
-									src="${pageContext.request.contextPath }/resources/upload/${course.imgVO.stored_img }.jpg"
+									src="${pageContext.request.contextPath }/resources/upload/${course.imgVO.stored_img }"
 									alt="Image" class="img-fluid"></a>
 							</figure>
 							<div class="course-inner-text py-4 px-4">

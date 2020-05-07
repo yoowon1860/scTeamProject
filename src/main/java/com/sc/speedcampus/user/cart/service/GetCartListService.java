@@ -9,4 +9,5 @@ public interface GetCartListService {
 	
 	public List<CartVO> cartList(String email);
 
+	public List<CartVO> cartListNum(String email);
 }
