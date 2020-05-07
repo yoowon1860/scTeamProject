@@ -61,7 +61,7 @@ function itemSum(frm)
 	<hr style="border: solid 1.5px #384aeb;">
 	<!-- ================ end banner area ================= -->
  	<form method="post" id="kakao_form" name="kakao_form" action="kakaoPay.do">
-        <input type="hidden" name="total_amount" value=""> 
+       
    </form>
 
   <!--================Cart Area =================-->
@@ -118,10 +118,13 @@ function itemSum(frm)
 								    	}
 								    }
 								   });
+								   
 								   refreshCartList();	//새로고침 실행
 								  
 								  } 
 								 });
+								 
+					
 							</script>
 
                       	</tr>
@@ -138,7 +141,7 @@ function itemSum(frm)
                       <c:forEach var="cart" items="${cartList }" >
               
                           <tr>
-                          <td><input type="checkbox"  name="chBox" class="chBox" data-cartNum="${cart.num}" value="${cart.price}" onClick="itemSum(this.form)"/></td>
+                          <td><input type="checkbox"  name="chBox" class="chBox" data-cartName="${cart.vname }" data-cartNum="${cart.num}" value="${cart.price}" onClick="itemSum(this.form)"/></td>
                           <script type="text/javascript">
 							 $(".chBox").click(function(){
 							  $("#allCheck").prop("checked", false);
@@ -213,7 +216,36 @@ function itemSum(frm)
       							
                                   <div class="checkout_btn_inner d-flex align-items-center">
                                       <a class="gray_btn" href="course1.do">계속 쇼핑하기</a>
-                                      <button type="submit" form="kakao_form" name="button" class="primary-btn ml-2">결제하기</button>
+                                      
+                                      <button type="button" form="kakao_form" id="kakao_btn" class="primary-btn ml-2">결제하기</button>
+                                      <script type="text/javascript">
+                                 	 $("#kakao_btn").click(function(){
+                                 		 console.log('확인');
+  									   var saveCourse = new Array();
+  									   
+  									   $("input[class='chBox']:checked").each(function(){
+  										   saveCourse.push($(this).attr("data-cartName"));
+  									   });
+  									    
+  									   $.ajax({
+  									    url : "kakaoPay.do",
+  									    type : "post",
+  									    data : { chbox : saveCourse },
+  									   success : function(result){
+  									    	
+  									    	if(result==1){
+  									    		location.href="myCart.do";
+  									    	}else{
+  									    		alert("삭제 실패");
+  									    	}
+  									    } 
+  									   });
+  									   
+  									  // refreshCartList();	//새로고침 실행
+  									  
+  									  
+  									 });
+                                      </script>
                                   </div>
                                   
                                   

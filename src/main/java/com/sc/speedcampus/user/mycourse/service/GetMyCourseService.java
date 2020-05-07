@@ -10,4 +10,6 @@ public interface GetMyCourseService {
 	
 	public List<MyCourseVO> getMyCourseList(String email);
 	public List<MyCourseVO> getPopularCourse();
+	
+	public void insertMyCourse(MyCourseVO vo);
 }

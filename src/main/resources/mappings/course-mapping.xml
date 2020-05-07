@@ -66,4 +66,8 @@
 		<![CDATA[WHERE rownum <= 5]]>
 	</select>
 	
+	<select id="getCourseNum" resultType="java.lang.Integer" parameterType="String">
+		SELECT num FROM vd WHERE name=#{name}
+	</select>
+	
 </mapper>
