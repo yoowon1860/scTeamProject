@@ -8,6 +8,7 @@
 <html lang="en">
 <head>
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/resources/ajax-cross-origin/js/jquery.ajax-cross-origin.min.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -47,9 +48,7 @@ function itemSum(frm)
        }
    }
    frm.total_sum.value = sum;
-   console.log(sum);
    $('input[name=total_amount]').attr('value',sum);
-   console.log(sum);
 }
 
 </script>
@@ -60,9 +59,7 @@ function itemSum(frm)
 	<h3>장바구니</h3>
 	<hr style="border: solid 1.5px #384aeb;">
 	<!-- ================ end banner area ================= -->
- 	<form method="post" id="kakao_form" name="kakao_form" action="kakaoPay.do">
-       
-   </form>
+
 
   <!--================Cart Area =================-->
   <c:if test="${total !=0 }">
@@ -110,13 +107,14 @@ function itemSum(frm)
 								    type : "post",
 								    data : { chbox : checkArr },
 								    success : function(result){
+									    	
+									    	if(result==1){
+									    		location.href="myCart.do";
+									    	}else{
+									    		alert("삭제 실패");
+									    	}
+									    } 
 								    	
-								    	if(result==1){
-								    		location.href="myCart.do";
-								    	}else{
-								    		alert("삭제 실패");
-								    	}
-								    }
 								   });
 								   
 								   refreshCartList();	//새로고침 실행
@@ -195,7 +193,7 @@ function itemSum(frm)
                                  <h5><b> 총 결제액</b></h5>
                               </td>
                               <td>
-                                  <h5><b><input name="total_sum" type="number" size="10" pattern="([0-9]{1,3}).([0-9]{1,3})" readonly>원</b></h5>
+                                  <h5><b><input id="total_sum" name="total_sum" type="number" size="10" pattern="([0-9]{1,3}).([0-9]{1,3})" readonly>원</b></h5>
                               </td>
                           </tr>
                            
@@ -222,23 +220,23 @@ function itemSum(frm)
                                  	 $("#kakao_btn").click(function(){
                                  		 console.log('확인');
   									   var saveCourse = new Array();
-  									   
+  									   var total_amount = $("#total_sum").val(); 
+  									
   									   $("input[class='chBox']:checked").each(function(){
   										   saveCourse.push($(this).attr("data-cartName"));
   									   });
-  									    
+  									   
   									   $.ajax({
   									    url : "kakaoPay.do",
   									    type : "post",
-  									    data : { chbox : saveCourse },
-  									   success : function(result){
-  									    	
-  									    	if(result==1){
-  									    		location.href="myCart.do";
-  									    	}else{
-  									    		alert("삭제 실패");
-  									    	}
-  									    } 
+  									    data : { chbox : saveCourse ,total_amount :total_amount },
+  									    success : function(data){
+  									    
+  									    },
+  									    error : function(data){
+  									    	alert("전송실패");	
+  									    
+  									    }
   									   });
   									   
   									  // refreshCartList();	//새로고침 실행

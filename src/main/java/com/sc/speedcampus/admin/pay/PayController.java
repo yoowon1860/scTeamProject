@@ -1,6 +1,5 @@
 package com.sc.speedcampus.admin.pay;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +19,7 @@ import com.sc.speedcampus.user.member.vo.UserVO;
 import com.sc.speedcampus.user.mycourse.service.GetMyCourseService;
 import com.sc.speedcampus.user.mycourse.vo.MyCourseVO;
 
+@CrossOrigin
 @Controller
 public class PayController {
 
@@ -37,8 +38,9 @@ public class PayController {
         
     }
     
+
     @PostMapping("kakaoPay.do")
-    public String kakaoPay(HttpServletRequest request, MyCourseVO mcVO,@RequestParam(value = "chbox[]") List<String> courseNameList) {
+    public String kakaoPay(@RequestParam("total_amount") String total_amount, HttpServletRequest request, MyCourseVO mcVO,@RequestParam(value = "chbox[]") List<String> courseNameList) {
        // log.info("kakaoPay post............................................");
     	//@RequestParam("total_amount") String total_amount, 
     	System.out.println("chArr: " + courseNameList);
@@ -58,14 +60,12 @@ public class PayController {
         for(int i=0;i<courseNameList.size();i++) {
         	
         	String courseName = courseNameList.get(i);
-        	System.out.println(courseName);
         	int courseNum = getCourseService.getCourseNum(courseName);
-        	System.out.println(courseNum);
+        	
         	mcVO.setVnum(courseNum);
         	mcVO.setEmail(userVO.getEmail());
-        	System.out.println("mcvo:" + mcVO);
-        	System.out.println(courseNameList.get(i));
-        	System.out.println(userVO.getEmail());
+        	
+        	// myCourse에 내 강좌 등록
         	courseService.insertMyCourse(mcVO);
         }
         
