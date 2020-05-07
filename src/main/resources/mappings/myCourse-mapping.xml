@@ -38,6 +38,12 @@
 		GROUP BY m.vnum, v.name, v.price
 		ORDER BY count(m.vnum) desc
 	</select>
+	
+	<insert id="insertMyCourse" parameterType="mycourse">
+		INSERT INTO mycourse (num,email,vnum)
+		VALUES ( (SELECT NVL(max(num), 0)+1 FROM mycourse) , #{email}, #{vnum} )
+	
+	</insert>
 
 	
 </mapper>

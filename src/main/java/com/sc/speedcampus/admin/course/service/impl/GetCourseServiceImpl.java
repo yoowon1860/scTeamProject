@@ -25,4 +25,9 @@ public class GetCourseServiceImpl implements GetCourseService {
 		return courseDAO.getNewCourse();
 	}
 
+	@Override
+	public int getCourseNum(String name) {
+		return courseDAO.getCourseNum(name);
+	}
+
 }
