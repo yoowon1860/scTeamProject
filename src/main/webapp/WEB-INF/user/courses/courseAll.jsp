@@ -60,7 +60,7 @@
 							<div class="course-inner-text py-4 px-4">
 								<span class="course-price">${course.price }원</span>
 								<div class="meta">
-									<span class="icon-clock-o"></span>4 Lessons / 12 week
+									<span class="icon-clock-o"></span>4 Lessons / 12 weeks
 								</div>
 								<h3>
 									${course.name }
