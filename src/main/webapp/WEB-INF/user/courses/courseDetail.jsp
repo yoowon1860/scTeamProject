@@ -90,7 +90,7 @@
             <div class="mb-5 text-center border rounded course-instructor">
               <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3"><fmt:formatNumber value="${course.price}" pattern="#,###" />원</h3>
               <div class="mb-4 text-center">
-                <img src="images/person_2.jpg" alt="Image" class="w-25 rounded-circle mb-4">  
+                <img src="${pageContext.request.contextPath }/resources/upload/${course.imgVO.stored_img }" alt="Image" class="w-25 rounded-circle mb-4">  
                 <h3 class="h5 text-black mb-4">Christine Downeyy</h3>
                 <p>${course.detail }</p>
               </div>

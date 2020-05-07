@@ -26,11 +26,42 @@
 		WHERE num=#{num}
 	</delete>
 	
-	<!-- 강의 상세 검색 -->
-	<select id="getCourse" parameterType="admincourse" resultType="admincourse">
-		SELECT * 
-		FROM vd
-		WHERE num=#{num}
+	<!-- vd, vd_img 테이블 조인을 위한 -->
+	<resultMap type="admincourse" id="admincourse">
+		<id column="NUM" property="num"/>
+		<result column="NAME" property="name"/>
+		<result column="PRICE" property="price"/>
+		<result column="YOUTUBE" property="youtube"/>
+		<result column="DETAIL" property="detail"/>
+		
+		<!-- association 1:1, collection 1:다 -->
+		<association javaType="com.sc.speedcampus.admin.course.vo.ImgVO" property="imgVO">
+			<id column="INUM" property="inum"/>
+			<result column="NUM" property="num"/>
+			<result column="ORG_IMG" property="org_img"/>
+			<result column="STORED_IMG" property="stored_img"/>
+		</association>	
+	</resultMap>
+	
+	<!-- 강의 상세 검색, 이미지 불러오기 -->
+	<select id="getCourse" parameterType="admincourse" resultMap="admincourse">
+		SELECT v.num, v.name, v.price, v.detail, vi.stored_img, vi.org_img
+		FROM vd v
+		LEFT JOIN
+			vd_img vi
+		ON v.num = vi.num		
+		WHERE v.num=#{num, jdbcType=INTEGER}
+	</select>
+	
+	<!--  -->
+	<select id="getCourseList2" parameterType="admincourse" resultMap="admincourse">
+		SELECT v.num, v.name, v.price, v.detail, vi.stored_img, vi.org_img
+		FROM vd v
+		LEFT JOIN
+			vd_img vi
+		ON v.num = vi.num		
+		WHERE v.num=#{num, jdbcType=INTEGER}
+		ORDER BY v.num DESC
 	</select>
 	
 	<!-- 강의 목록 (관리자) -->
@@ -44,7 +75,7 @@
 	<update id="update" parameterType="admincourse">
 		update vd
 		SET name=#{name}, price=#{price}, youtube=#{youtube}, detail=#{detail}
-		WHERE num=#{num}
+		WHERE num=#{num, jdbcType=INTEGER}
 	</update>
 	
 	<!-- 선택 강의 목록 (사용자) -->
