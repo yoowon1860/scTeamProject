@@ -59,7 +59,7 @@
           		<input type="hidden" name="vname" value="${n.name }"/>
           		<input type="hidden" name="price" value="${n.price }"/>
             	<div class="card-product__img">
-              		<img class="img-fluid" src="${pageContext.request.contextPath }/resources/img/product/class_linux.png" alt="">
+              		<img class="img-fluid" src="${pageContext.request.contextPath }/resources/upload/${n.imgVO.stored_img }" alt="">
               		<ul class="card-product__imgOverlay">
                 		<li><button type="button" onclick="location.href='courseDetail.do?num=${n.num}'" ><i class="ti-search"></i></button></li>
                 		<li><button><i class="ti-shopping-cart"></i></button></li>

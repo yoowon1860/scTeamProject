@@ -45,7 +45,7 @@
 	
 	<!-- 강의 상세 검색, 이미지 불러오기 -->
 	<select id="getCourse" parameterType="admincourse" resultMap="admincourse">
-		SELECT v.num, v.name, v.price, v.detail, vi.stored_img, vi.org_img
+		SELECT v.num, v.name, v.price, v.detail, v.youtube, vi.stored_img, vi.org_img
 		FROM vd v
 		LEFT JOIN
 			vd_img vi
@@ -53,16 +53,6 @@
 		WHERE v.num=#{num, jdbcType=INTEGER}
 	</select>
 	
-	<!--  -->
-	<select id="getCourseList2" parameterType="admincourse" resultMap="admincourse">
-		SELECT v.num, v.name, v.price, v.detail, vi.stored_img, vi.org_img
-		FROM vd v
-		LEFT JOIN
-			vd_img vi
-		ON v.num = vi.num		
-		WHERE v.num=#{num, jdbcType=INTEGER}
-		ORDER BY v.num DESC
-	</select>
 	
 	<!-- 강의 목록 (관리자) -->
 	<select id="getCourseList" parameterType="admincourse" resultType="admincourse">
@@ -78,21 +68,34 @@
 		WHERE num=#{num, jdbcType=INTEGER}
 	</update>
 	
+	<!-- 강의 이미지 수정 (관리자) -->
+	<update id="updateImg" parameterType="hashMap">
+		update vd_img (org_img, stored_img)
+		SET org_img=#{ORG_IMG,jdbcType=VARCHAR}, stored_img=#{STORED_IMG,jdbcType=VARCHAR}
+		WHERE num=#{num, jdbcType=INTEGER}
+	</update>
+	
 	<!-- 선택 강의 목록 (사용자) -->
-	<select id="getSelectCourseList" parameterType="String" resultType="admincourse">
+	<select id="getSelectCourseList" parameterType="String" resultType="admincourse" resultMap="admincourse">
 		SELECT *
-		FROM vd
-		WHERE name LIKE '%' || #{name} || '%'
+		FROM vd v
+		LEFT JOIN
+			vd_img vi
+		ON v.num = vi.num
+		WHERE v.name LIKE '%' || #{name} || '%'
 	</select>
 	
 	<!-- 최근등록강좌 5개 가져오기 -->
-	<select id="newCourseFive" resultType="admincourse">
+	<select id="newCourseFive" resultType="admincourse" resultMap="admincourse">
 		SELECT *
 		FROM 
 		 (
 		  SELECT *
-		  FROM vd 
-		  ORDER BY num DESC
+		  FROM vd v
+		  LEFT JOIN
+			  vd_img vi
+		  ON v.num = vi.num 
+		  ORDER BY v.num DESC
 		 )
 		<![CDATA[WHERE rownum <= 5]]>
 	</select>

@@ -22,6 +22,10 @@ public class CartDAO {
 		return sqlSessionTemplate.selectList("CartDAO.getCartList", email);
 	}
 	
+	public List<CartVO> GetCartListNum(String email){
+		return sqlSessionTemplate.selectList("CartDAO.getCartListNum", email);
+	}
+	
 	public int listCount(String email) {
 		return sqlSessionTemplate.selectOne("CartDAO.listCount",email);
 	}

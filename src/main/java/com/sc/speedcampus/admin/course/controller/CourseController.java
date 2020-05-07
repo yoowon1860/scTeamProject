@@ -73,9 +73,9 @@ public class CourseController {
 	}
 	
 	@RequestMapping(value="courseUpdate.mdo", method = RequestMethod.POST)
-	public String courseUpdate(CourseVO vo) {
+	public String courseUpdate(CourseVO vo, MultipartHttpServletRequest mpRequest) throws Exception{
 		System.out.println("코스 수정 실행");
-		updateCourse.update(vo);
+		updateCourse.update(vo, mpRequest);
 		return "redirect:courseList.mdo";
 	}
 	

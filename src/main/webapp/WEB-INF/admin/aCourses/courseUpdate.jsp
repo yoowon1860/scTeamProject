@@ -207,7 +207,7 @@
 							<div class="card-body pad">
 								<div class="mb-3">
 
-									<form action="courseUpdate.mdo" method="post">
+									<form action="courseUpdate.mdo" method="post" enctype="multipart/form-data">
 										<div class="card-body">
 										<input type="hidden" name="num" value="${course.num }"/>
 											<div class="form-group">
@@ -228,7 +228,7 @@
 
 											<div class="form-group">
 												<label>썸네일 수정</label> <input type="file"
-													class="form-control" name="file">
+													class="form-control" name="file" value="${course.imgVO.org_img }">
 											</div>
 
 

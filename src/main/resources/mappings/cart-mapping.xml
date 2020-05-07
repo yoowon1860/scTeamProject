@@ -29,6 +29,16 @@
 		WHERE email=#{email,jdbcType=VARCHAR}
 	</select>
 	
+	<!-- 장바구니 이미지 불러오기 -->
+	<select id="getCartListNum" parameterType="mycart" resultMap="mycart">
+		SELECT v.num
+		FROM cart c
+		LEFT JOIN
+			vd v
+		ON	c.vname = v.name
+		WHERE email=#{email,jdbcType=VARCHAR}
+	</select>
+	
 	<!-- 내 장바구니 추가하기(장바구니에 중복 추가 방지) -->
 	<insert id="insert" parameterType="mycart" >
 		INSERT INTO cart (num, email, vname, price)
