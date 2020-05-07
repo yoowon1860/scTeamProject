@@ -67,7 +67,7 @@
             	</div>
             	<div class="card-body">
               		<p> </p>
-              		<h4 class="card-product__title"><a href="single-product.html">${n.name }</a></h4>
+              		<h4 class="card-product__title"><a href='courseDetail.do?num=${n.num}'>${n.name }</a></h4>
               		<p class="card-product__price"> </p>
             	</div>
             	</form>
@@ -102,7 +102,7 @@
               			</div>
               			<div class="card-body">
                 			<p> </p>
-                			<h4 class="card-product__title"><a href="single-product.html">${p.courseVO.name }</a></h4>
+                			<h4 class="card-product__title"><a href='courseDetail.do?num=${p.vnum}'>${p.courseVO.name }</a></h4>
                 			<p class="card-product__price"> </p>
               			</div>
             		</div>

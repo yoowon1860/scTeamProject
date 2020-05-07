@@ -13,8 +13,14 @@ public class CourseVO {
 	private String youtube;
 	private String detail;
 	
+	private ImgVO imgVO;
 	
-	
+	public ImgVO getImgVO() {
+		return imgVO;
+	}
+	public void setImgVO(ImgVO imgVO) {
+		this.imgVO = imgVO;
+	}
 	public int getNum() {
 		return num;
 	}

@@ -8,7 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -17,14 +21,15 @@ import com.sc.speedcampus.admin.course.vo.CourseVO;
 
 
 @Component("fileUtils")
-public class FileUtils {
-	private static final String filePath = "C:\\scProject\\img\\"; //파일이 저장될 위치
+public class FileUtils implements ServletContextAware{
+	
+	 
 	
 	public List<Map<String, Object>> parseInsertFileInfo(CourseVO courseVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
 		
 		Iterator<String> iterator = mpRequest.getFileNames();
-		
+		String filePath = mpRequest.getSession().getServletContext().getRealPath("/resources/upload/"); //파일이 저장될 위치
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String originalFileExtension = null;
@@ -63,5 +68,10 @@ public class FileUtils {
 		public static String getRandomString() {
 			return UUID.randomUUID().toString().replaceAll("-", "");
 		}
-	
+
+		@Override
+		public void setServletContext(ServletContext servletContext) {
+			// TODO Auto-generated method stub
+			
+		}
 }
