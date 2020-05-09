@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ReviewVO">
+ 
+ 	<!-- 리뷰 작성-->
+ 	<insert id="insertReview">
+		INSERT INTO review (conum, userId, rnum, rContent, starscore)
+     	VALUES (#{conum, jdbcType=INTEGER}, #{userId}, (SELECT NVL(max(rnum), 0)+1 FROM review), #{rContent, jdbcType=VARCHAR}, #{starscore, jdbcType=INTEGER})
+ 	</insert>
+ 	
+ 	<!-- 리뷰 리스트 -->
+	<select id="getReviewList" resultType="review" parameterType="java.lang.Integer">
+		 SELECT conum, userId, rnum, regDate, rContent, starscore FROM review 
+		 WHERE conum = #{conum}
+	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReview" parameterType="review">
+		UPDATE review SET rContent=#{rContent}
+		WHERE rnum=#{rnum} and userId=#{userId}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReview" parameterType="review">
+		DELETE FROM review 
+		WHERE rnum=#{rnum} and userId=#{userId}
+	</delete>
+	
+	<!-- 아이디 체크 -->
+	<select id="reviewUserIdCheck" resultType="String">
+		SELECT userId
+		FROM review
+		WHERE rnum=#{rnum}
+	</select>
+	
+	<!-- 총 리뷰 수 세기 -->
+	<select id="countReview" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM review
+		WHERE conum=#{conum}
+	</select>
+	
+	<!-- 별점 평균 내기 
+	<select id="averageReview" parameterType="java.lang.Integer" resultType="java.lang.Double">
+		SELECT AVG(starscore) FROM review
+		WHERE conum=#{conum}
+	</select>-->
+ 	
+</mapper>
+ 
+
+
+

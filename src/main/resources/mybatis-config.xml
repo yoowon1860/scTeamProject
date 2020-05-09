@@ -16,6 +16,7 @@
 		<typeAlias type="com.sc.speedcampus.user.qna.vo.QnaVO" alias="myQ"/>	
 		<typeAlias type="com.sc.speedcampus.admin.qna.vo.QcommentVO" alias="myA"/>
 		<typeAlias type="com.sc.speedcampus.user.cart.vo.CartVO" alias="mycart"/>		
+		<typeAlias type="com.sc.speedcampus.user.review.vo.ReviewVO" alias="review"/>
 						
 	</typeAliases>
 
@@ -41,6 +42,8 @@
 		<mapper resource = "mappings/qna-mapping.xml"/>			
 		<mapper resource = "mappings/qcomment-mapping.xml"/>
 		<mapper resource = "mappings/cart-mapping.xml"/>	
+		<mapper resource = "mappings/review-mapping.xml"/>
+	
 	</mappers>
 	
 	
