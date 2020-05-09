@@ -129,11 +129,11 @@ div>#paging {
 		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
-					<h1>${vd.name } Reviews</h1>
+					<h1>${course.name } Reviews</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Shop Single</li>
+              <li class="breadcrumb-item active" aria-current="page">Review Page</li>
             </ol>
           </nav>
 				</div>
@@ -270,7 +270,7 @@ div>#paging {
                 
                 <c:if test="${sessionScope.user != null}">
 								<form class="form-contact form-review mt-3" role="form" method="post" autocomplete="off">
-									<input type="hidden" name="conum" id="conum" value="${vd.num }">
+									<input type="hidden" name="conum" id="conum" value="${course.num }">
 
 									<div class="form-group">
 										<textarea class="form-control different-control w-100" cols="30" rows="5" name="rContent"
